@@ -1,0 +1,283 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+header {
+    
+    background:#342015;
+    color: #fff;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav a {
+    color:white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #ffcc00;
+}
+
+.logo{
+    font-size: larger;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.side-container{
+   margin-left: 50%;
+}
+
+
+.hero {
+    background: url('your-image-url.jpg') no-repeat center center/cover;
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+}
+.search-bar{
+    width: 300px;
+    border-radius: 10px;
+    border: 1px;
+}
+
+.search-icon{
+    
+    background-color: #28a745; 
+    color: white; 
+    border: none; 
+    padding: 5px 20px; 
+    font-size: 16px; 
+    cursor: pointer; 
+    border-radius: 4px;
+}
+.hero-content h1 {
+    font-size: 3rem;
+}
+.carousel-inner img{
+    height: 400px;
+}
+
+.btn {
+    background: #ffcc00;
+    color: #333;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: transform 0.3s;
+}
+
+.btn:hover {
+    transform: scale(1.1);
+}
+
+.features {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.images-slider{
+    display: flex;
+    gap: 50px;
+}
+.slider{
+    margin: auto;
+    width: 80%;
+
+    
+}
+ul li img{
+    height: 350px;
+    width: 250px;
+    
+    
+}
+
+
+
+
+.feature-card {
+    background: #eee;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+    margin: 10px;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+}
+
+.movie-list, .theater-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.movie-card, .theater-card {
+    background:#fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px;
+    width: 30%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    
+}
+
+
+.movie-card:hover, .theater-card:hover {
+    transform: scale(1.1);
+}
+
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+
+/////
+/* Basic Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  /* Slider Container */
+  .slider {
+    width: 80%;
+    max-width: 900px;
+    overflow: hidden;
+  }
+  
+  /* Image Slider */
+  ul.images-slider {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    justify-content: space-around;
+   
+  }
+  
+  ul.images-slider li {
+    perspective: 1000px;
+    transition: transform 0.3s, filter 0.3s;
+  }
+  
+  ul.images-slider li img {
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s, filter 0.3s;
+  }
+  
+  /* Hover Effect */
+  ul.images-slider li:hover img {
+    transform: rotateY(50deg) scale(1.9); /* 3D effect and enlarge */
+    filter: none; /* Removes blur from hovered image */
+  }
+  
+  
+.btn{
+    background-color: #28a745;
+}
+
+/* search bar*/
+
+form {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar {
+    width: 200px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    font-size: 14px;
+}
+
+.search-bar:focus {
+    border-color: #007bff; /* Change border color on focus */
+}
+
+.search-icon {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin-left: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.search-icon:hover {
+    background-color: #0056b3; /* Change button color on hover */
+}
+
+ /* Basic styling for blurred background */
+ .blur {
+    filter: blur(5px);
+    pointer-events: none;
+}
+
+/* Modal styling for better appearance */
+.modal .modal-dialog {
+    max-width: 400px;
+}
+
+.modal .modal-content {
+    padding: 20px;
+    border-radius: 8px;
+}
+
+
+/* Form signup */
+.signup-form{
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form{
+    display: flex;
+    flex-direction: column;
+}
