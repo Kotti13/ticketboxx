@@ -43,12 +43,16 @@ nav li {
     padding: 5px 10px;
 }
 
-nav a {
+nav li a {
     color: #333;
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s;
 }
+.nav-link{
+    color: #333;
+}
+
 
 nav a:hover {
     color: #ff9933;

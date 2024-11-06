@@ -51,6 +51,9 @@ nav a {
     font-weight: 500;
     transition: color 0.3s;
 }
+.nav-link{
+    color: #333;
+}
 
 nav a:hover {
     color: #ff9933;
