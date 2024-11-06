@@ -19,45 +19,98 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// Sign up function
+// Enhanced Form Validation with Firebase Integration
+
 document.querySelector('.signup-form').addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const username = document.getElementById('username').value;
-    const email = document.getElementById('signupEmail').value;
+    // Clear previous error messages
+    document.getElementById('usernameError').textContent = "";
+    document.getElementById('emailError').textContent = "";
+    document.getElementById('passwordError').textContent = "";
+    document.getElementById('confirmPasswordError').textContent = "";
+
+    // Get values
+    const username = document.getElementById('username').value.trim();
+    const email = document.getElementById('signupEmail').value.trim();
     const password = document.getElementById('signupPassword').value;
     const confirmPassword = document.getElementById('confirmPassword').value;
 
-    if (password !== confirmPassword) {
-        alert("Passwords do not match.");
-        return;
+    // Validation patterns
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+    let isValid = true;
+
+    // Username validation
+    if (username === "") {
+        document.getElementById('usernameError').textContent = "Username is required.";
+        isValid = false;
     }
 
-    try {
-        await createUserWithEmailAndPassword(auth, email, password);
-        alert("Sign up successful!");
-        // Optionally redirect or reset the form
-    } catch (error) {
-        console.error("Error during sign up:", error);
-        alert(error.message);
+    // Email validation
+    if (!emailPattern.test(email)) {
+        document.getElementById('emailError').textContent = "Please enter a valid email address.";
+        isValid = false;
+    }
+
+    // Password validation
+    if (!passwordPattern.test(password)) {
+        document.getElementById('passwordError').textContent = "Password must be at least 8 characters long, contain one uppercase letter, one number, and one special character.";
+        isValid = false;
+    }
+
+    // Confirm password validation
+    if (password !== confirmPassword) {
+        document.getElementById('confirmPasswordError').textContent = "Passwords do not match.";
+        isValid = false;
+    }
+
+    if (isValid) {
+        try {
+            await createUserWithEmailAndPassword(auth, email, password);
+            alert("Sign up successful!");
+        } catch (error) {
+            console.error("Error during sign up:", error);
+            alert(error.message);
+        }
     }
 });
 
-// Login function
 document.querySelector('.login-form').addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const email = document.getElementById('email').value;
+    // Clear previous error messages
+    document.getElementById('loginEmailError').textContent = "";
+    document.getElementById('loginPasswordError').textContent = "";
+
+    // Get values
+    const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value;
 
-    try {
-        await signInWithEmailAndPassword(auth, email, password);
-        alert("Login successful!");
-        // Optionally redirect or perform another action
-        window.location.href="./assets/pages/home.html";
-    } catch (error) {
-        console.error("Error during login:", error);
-        alert(error.message);
+    // Validation patterns
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    let isValid = true;
+
+    // Email validation
+    if (!emailPattern.test(email)) {
+        document.getElementById('loginEmailError').textContent = "Please enter a valid email address.";
+        isValid = false;
+    }
+
+    // Password validation
+    if (password === "") {
+        document.getElementById('loginPasswordError').textContent = "Password is required.";
+        isValid = false;
+    }
+
+    if (isValid) {
+        try {
+            await signInWithEmailAndPassword(auth, email, password);
+            alert("Login successful!");
+            window.location.href = "./assets/pages/home.html";
+        } catch (error) {
+            console.error("Error during login:", error);
+            alert(error.message);
+        }
     }
 });
-

@@ -47,63 +47,71 @@
     </header>
     
 
-    <!-- Signup Modal -->
-    <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="signupModalLabel">Sign Up</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form class="signup-form">
-                        <div class="mb-3">
-                            <label for="username" class="form-label">Username</label>
-                            <input type="text" id="username" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="signupEmail" class="form-label">Email</label>
-                            <input type="email" id="signupEmail" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="signupPassword" class="form-label">Password</label>
-                            <input type="password" id="signupPassword" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="confirmPassword" class="form-label">Confirm Password</label>
-                            <input type="password" id="confirmPassword" class="form-control" required>
-                        </div>
-                        <button type="submit" class="btn btn-secondary w-100">Sign Up</button>
-                    </form>
-                </div>
+   <!-- Signup Modal -->
+<!-- Signup Modal -->
+<div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title " id="signupModalLabel" >Sign Up</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="signup-form text-center" novalidate>
+                    <div class="mb-3">
+                       
+                        <input type="text" placeholder="Username" id="username" class="form-control"  required>
+                        <span class="error-message" id="usernameError" style="color: red;"></span>
+                    </div>
+                    <div class="mb-3">
+                      
+                        <input type="email" placeholder="Email" id="signupEmail" class="form-control mx-auto"  required>
+                        <span class="error-message" id="emailError" style="color: red;"></span>
+                    </div>
+                    <div class="mb-3">
+                        
+                        <input type="password" placeholder="Password" id="signupPassword" class="form-control mx-auto"  required>
+                        <span class="error-message" id="passwordError" style="color: red;"></span>
+                    </div>
+                    <div class="mb-3">
+                       
+                        <input type="password" placeholder="confirmPassword" id="confirmPassword" class="form-control mx-auto"  required>
+                        <span class="error-message" id="confirmPasswordError" style="color: red;"></span>
+                    </div>
+                    <button type="submit" class="btn btn-secondary w-100">Sign Up</button>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Login Modal -->
-    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="loginModalLabel">Login</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form class="login-form">
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" id="email" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" id="password" class="form-control" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Login</button>
-                    </form>
-                </div>
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">Login</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="login-form text-center" novalidate>
+                    <div class="mb-3">
+                        
+                        <input type="email" placeholder="Email" id="email" class="form-control mx-auto"  required>
+                        <span class="error-message" id="loginEmailError" style="color: red;"></span>
+                    </div>
+                    <div class="mb-4">
+                        
+                        <input type="password" placeholder="Password" id="password" class="form-control mx-auto"  required>
+                        <span class="error-message" id="loginPasswordError" style="color: red;"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-90">Login</button>
+                </form>
             </div>
         </div>
     </div>
+</div>
+
 
     <main>
         <div id="carouselExample" class="carousel slide">
