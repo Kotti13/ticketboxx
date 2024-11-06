@@ -1,0 +1,118 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212;
+    color: #ffffff;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #1f1f1f;
+}
+
+header img {
+    height: 40px;
+}
+
+header form {
+    flex-grow: 1;
+    margin: 0 20px;
+}
+
+header .nav {
+    display: flex;
+    gap: 20px;
+}
+
+header .nav-link {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+header .nav-link:hover {
+    background-color: #333333;
+}
+
+.movie-section {
+    margin: 20px;
+}
+
+.movie-section h1 {
+    margin-bottom: 15px;
+    font-size: 24px;
+    color: #ff9900;
+}
+
+.movie-list {
+    display: flex;
+    overflow-x: auto;
+    gap: 15px;
+    padding: 10px 0;
+    scroll-behavior: smooth;
+}
+
+.movie-card {
+    min-width: 220px;
+    background-color: #1c1c1c;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+
+.movie-card:hover {
+    transform: scale(1.05);
+}
+
+.movie-card img {
+    width: 100%;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.movie-card .details {
+    padding: 10px;
+    text-align: center;
+}
+
+.movie-card h2 {
+    font-size: 18px;
+    color: #ffcc00;
+    margin: 10px 0 5px;
+}
+
+.movie-card p {
+    margin: 5px 0;
+    color: #b3b3b3;
+}
+
+.movie-card .btn {
+    display: block;
+    margin: 10px auto;
+    padding: 8px 15px;
+    background-color: #ff5500;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+
+.movie-card .btn:hover {
+    background-color: #ff7733;
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #1f1f1f;
+    color: #b3b3b3;
+}

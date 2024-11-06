@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/movies.css">
+    <link rel="stylesheet" href="../../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>Movies Listings</title>
+</head>
+<body>
+
+    <header>
+        <div>
+            <img src="../assets/images/ticketboxx-logo.png" alt="Logo">
+        </div>
+        <form action="./movies.html" method="GET" class="d-flex">
+            <input type="search" class="form-control me-2" name="q" placeholder="Search For Movies, Sports, Activities" aria-label="Search">
+            <button type="submit" class="btn btn-outline-secondary">Search</button>
+        </form>
+        <nav>
+            <ul class="nav">
+                <li><a class="nav-link" href="index.html">Home</a></li>
+                <li><a class="nav-link" href="movies.html">Movies</a></li>
+                <li><a class="nav-link" href="theaters.html">Theaters</a></li>
+                <li><a class="nav-link" href="bookings.html">My Bookings</a></li>
+                <li><a class="nav-link" href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="movie-section">
+            <h1>Recommended Movies</h1>
+            <div class="movie-list">
+                <div class="movie-card">
+                    <img src="./assets/images/movie1.jpg" alt="Movie 1">
+                    <div class="details">
+                        <h2>Movie 1</h2>
+                        <p>Genre: Action</p>
+                        <p>Rating: ⭐⭐⭐⭐</p>
+                        <a href="theaters.html" class="btn">Book Now</a>
+                    </div>
+                </div>
+                <div class="movie-card">
+                    <img src="./assets/images/movie2.jpg" alt="Movie 2">
+                    <div class="details">
+                        <h2>Movie 2</h2>
+                        <p>Genre: Drama</p>
+                        <p>Rating: ⭐⭐⭐</p>
+                        <a href="theaters.html" class="btn">Book Now</a>
+                    </div>
+                </div>
+                <!-- Add more movie cards as needed -->
+            </div>
+        </section>
+
+        <section class="movie-section">
+            <h1>Upcoming Movies</h1>
+            <div class="movie-list">
+                <div class="movie-card">
+                    <img src="./assets/images/movie3.jpg" alt="Movie 3">
+                    <div class="details">
+                        <h2>Movie 3</h2>
+                        <p>Genre: Thriller</p>
+                        <p>Rating: ⭐⭐⭐⭐⭐</p>
+                        <a href="theaters.html" class="btn">Book Now</a>
+                    </div>
+                </div>
+                <div class="movie-card">
+                    <img src="./assets/images/movie4.jpg" alt="Movie 4">
+                    <div class="details">
+                        <h2>Movie 4</h2>
+                        <p>Genre: Comedy</p>
+                        <p>Rating: ⭐⭐⭐⭐</p>
+                        <a href="theaters.html" class="btn">Book Now</a>
+                    </div>
+                </div>
+                <!-- Add more movie cards as needed -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Cinema Booking. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

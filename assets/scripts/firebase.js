@@ -54,9 +54,10 @@ document.querySelector('.login-form').addEventListener('submit', async (e) => {
         await signInWithEmailAndPassword(auth, email, password);
         alert("Login successful!");
         // Optionally redirect or perform another action
-        window.location.href="../home.html"
+        window.location.href="./assets/pages/home.html";
     } catch (error) {
         console.error("Error during login:", error);
         alert(error.message);
     }
 });
+

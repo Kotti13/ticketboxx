@@ -1,0 +1,184 @@
+/* General styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #f5f5f5;
+    border-bottom: 2px solid #ccc;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header img {
+    height: 40px;
+}
+
+header form {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    margin: 0 20px;
+}
+
+header nav {
+    margin-left: auto;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+}
+
+nav li {
+    padding: 5px 10px;
+}
+
+nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #ff9933;
+}
+
+.search-bar {
+    flex-grow: 1;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-right: 10px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.search-bar:focus {
+    border-color: #ff9933;
+}
+
+.search-icon {
+    background-color: #ff9933;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.search-icon:hover {
+    background-color: #e68a00;
+}
+
+/* Main content styles */
+main {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.movie-title{
+    text-align: center;
+    color: #333;
+}
+.img-fluid{
+    height: 100px;
+    width: 300px;
+    border-radius: 10px;
+}
+.overall-movie-container{
+    display: flex;
+    justify-content: space-evenly;
+}
+.book-tikcet-conatiner{
+    margin-top: 10%;
+
+}
+
+.movie-title-rating {
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin: 0;
+}
+
+.rating {
+    font-size: 1.5em;
+    margin: 5px 0;
+}
+
+#movie-info {
+    font-size: 1em;
+    color: #666;
+}
+
+.button {
+    background-color: #ff4081;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+.button:hover {
+    background-color: #e91e63;
+}
+
+.trailer-video {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.movie-about {
+    margin: 20px 0;
+}
+
+.cast-crew {
+    margin: 20px 0;
+}
+
+.cast-crew-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.cast-crew-card {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    width: 150px;
+}
+
+.cast-crew-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+
+.cast-crew-card p {
+    margin: 5px 0 0;
+    font-weight: bold;
+}
