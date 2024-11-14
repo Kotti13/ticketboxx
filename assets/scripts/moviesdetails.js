@@ -1,5 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
-    // Get movie ID from URL query parameters
+document.addEventListener("DOMContentLoaded", function() { 
     const params = new URLSearchParams(window.location.search);
     const movieId = params.get("id");
 
@@ -8,8 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
         return;
     }
 
-    // Fetch movie data from JSON
-    fetch('../data/movies.json') // Replace with the correct path to your JSON file
+    fetch('../data/movies.json')
         .then(response => response.json())
         .then(data => {
             const movie = data.movies.find(movie => movie.id === movieId);
@@ -28,36 +26,50 @@ document.addEventListener("DOMContentLoaded", function() {
 function displayMovieDetails(movie) {
     const movieDetailsContainer = document.getElementById("movie-details");
     const html = `
-    
+    <div class="movie-details-container">
         <h1 class="movie-title">${movie.title}</h1>
         <div class="overall-movie-container">
-        <img src="${movie.poster}" alt="${movie.title} Poster" class="img-fluid">
-        <div class="book-tikcet-conatiner">
-        <p><strong>Rating:</strong> ${movie.rating}</p>
-        <p><strong>Release Date:</strong> ${movie.releaseDate}</p>
-        <p><strong>Duration:</strong> ${movie.duration}</p>
-        <p><strong>Language:</strong> ${movie.language}</p>
-        <p><strong>Genre:</strong> ${movie.genre}</p>
-        <a href="./booking.html?id=${movie.id}" class="btn btn-success">Book Tickets</a>
-        </div>
+            <div class="movie-poster">
+                <img src="${movie.poster}" alt="${movie.title} Poster" class="img-fluid">
+            </div>
+            <div class="book-ticket-container">
+                <p><strong>Rating:</strong> ${movie.rating}</p>
+                <p><strong>Release Date:</strong> ${movie.releaseDate}</p>
+                <p><strong>Duration:</strong> ${movie.duration}</p>
+                <p><strong>Language:</strong> ${movie.language}</p>
+                <p><strong>Genre:</strong> ${movie.genre}</p>
+                <a href="booking.html?id=${movie.id}" class="btn btn-success">Book Tickets</a>
+            </div>
         </div>
         <p><strong>Description:</strong> ${movie.description}</p>
         <p><strong>About Movie:</strong> ${movie.about}</p>
+
         <h2>Cast</h2>
-        <div>
-       
-            ${movie.cast.map(actor => `<div>${actor.name} as ${actor.role}</div>`).join('')}
-           
-            
-        <div>
+        <div class="cast-container">
+            ${movie.cast.map(actor => `
+                <div class="cast-member">
+                    <img src="${actor.image}" alt="${actor.name}" class="cast-photo">
+                    <div>${actor.name} <br><span style="color: red; text-align: center">${actor.role}</span></div>
+                </div>
+            `).join('')}
+        </div>
+
         <h2>Crew</h2>
-        <ul>
-            ${movie.crew.map(member => `<li>${member.name} - ${member.role}</li>`).join('')}
-        </ul>
+        <div class="crew-container">
+            ${movie.crew.map(member => `
+                <div class="crew-member">
+                    <img src="${member.image}" alt="${member.name}" class="crew-photo">
+                    <div>${member.name}</div>
+                </div>
+            `).join('')}
+        </div>
+
         <h2>Trailer</h2>
-        <a href="${movie.trailerLink}" target="_blank" class="btn btn-primary">Watch Trailer</a>
+        <a href="${movie.trailerLink}" target="_blank" class="btn btn-primary">
+            <img src="../images/play-button.png" height="40" width="40"> Watch Trailer
+        </a>
         <br><br>
-        
+    </div>
     `;
     movieDetailsContainer.innerHTML = html;
 }

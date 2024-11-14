@@ -18,9 +18,8 @@
           </div>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="home.html" >Home</a></li>
                 <li><a href="movies.html" onclick="">Movies</a></li>
-                <li><a href="theaters.html">Theaters</a></li>
                 <li><a href="bookings.html">My Bookings</a></li>
                 <li><a href="contact.html">Contact Us</a></li>
             </ul>
@@ -29,9 +28,34 @@
     </header>
 
     <main>
-        <div id="movie-details" class="container mt-4">
+        <div id="movie-details" class="container">
             <!-- Movie details will be dynamically injected here -->
         </div>
+        <!-- Modal Popup (Initially hidden) -->
+<div id="ticket-modal" class="ticket-modal">
+    <div class="ticket-modal-content">
+        <span id="close-modal" class="close-btn">&times;</span>
+        <h2>Book Tickets for <span id="movie-name"></span></h2>
+        
+        <!-- Language and Format Selection -->
+        <p>Select Language and Format:</p>
+        <!-- Language Selection with redirection -->
+        <!-- Language Selection with redirection -->
+<!--  --><div id="language-selection">
+    
+
+        
+        
+
+
+        <!-- Booking Form or Additional Information -->
+        <p>Choose Your Show Timing and Tickets...</p>
+        
+        <!-- Add any further booking details or ticket options here -->
+
+    </div>
+</div>
+
     </main>
 
     <footer>

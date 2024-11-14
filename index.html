@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="./home.css">
+    
     <link rel="icon" type="image/x-icon" href="./assets/images/ticketboxx-logo.png">
     <title>TicketBoxx</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -29,7 +29,7 @@
             <ul class="nav">
                 <li class="nav-item"><a class="nav-link" style="color: #333;" href="index.html">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="." style="color: #333;">Movies</a></li>
-                <li class="nav-item"><a class="nav-link" href="theaters.html" style="color: #333;">Theaters</a></li>
+             
                 <li class="nav-item"><a class="nav-link" href="bookings.html" style="color: #333;">My Bookings</a></li>
                 <li class="nav-item"><a class="nav-link" href="contact.html" style="color: #333;">Contact Us</a></li>
             </ul>
@@ -89,6 +89,7 @@
 <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
+            <div style="width:100%;height:120px;padding-bottom:100%;position:relative;"><iframe src="https://giphy.com/embed/0Ix0Q0mZrliHea82vk" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div>
             <div class="modal-header">
                 <h5 class="modal-title" id="loginModalLabel">Login</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -107,6 +108,13 @@
                     </div>
                     <button type="submit" class="btn btn-primary w-90">Login</button>
                 </form>
+                <div class="login-social-container">
+                    <p style="color: red; text-align: center;" >Login With Social Accounts</p>
+                    <div class="social-img-container">
+                      <img src="./assets/images/google.png" alt="google-icon">
+                      <img src="./assets/images/github.png" alt="github" height="40px">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -117,13 +125,13 @@
         <div id="carouselExample" class="carousel slide">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="./assets/images/banner-1.jpg" class="d-block w-100" alt="...">
+                    <img src="./assets/images/bloody-begger-slider.jpg" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="./assets/images/banner-2.jpg" class="d-block w-100" alt="...">
+                    <img src="./assets/images/amaran-slider.jpg" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="./assets/images/banner-3.jpg" class="d-block w-100" alt="...">
+                    <img src="./assets/images/kanguva-slider.jpg" class="d-block w-100" alt="...">
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
@@ -138,6 +146,15 @@
         <section class="recommended-movies">
             <h2>Recommended Movies</h2>
             <div class="movie-slider">
+                <div class="movie-card">
+                    <a href="moviesdetails.html?id=9">
+                        <img src="./assets/images/kanguva.jpg" alt="Black">
+                    </a>
+                    <div class="movie-info">
+                        <h4>Kanguva</h4>
+                        <p>Rating: ★★★★☆</p>
+                    </div>
+                </div>
                 <div class="movie-card">
                     <a href="moviesdetails.html?id=1">
                         <img src="./assets/images/black.jpg" alt="Black">
@@ -240,29 +257,80 @@
             </div>
         </section>
     </main>
-    <footer>
-        <p>&copy; 2024 Cinema Booking. All Rights Reserved.</p>
-    </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+</body>
+<footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="logo">
+          
+            <div class="logo-icon">
+              <img src="./assets/images/ticketboxx -logo.png" alt="" height="50" width="100">
+            </div>
+           
+          
+        </div>
+        <div class="footer-links">
+          <div class="column">
+            <h3>Product</h3>
+            <ul>
+              <li><a href="#">Features</a></li>
+              <li><a href="#">Integrations</a></li>
+              <li><a href="#">Pricing</a></li>
+              <li><a href="#">FAQ</a></li>
+            </ul>
+          </div>
+          <div class="column">
+            <h3>Company</h3>
+            <ul>
+              <li><a href="#">Privacy</a></li>
+              <li><a href="#">Terms of Service</a></li>
+            </ul>
+          </div>
+          <div class="column">
+            <h3>Developers</h3>
+            <ul>
+              <li><a href="#">Public API</a></li>
+              <li><a href="#">Documentation</a></li>
+              <li><a href="#">Guides</a></li>
+            </ul>
+          </div>
+          <div class="column">
+            <h3>Social Media</h3>
+            <div class="social-links">
+              <a href="#" title="Facebook"><img src="./assets/images/facebook.png" alt="" height="40" width="40"></a>
+              <a href="#" title="whatsapp"><img src="./assets/images/whatsapp.png" alt="" height="40" width="40"></a>
+              <a href="#" title="gmail"><img src="./assets/images/gmail.png" alt="" height="40" width="40"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Cinema Booking. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script type="module" src="./assets/scripts/firebase.js"></script>
     <script type="module">
         import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
-    
+        
         document.addEventListener('DOMContentLoaded', () => {
             const auth = getAuth();
             let isAuthenticated = false;
     
             // Check user authentication status
             onAuthStateChanged(auth, (user) => {
-                isAuthenticated = !!user; // User is logged in if user exists
+                isAuthenticated = !!user; // Set authentication flag when state changes
             });
-    
+            
             // Select all nav links that require authentication
-            const protectedLinks = document.querySelectorAll('.nav-link, .hero-content .btn, .recommended-movies');
-    
+            const protectedLinks = document.querySelectorAll('.nav-link, .hero-content .btn');
+            
             protectedLinks.forEach(link => {
                 link.addEventListener('click', (event) => {
+                    // Ensure authentication check is completed before handling the event
                     if (!isAuthenticated) {
                         event.preventDefault(); // Prevent the default link behavior
                         // Show the login modal
@@ -274,5 +342,6 @@
         });
     </script>
     
-</body>
+    
+  
 </html>

@@ -1,0 +1,36 @@
+{
+    "movies": [
+        {
+            "id": "1",
+            "title": "Black",
+            "rating": "★★★★☆",
+            "releaseDate": "5 Oct, 2024",
+            "duration": "2h 15m",
+            "language": "English",
+            "genre": "Action, Thriller",
+            "description": "An epic action-thriller that keeps you on the edge of your seat.",
+            "poster": "/assets/images/lucky-baskar.jpg",
+            "showtimes": [
+                {"theatre": "Theatre 1", "time": "10:00 AM"},
+                {"theatre": "Theatre 2", "time": "1:30 PM"},
+                {"theatre": "Theatre 3", "time": "4:45 PM"}
+            ]
+        },
+        {
+            "id": "2",
+            "title": "Brother-2024",
+            "rating": "★★★★☆",
+            "releaseDate": "12 Oct, 2024",
+            "duration": "2h 30m",
+            "language": "Tamil",
+            "genre": "Drama, Comedy",
+            "description": "An engaging and heartwarming comedy-drama that delves into themes of brotherhood, family bonds, and friendship.",
+            "poster": "/assets/images/brother.jpg",
+            "showtimes": [
+                {"theatre": "Theatre 1", "time": "11:00 AM"},
+                {"theatre": "Theatre 2", "time": "2:00 PM"},
+                {"theatre": "Theatre 3", "time": "5:30 PM"}
+            ]
+        }
+    ]
+}

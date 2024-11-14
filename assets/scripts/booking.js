@@ -1,54 +1,90 @@
-// script.js
+document.addEventListener("DOMContentLoaded", function() { 
+    // Get movie ID from URL parameters
+    const params = new URLSearchParams(window.location.search);
+    const movieId = params.get("id");
 
-// Simulated movie data
-const movieData = {
-    "Bloody Beggar": {
-        "genre": "Comedy Drama",
-        "language": "Tamil - 2D",
-        "showtimes": [
-            { "theater": "INOX: The Marina Mall, OMR", "time": "10:50 PM", "info": "M-Ticket Food & Beverage", "cancellation": "Cancellation Available" },
-            { "theater": "MAYAJAAL Multiplex: ECR, Chennai", "time": "11:55 PM", "info": "M-Ticket Food & Beverage", "cancellation": "Non-cancellable" },
-            { "theater": "PVR: Aerohub, Chennai", "time": "10:25 PM", "info": "M-Ticket Food & Beverage", "cancellation": "Cancellation Available" },
-            // Add more showtimes as needed
-        ]
+    // If no movieId is provided in the URL, display a message
+    if (!movieId) {
+        document.getElementById("movie-details").innerHTML = "<p>No movie selected.</p>";
+        return;
     }
-};
 
-// Function to get the movie name from URL parameters
-function getMovieName() {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('movie') || 'Bloody Beggar'; // Default to 'Bloody Beggar' for this example
-}
+    // Fetch the movie data from the JSON file
+    fetch('../data/movies.json')
+        .then(response => response.json())
+        .then(data => {
+            // Find the movie by its ID
+            const movie = data.movies.find(movie => movie.id === movieId);
+            if (movie) {
+                // If movie found, display the movie details
+                displayMovieDetails(movie);
+            } else {
+                // If movie not found, display an error message
+                document.getElementById("movie-details").innerHTML = "<p>Movie not found.</p>";
+            }
+        })
+        .catch(error => {
+            // Handle any errors with fetching the movie data
+            console.error("Error fetching movie data:", error);
+            document.getElementById("movie-details").innerHTML = "<p>Unable to load movie details.</p>";
+        });
+});
 
-// Function to display movie details
 function displayMovieDetails(movie) {
-    const titleElement = document.getElementById('movie-title');
-    const genreElement = document.getElementById('movie-genre');
-    const languageElement = document.getElementById('movie-language');
-    const showtimesContainer = document.getElementById('showtimes-container');
+    const movieDetailsContainer = document.getElementById("movie-details");
 
-    titleElement.textContent = movie;
-    genreElement.textContent = movieData[movie].genre;
-    languageElement.textContent = movieData[movie].language;
+    // Generate the HTML content for the movie details
+    const html = `
+    <div class="movie-details-container">
+        <h1 class="movie-title">${movie.title}</h1>
+        <div class="overall-movie-container">
+            <div class="movie-poster">
+                <img src="${movie.poster}" alt="${movie.title} Poster" class="img-fluid">
+            </div>
+            <div class="book-ticket-container">
+                <p><strong>Rating:</strong> ${movie.rating || "N/A"}</p>
+                <p><strong>Release Date:</strong> ${movie.releaseDate || "N/A"}</p>
+                <p><strong>Duration:</strong> ${movie.duration || "N/A"}</p>
+                <p><strong>Language:</strong> ${movie.language || "N/A"}</p>
+                <p><strong>Genre:</strong> ${movie.genre || "N/A"}</p>
+                <a href="booking.html?id=${movie.id}" class="btn btn-success">Book Tickets</a>
+            </div>
+        </div>
+        <p><strong>Description:</strong> ${movie.description || "No description available."}</p>
+        <p><strong>About Movie:</strong> ${movie.about || "No additional information."}</p>
 
-    const showtimes = movieData[movie].showtimes;
-    showtimesContainer.innerHTML = ''; // Clear previous showtimes
+        <h2>Cast</h2>
+        <div class="cast-container">
+            ${movie.cast && movie.cast.length > 0 
+                ? movie.cast.map(actor => `
+                    <div class="cast-member">
+                        <img src="${actor.image}" alt="${actor.name}" class="cast-photo">
+                        <div>${actor.name} <br><span style="color: red; text-align: center">${actor.role}</span></div>
+                    </div>`).join('')
+                : "<p>No cast information available.</p>"
+            }
+        </div>
 
-    showtimes.forEach(showtime => {
-        const showtimeDiv = document.createElement('div');
-        showtimeDiv.innerHTML = `
-            <strong>${showtime.theater}</strong>
-            <p>Time: ${showtime.time}</p>
-            <p>Info: ${showtime.info}</p>
-            <p>${showtime.cancellation}</p>
-            <hr>
-        `;
-        showtimesContainer.appendChild(showtimeDiv);
-    });
+        <h2>Crew</h2>
+        <div class="crew-container">
+            ${movie.crew && movie.crew.length > 0 
+                ? movie.crew.map(member => `
+                    <div class="crew-member">
+                        <img src="${member.image}" alt="${member.name}" class="crew-photo">
+                        <div>${member.name}</div>
+                    </div>`).join('')
+                : "<p>No crew information available.</p>"
+            }
+        </div>
+
+        <h2>Trailer</h2>
+        <a href="${movie.trailerLink}" target="_blank" class="btn btn-primary">
+            <img src="../images/play-button.png" height="40" width="40" alt="Play Button"> Watch Trailer
+        </a>
+        <br><br>
+    </div>
+    `;
+    
+    // Insert the generated HTML into the container
+    movieDetailsContainer.innerHTML = html;
 }
-
-// On load, display the movie details
-window.onload = function() {
-    const movieName = getMovieName();
-    displayMovieDetails(movieName);
-};

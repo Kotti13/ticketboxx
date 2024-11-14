@@ -1,0 +1,182 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+/* Movie Details Container */
+.movie-details-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.movie-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.overall-movie-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.movie-info-left {
+    flex: 1;
+    padding: 20px;
+}
+
+.movie-info-left p {
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+.movie-info-left .genre,
+.movie-info-left .duration,
+.movie-info-left .language {
+    font-weight: bold;
+}
+
+.movie-info-right {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+}
+
+.movie-info-right .movie-poster img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.trailer-btn a {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 12px 20px;
+    font-size: 1.2rem;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.trailer-btn a:hover {
+    background-color: #0056b3;
+}
+
+/* City Dropdown */
+.city-dropdown-container {
+    margin-top: 20px;
+}
+
+#city-select {
+    padding: 10px;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+    max-width: 300px;
+}
+
+/* Show Listings Toggle */
+.toggle-section {
+    margin-top: 20px;
+}
+
+.toggle-button {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.toggle-button:hover {
+    background-color: #218838;
+}
+
+.show-listings {
+    display: none;
+    margin-top: 20px;
+}
+
+.show-listings p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* Dates Section */
+.disableTabTouchEvents {
+    margin-top: 20px;
+}
+
+.DatesMobileV2_cinemaDatesDiv__d8LsL {
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+.DatesMobileV2_monthLabel__tbzUo {
+    font-size: 1.5rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.DatesMobileV2_movieDateText__AA4n3 {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+}
+
+.DatesMobileV2_date__A7QWu {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.DatesMobileV2_month__S1UyT {
+    font-size: 1rem;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .overall-movie-container {
+        flex-direction: column;
+    }
+
+    .movie-info-left {
+        margin-bottom: 20px;
+    }
+
+    .movie-info-right {
+        margin-top: 20px;
+    }
+
+    .toggle-button {
+        width: 100%;
+    }
+}

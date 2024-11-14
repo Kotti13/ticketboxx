@@ -9,20 +9,31 @@
             "language": "English",
             "genre": "Action, Thriller",
             "description": "An epic action-thriller that keeps you on the edge of your seat.",
-            "poster": "/assets/images/black.jpg ",
+            "poster": "/assets/images/black.jpg",
+            "about": "A violent storm and unsettling forces unravel their marriage. Vasanth must uncover the truth behind these supernatural occurrences before everything falls apart.A young couple move into a serene row house, eager for peace and privacy. A violent storm and unsettling forces unravel their marriage.",
             "cast": [
-                {"name": "Actor A", "role": "Lead"},
-                {"name": "Actor B", "role": "Supporting"}
+                {"name": "Jiiva", "role": "Actor", "image": "/assets/images/jiiva.jpg"},
+                {"name": "Priya Bhavani Shankar", "role": "Actress", "image": "/assets/images/priya-bhavani-shankar.jpg"}
             ],
             "crew": [
-                {"name": "Director A", "role": "Director"},
-                {"name": "Producer B", "role": "Producer"}
+                {"name": "KG Balasubramani", "role": "Director", "image": "/assets/images/kg.avif"},
+                {"name": "S. R. Prakash Babu", "role": "Producer", "image": "/assets/images/SR-Prabhu.jpg"}
             ],
-            "trailerLink": "https://youtu.be/By-VTqrdqFI?feature=shared"
+            "trailerLink": "https://youtu.be/By-VTqrdqFI?feature=shared",
+            "showtimes": [
+                {
+                    "date": "2024-10-13",
+                    "times": ["9:00 AM", "12:00 PM", "3:00 PM", "6:00 PM"]
+                },
+                {
+                    "date": "2024-10-14",
+                    "times": ["10:30 AM", "1:30 PM", "4:30 PM", "7:30 PM"]
+                }
+            ]
         },
         {
             "id": "2",
-            "title": "Brother-2024",
+            "title": "Brother",
             "rating": "★★★★☆",
             "releaseDate": "12 Oct, 2024",
             "duration": "2h 30m",
@@ -30,16 +41,26 @@
             "genre": "Drama, Comedy",
             "description": "An engaging and heartwarming comedy-drama that delves into themes of brotherhood, family bonds, and friendship.",
             "poster": "/assets/images/brother.jpg",
+            "about":"Brother is a 2024 Indian Tamil-language comedy drama film written and directed by M. Rajesh, and produced by Sundar Arumugam under the banner of Screen Scene Media Entertainment Pvt. Ltd. The film stars Jayam Ravi and Priyanka Mohan in the lead roles.",
             "cast": [
-                {"name": "Vijay Sethupathi", "role": "Lead"},
-                {"name": "Yogi Babu", "role": "Supporting"},
-                {"name": "Aishwarya Rajesh", "role": "Supporting"}
+                {"name": "Jeyam Ravi", "role": "Actor", "image": "/assets/images/jeyam-ravi.jpg"},
+                {"name": "Priyanka Mohan", "role": "Actress", "image": "/assets/images/priyanka-mohan.jpg"}
             ],
             "crew": [
-                {"name": "Karthik Subbaraj", "role": "Director"},
-                {"name": "Sun Pictures", "role": "Producer"}
+                {"name": "M. Rajesh", "role": "Director", "image": "/assets/images/m-rajesh.jpg"},
+                {"name": "Sundar Arumugam", "role": "Producer", "image": "/assets/images/sundar-arumugam.jpg"}
             ],
-            "trailerLink": "https://www.youtube.com/watch?v=example2"
+            "trailerLink": "https://youtu.be/rmonLZ1kElw?feature=shared",
+            "showtimes": [
+                {
+                    "date": "2024-10-13",
+                    "times": ["9:00 AM", "12:00 PM", "3:00 PM", "6:00 PM"]
+                },
+                {
+                    "date": "2024-10-14",
+                    "times": ["10:30 AM", "1:30 PM", "4:30 PM", "7:30 PM"]
+                }
+            ]
         },
         {
             "id": "3",
@@ -49,45 +70,32 @@
             "duration": "2h 20m",
             "language": "Tamil",
             "genre": "Action, Thriller",
-            "description": "A riveting action-thriller that follows the daring escapades of Baskar, whose luck changes as he embarks on a high-stakes journey.",
+            "description": "A riveting action-thriller that follows the daring escapades of Baskar.",
             "poster": "/assets/images/lucky-baskar.jpg",
-            "about":"A cash-strapped cashier working at a bank embarks on a risky investment scheme and soon gets drawn into the murky world of money laundering.",
+            "about": "A cash-strapped cashier embarks on a risky investment scheme.",
             "cast": [
-                {"name": "Dhanush", "role": "Lead"},
-                {"name": "Priya Anand", "role": "Supporting"},
-                {"name": "Samuthirakani", "role": "Supporting"}
+                {"name": "Dulquer Salmaan", "role": "Actor", "image": "/assets/images/dulquar-salman.jpg"},
+                {"name": "Meenakshi Chaudhary", "role": "Actress", "image": "/assets/images/meenakshi-chaudhary.jpg"}
             ],
             "crew": [
-                {"name": "Lokesh Kanagaraj", "role": "Director"},
-                {"name": "Dream Works Production", "role": "Producer"}
+                {"name": "Venky Atluri", "role": "Director", "image": "/assets/images/venkee-atluri.avif"},
+                {"name": "Suryadevara Naga<br> Vamsi", "role": "Producer", "image": "/assets/images/suryadevara naga vamsi.avif"}
             ],
-            "trailerLink": "https://www.youtube.com/watch?v=example3"
-        },
-        {
-            "id": "5",
-            "title": "Amaran 2024",
-            "rating": "★★★★☆",
-            "releaseDate": "15 Dec, 2024",
-            "duration": "2h 40m",
-            "language": "Tamil",
-            "genre": "Action, Drama",
-            "description": "A sequel that revisits the legendary vigilante Amaran, exploring his battles and legacy in a world where justice is hard-earned.",
-            "poster": "/assets/images/amaran.jpg",
-            "about":"Amaran is a true-life story of Major Mukund Varadarajan (Sivakarthikeyan), a commissioned officer in the Indian Army`s Rajput Regiment, who was posthumously awarded the Ashok Chakra for his valor during a counterterrorism operation while on deputation to the 44th Rashtriya Rifles battalion in Jammu and Kashmir.",
-            "cast": [
-                {"name": "Sivakarthikeyan", "role": "Lead"},
-                {"name": "Sai pallavi", "role": "Supporting"},
-                {"name": "Karthik", "role": "Antagonist"}
-            ],
-            "crew": [
-                {"name": "Rajkumar Periasamy", "role": "Director"},
-                {"name": " Kamal Haasan, R Mahendran, Mahendran", "role": "Producers"}
-            ],
-            "trailerLink": "https://www.youtube.com/watch?v=example4"
+            "trailerLink": "https://youtu.be/vs6JMdKjoVI?feature=shared",
+            "showtimes": [
+                {
+                    "date": "2024-10-13",
+                    "times": ["9:00 AM", "12:00 PM", "3:00 PM", "6:00 PM"]
+                },
+                {
+                    "date": "2024-10-14",
+                    "times": ["10:30 AM", "1:30 PM", "4:30 PM", "7:30 PM"]
+                }
+            ]
         },
         {
             "id": "4",
-            "title": "Bloody Beggar 2024",
+            "title": "Bloody Beggar",
             "rating": "★★★☆☆",
             "releaseDate": "25 Nov, 2024",
             "duration": "2h 20m",
@@ -95,20 +103,41 @@
             "genre": "Thriller, Drama",
             "description": "A gripping thriller that follows the journey of a man who becomes a reluctant hero, fighting against corruption and injustice in his community.",
             "poster": "/assets/images/bloody-begger.jpg",
+            "about":"Bloody Beggar is a 2024 Indian Tamil-language black comedy drama film written and directed by Sivabalan Muthukumar. It is produced by Nelson Dilipkumar under Filament Pictures. The film stars Kavin in the lead role, alongside Redin Kingsley, Maruthi Prakashraj, Sunil Sukhada, T. M. Karthik. It is the directorial debut of Muthukumar and the debut production of Filament Pictures. The film follows a beggar who finds himself in trouble when a misadventure turns his life upside down.",
             "cast": [
-                {"name": "Vijay Antony", "role": "Lead"},
-                {"name": "Nivetha Pethuraj", "role": "Supporting"},
-                {"name": "Sampath Raj", "role": "Antagonist"}
+                {"name": "Kavin", "role": "Actor", "image": "/assets/images/kavin.jpg"},
+                {"name": "Anarkali Nazar", "role": "Actress", "image": "/assets/images/Anarkali_Nazar.jpg"}
             ],
             "crew": [
-                {"name": "Balaji Sakthivel", "role": "Director"},
-                {"name": "Aascar Ravichandran", "role": "Producer"}
+                {"name": "Sivabalan_Muthukumar", "role": "Director", "image": "/assets/images/Sivabalan_Muthukumar.jpg"},
+                {"name": "Nelson Dilipkumar", "role": "Producer", "image": "/assets/images/nelson.jpg"}
             ],
-            "trailerLink": "https://www.youtube.com/watch?v=example5"
+            "trailerLink": "https://youtu.be/L6DqLW0rv-o?feature=shared"
+        },
+        {
+            "id": "5",
+            "title": "Amaran",
+            "rating": "★★★★☆",
+            "releaseDate": "15 Dec, 2024",
+            "duration": "2h 40m",
+            "language": "Tamil",
+            "genre": "Action, Adventure",
+            "description": "A sequel that revisits the legendary vigilante Amaran, exploring his battles and legacy in a world where justice is hard-earned.",
+            "poster": "/assets/images/amaran.jpg",
+            "about": "Amaran is a true-life story of Major Mukund Varadarajan (Sivakarthikeyan), a commissioned officer in the Indian Army`s Rajput Regiment, who was posthumously awarded the Ashok Chakra for his valor during a counterterrorism operation while on deputation to the 44th Rashtriya Rifles battalion in Jammu and Kashmir.Besides being a tale of courage, it portrays the selfless love of his wife, Indhu Rebecaa Varghese (Sai Pallavi). The supporting cast includes Bhuvan Arora, Rahul Bose, and Rohman Shawl, all contributing to this real-life story that deserves to be told and shared in the annals of history. From the well-known house of Raaj Kamal Films International and Sony Pictures Films India, Director Rajkumar Periasamy has deftly woven the threads of this story with reality, allowing the audience to relate to the daily trials and tribulations our brave soldiers face, which many of us tend to take for granted.It`s time to stand and salute these brave warriors of our frontiers! The film is produced by Kamal Haasan, Sony Pictures International Productions, and R. Mahendran.",
+            "cast": [
+                {"name": "Sivakarthikeyan", "role": "Actor", "image": "/assets/images/sk.jpg"},
+                {"name": "Sai Pallavi", "role": "Actress", "image": "/assets/images/sai_pallavi.jpg"}
+            ],
+            "crew": [
+                {"name": "Rajkumar Periasamy", "role": "Director", "image": "/assets/images/rajkumar_periasamy.jpg"},
+                {"name": "Kamala Hassan", "role": "Producers", "image": "/assets/images/kamalahassan.jpg"}
+            ],
+            "trailerLink": "https://youtu.be/hylIXfZeB4c?feature=shared"
         },
         {
             "id": "6",
-            "title": "Venom: The Last Dance 2024",
+            "title": "Venom: The Last Dance",
             "rating": "★★★★☆",
             "releaseDate": "20 Jan, 2025",
             "duration": "2h 15m",
@@ -116,24 +145,21 @@
             "genre": "Action, Sci-Fi",
             "description": "In this thrilling sequel, Venom faces a formidable new enemy that threatens both his world and humanity, forcing him to team up with unexpected allies.",
             "poster": "/assets/images/venom.jpg",
-            "about":"Eddie and Venom are on the run. Hunted by both of their worlds and with the net closing in, the duo are forced into a devastating decision that will bring the curtains down on Venom and Eddie`s last dance.",
-            
+            "about": "Eddie and Venom are on the run, hunted by both of their worlds, leading to a devastating decision that will bring the curtains down on their last dance.",
             "cast": [
-                {"name": "Tom Hardy", "role": "Eddie Brock / Venom"},
-                {"name": "Naomie Harris", "role": "Shriek"},
-                {"name": "Woody Harrelson", "role": "Cletus Kasady / Carnage"},
-                {"name": "Michelle Williams", "role": "Anne Weying"}
+                {"name": "Tom Hardy", "role": "Actor", "image": "/assets/images/tom_hardy.jpg"},
+                {"name": "Juno temple", "role": "Actress", "image": "/assets/images/juno_temple.jpg"}
+                
             ],
             "crew": [
-                {"name": "Andy Serkis", "role": "Director"},
-                {"name": "Amy Pascal", "role": "Producer"},
-                {"name": "Tom Hardy", "role": "Producer"}
+                {"name": "Kelly Marcel", "role": "Director", "image": "/assets/images/kelly_marcel.jpg"},
+                {"name": "Marevel Entertainment", "role": "Producer", "image": "/assets/images/marvel.jpg"}
             ],
             "trailerLink": "https://youtu.be/HyIyd9joTTc?feature=shared"
         },
         {
             "id": "7",
-            "title": "Lubber Pandhu 2024",
+            "title": "Lubber Pandhu",
             "rating": "★★★★☆",
             "releaseDate": "5 Mar, 2024",
             "duration": "2h 20m",
@@ -141,20 +167,21 @@
             "genre": "Comedy, Drama",
             "description": "A humorous tale that follows the misadventures of a carefree young man, highlighting friendship, love, and the chaos that ensues in his life.",
             "poster": "/assets/images/Lubber_Pandhu (1).jpg",
+            "about":"Lubber Pandhu is a 2024 Indian Tamil-language sports drama film directed by Tamizharasan Pachamuthu, in his directorial debut and produced by Prince Pictures. The film stars Gethu Dinesh and Harish Kalyan in the lead roles, alongside Sanjana Krishnamoorthy, Swasika, Bala Saravanan, Kaali Venkat, Geetha Kailasam, Devadarshini, TSK, Jenson Diwakar and Pradeep Durairaj.",
             "cast": [
-                {"name": "Harish Kalyan", "role": "Lead"},
-                {"name": "Attakathi Dheena", "role": "Supporting"},
-                {"name": "Madhumitha", "role": "Supporting"}
+                {"name": "Harish Kalyan", "role": "Actor", "image": "/assets/images/harish.jpg"},
+                {"name": "Attakathi Dheena", "role": "Actress", "image": "/assets/images/attakathi.jpg"},
+                {"name": "Sanjana Krishnamurthy", "role": "Actress", "image": "/assets/images/sanjana.jpg"}
             ],
             "crew": [
-                {"name": "Vijay K. M.", "role": "Director"},
-                {"name": "A. M. Rathnam", "role": "Producer"}
+                {"name": "Tamizharasan Pachamuthu", "role": "Director", "image": "/assets/images/tamilarasan.png"},
+                {"name": "S. Lakshman Kumar", "role": "Producer", "image": "/assets/images/lakshman.jpg"}
             ],
             "trailerLink": "https://www.youtube.com/watch?v=example7"
         },
         {
             "id": "8",
-            "title": "Vettaiyan 2024",
+            "title": "Vettaiyan",
             "rating": "★★★★★",
             "releaseDate": "30 Jun, 2024",
             "duration": "2h 40m",
@@ -162,24 +189,18 @@
             "genre": "Action, Drama",
             "description": "A gripping action drama that follows the journey of a fearless vigilante as he fights against injustice and corruption, showcasing the legendary Rajinikanth in a powerful role.",
             "poster": "/assets/images/vettaiyan.jpg",
+            "about":"Lubber Pandhu is a 2024 Indian Tamil-language sports drama film directed by Tamizharasan Pachamuthu, in his directorial debut and produced by Prince Pictures. The film stars Gethu Dinesh and Harish Kalyan in the lead roles, alongside Sanjana Krishnamoorthy, Swasika, Bala Saravanan, Kaali Venkat, Geetha Kailasam, Devadarshini, TSK, Jenson Diwakar and Pradeep Durairaj.",
             "cast": [
-                {"name": "Rajinikanth", "role": "Lead"},
-                {"name": "Nayanthara", "role": "Supporting"},
-                {"name": "Vivek", "role": "Comic Relief"}
+                {"name": "Rajinikanth", "role": "Actor", "image": "/assets/images/rajinikanth.jpg"},
+                {"name": "Manju warrrior", "role": "Actress", "image": "/assets/images/manjuwarrior.jpg"}
+                
             ],
             "crew": [
-                {"name": "S. Shankar", "role": "Director"},
-                {"name": "A. R. Rahman", "role": "Music Director"},
-                {"name": "Sun Pictures", "role": "Producer"}
+                {"name": "TJ Gnanavel", "role": "Director", "image": "/assets/images/gnanavel.jpg"},
+                {"name": "Anirudh Ravichander", "role": "Music Director", "image": "/assets/images/anirudh.jpg"},
+                {"name": "Kalanithi maran", "role": "Producer", "image": "/assets/images/kalanidhi.jpg"}
             ],
             "trailerLink": "https://www.youtube.com/watch?v=example8"
         }
-        
-        
-        
-        
-        
-        
-        
     ]
 }

@@ -49,3 +49,4 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(err => console.error('Error fetching movie data:', err));
 });
+
