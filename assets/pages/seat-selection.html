@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seat Selection</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="seat-selection-container">
+        <header class="header">
+            <a href="javascript:history.back();" class="back-button">← Back</a>
+            <h1 id="movie-title">Loading...</h1>
+            <p id="movie-details">Loading...</p>
+        </header>
+
+        <!-- Showtimes -->
+        <div id="showtimes-container" class="showtimes-container"></div>
+
+        <!-- Seat Map -->
+        <div id="seat-map" class="seat-map"></div>
+
+        <!-- Booking Summary -->
+        <div class="booking-summary">
+            <p>Total: ₹<span id="total-price">0</span></p>
+            <button class="btn book-now">Book Now</button>
+        </div>
+    </div>
+
+    <script src="../scripts/seat-selection.js"></script>
+</body>
+</html>

@@ -3,5 +3,5 @@ document.getElementById('logoutButton').addEventListener('click', function() {
     sessionStorage.removeItem('userLoggedIn'); // Assuming 'userLoggedIn' is set upon login
 
     // Redirect to index page
-    window.location.href = 'index.html';
+    window.location.href = '../../index.html';
 });

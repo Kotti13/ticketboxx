@@ -1,132 +1,413 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
 /* General styles */
 body {
     font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
+    
+    
+}
+
+header {
     background-color: #f5f5f5;
-    color: #333;
-    line-height: 1.6;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-/* Movie details container */
-#movie-details {
-    max-width: 900px;
-    margin: 30px auto;
-    padding: 20px;
-    background-color: #fdfdfd;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    overflow: hidden;
-}
-
-/* Dynamic movie details */
-#movie-details .movie-details-container {
+    border-bottom: 2px solid #ccc;
+    padding: 10px 20px;
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-@media (min-width: 768px) {
-    #movie-details .movie-details-container {
-        flex-direction: row;
-        align-items: flex-start;
-    }
+header img {
+    height: 40px;
 }
 
-#movie-details .movie-title {
-    font-size: 2em;
+header form {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    margin: 0 20px;
+}
+
+header nav {
+    margin-left: auto;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+}
+
+nav li {
+    padding: 5px 10px;
+}
+
+nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #ff9933;
+}
+
+.search-bar {
+    flex-grow: 1;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-right: 10px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.search-bar:focus {
+    border-color: #ff9933;
+}
+
+.search-icon {
+    background-color: #ff9933;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.search-icon:hover {
+    background-color: #e68a00;
+}
+
+.movie-details-container {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+.movie-title {
+    font-size: 2rem;
     font-weight: bold;
-    text-align: center;
-    color: #222;
-    margin-bottom: 20px;
-    text-transform: capitalize;
+    margin-bottom: 10px;
 }
 
-#movie-details .overall-movie-container {
+.overall-movie-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 20px;
+}
+
+.movie-info {
+    margin-top: 4%;
+    max-width: 50%;
+}
+
+.movie-rating, .movie-genre, .movie-languages {
+    font-size: 1.1rem;
+    margin: 5px 0;
+}
+
+.watch-trailer-btn {
+    display: flex;
+    align-items: center;
+    background-color: #002f7b;
+    color: #fff;
+    padding: 10px 15px;
+    font-size: 1rem;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+.watch-trailer-btn:hover {
+    background-color: #0056b3;
+}
+
+.watch-trailer-btn span {
+    margin-right: 5px;
+    font-size: 1.2rem;
+}
+
+.tabs {
+    display: flex;
+    margin-top: 20px;
+}
+
+.tab {
+    padding: 10px 15px;
+    background-color: #f1f1f1;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.tab.active {
+    background-color: #d9e8ff;
+    font-weight: bold;
+}
+
+.tab:not(:last-child) {
+    margin-right: 10px;
+}
+
+.movie-poster img {
+    max-width: 200px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.location-dropdown {
+    display: flex;
+    justify-self: end;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.location-icon {
+    font-size: 1.2rem;
+    margin-right: 10px;
+}
+
+.location-select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+/* show times and dates */
+.showtimes-container {
+    margin-top: 30px;
+    font-family: Arial, sans-serif;
+}
+
+.date-navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.date {
+    padding: 10px 15px;
+    font-size: 1rem;
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.date:hover, .date.previous:hover, .date.next:hover {
+    background-color: #e0e0e0;
+}
+
+.date.previous, .date.next {
+    font-weight: bold;
+}
+
+.theatre {
+    margin-bottom: 20px;
+}
+
+.theatre-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.theatre-header h3 {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.info-icon {
+    font-size: 1rem;
+    color: #888;
+    cursor: pointer;
+}
+
+.theatre-features {
+    margin: 5px 0;
+    font-size: 0.9rem;
+}
+
+.feature {
+    margin-right: 10px;
+    color: #555;
+}
+
+.showtimes {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
+    gap: 10px;
 }
 
-/* Movie poster styling */
-#movie-details .movie-poster img {
-    width: 100%;
-    max-width: 300px;
-    border-radius: 8px;
-    border: 2px solid #ddd;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Showtime container styling */
-#movie-details .showtimes-container {
-    flex: 1;
-    text-align: left;
-}
-
-#movie-details .showtimes-container p {
-    font-size: 1.2em;
-    margin-bottom: 10px;
-    font-weight: bold;
-    color: #444;
-}
-
-#movie-details .showtimes-container ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-#movie-details .showtimes-container li {
-    margin-bottom: 10px;
-}
-
-/* Showtime link/button styling */
-#movie-details .showtime {
-    display: inline-block;
-    text-decoration: none;
-    color: #0066cc;
-    font-weight: 600;
-    border: 2px solid #0066cc;
+.showtime {
+    padding: 10px 15px;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    padding: 8px 12px;
-    transition: 0.3s ease;
+    font-size: 0.9rem;
+    text-decoration: none;
+    color: #333;
+    background-color: #f9f9f9;
+    position: relative;
+    transition: background-color 0.3s;
 }
 
-#movie-details .showtime:hover {
-    background-color: #0066cc;
+.showtime:hover {
+    background-color: #ddd;
+}
+
+.tooltip {
+    position: absolute;
+    padding: 5px 10px;
+    background-color: #000;
     color: #fff;
+    font-size: 0.8rem;
+    border-radius: 5px;
+    z-index: 1000;
+    white-space: nowrap;
+}
+
+/* Overall Styles */
+.movie-details-container {
+    margin-bottom: 20px;
+}
+
+.theatre-section {
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    background: #fff;
+}
+
+.theatre-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.showtimes-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Showtime Styles */
+.showtime-item {
+    position: relative;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #f9f9f9;
     cursor: pointer;
-    transform: scale(1.05);
 }
 
-/* Media queries for responsiveness */
-@media (max-width: 768px) {
-    #movie-details .movie-title {
-        font-size: 1.8em;
-    }
-
-    #movie-details .movie-poster img {
-        max-width: 100%;
-    }
-
-    #movie-details .showtimes-container p {
-        font-size: 1em;
-    }
+.showtime-item:hover {
+    background-color: #e7f3ff;
+    border-color: #007bff;
 }
 
-@media (max-width: 480px) {
-    #movie-details {
-        padding: 15px;
-    }
-
-    #movie-details .movie-title {
-        font-size: 1.6em;
-    }
+.showtime-link{
+    text-decoration: none;
+    color: red;
 }
+
+/* Tooltip styling */
+.tooltip {
+    display: none;
+    position: absolute;
+    bottom: 120%; /* Position above the showtime */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff; /* White background */
+    color: #000; /* Black text */
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 12px;
+    white-space: nowrap;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    border: 1px solid #ddd; /* Light gray border */
+    text-align: center;
+    opacity: 0;
+    pointer-events: none; /* Prevent tooltips from blocking hover */
+    transition: opacity 0.3s ease-in-out;
+    z-index: 100; /* Ensure it’s above other elements */
+}
+
+/* Tooltip arrow */
+.tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%; /* Position arrow at the bottom of the tooltip */
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: #fff transparent transparent transparent; /* White arrow pointing down */
+    z-index: 101;
+}
+
+/* Tooltip visibility on hover */
+.showtime-item:hover .tooltip {
+    display: block;
+    opacity: 1;
+}
+
+
+/* loading */
+/* Loading Spinner Style */
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Stack the elements vertically */
+    color: white;
+    font-size: 20px;
+    z-index: 9999;
+  }
+  
+  .spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid white;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin-bottom: 20px; /* Add some spacing between the spinner and the image */
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  #loading img {
+    margin-top: 20px; /* Add some spacing between the spinner and the image */
+  }
+  
+  #loading p {
+    margin-top: 10px; /* Spacing for "Loading..." text */
+    font-size: 18px;
+    text-align: center;
+  }
+  
+  
+  

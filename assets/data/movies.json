@@ -20,16 +20,31 @@
                 {"name": "S. R. Prakash Babu", "role": "Producer", "image": "/assets/images/SR-Prabhu.jpg"}
             ],
             "trailerLink": "https://youtu.be/By-VTqrdqFI?feature=shared",
-            "showtimes": [
-                {
-                    "date": "2024-10-13",
-                    "times": ["9:00 AM", "12:00 PM", "3:00 PM", "6:00 PM"]
-                },
-                {
-                    "date": "2024-10-14",
-                    "times": ["10:30 AM", "1:30 PM", "4:30 PM", "7:30 PM"]
-                }
-            ]
+          "theatres": [
+    {
+        "name": "AGS Cinemas: Maduravoyal",
+        "showtimes": [
+            { "time": "12:45 PM", "premiumPrice": 300, "normalPrice": 200, "link": "../pages/seat-selection.html" },
+            { "time": "04:10 PM", "premiumPrice": 350, "normalPrice": 250, "link": "#" }
+        ]
+    },
+    {
+        "name": "The Vijay Park Multiplex",
+        "showtimes": [
+            { "time": "01:35 PM", "premiumPrice": 400, "normalPrice": 300, "link": "#" },
+            { "time": "05:00 PM", "premiumPrice": 450, "normalPrice": 350, "link": "#" }
+        ]
+    },
+    {
+        "name":"Kamala Cinemas , Vadapalani, Chennai",
+        "showtimes": [
+            { "time": "07:30 PM", "premiumPrice": 400, "normalPrice": 300, "link": "#" },
+            { "time": "10:55 PM", "premiumPrice": 450, "normalPrice": 350, "link": "#" }
+        ]
+
+    }
+]
+
         },
         {
             "id": "2",
@@ -51,16 +66,23 @@
                 {"name": "Sundar Arumugam", "role": "Producer", "image": "/assets/images/sundar-arumugam.jpg"}
             ],
             "trailerLink": "https://youtu.be/rmonLZ1kElw?feature=shared",
-            "showtimes": [
-                {
-                    "date": "2024-10-13",
-                    "times": ["9:00 AM", "12:00 PM", "3:00 PM", "6:00 PM"]
-                },
-                {
-                    "date": "2024-10-14",
-                    "times": ["10:30 AM", "1:30 PM", "4:30 PM", "7:30 PM"]
-                }
-            ]
+           "theatres": [
+    {
+        "name": "AGS Cinemas: Maduravoyal",
+        "showtimes": [
+            { "time": "12:45 PM", "premiumPrice": 300, "normalPrice": 200, "link": "#" },
+            { "time": "04:10 PM", "premiumPrice": 350, "normalPrice": 250, "link": "#" }
+        ]
+    },
+    {
+        "name": "The Vijay Park Multiplex",
+        "showtimes": [
+            { "time": "01:35 PM", "premiumPrice": 400, "normalPrice": 300, "link": "#" },
+            { "time": "05:00 PM", "premiumPrice": 450, "normalPrice": 350, "link": "#" }
+        ]
+    }
+]
+            
         },
         {
             "id": "3",
@@ -72,6 +94,7 @@
             "genre": "Action, Thriller",
             "description": "A riveting action-thriller that follows the daring escapades of Baskar.",
             "poster": "/assets/images/lucky-baskar.jpg",
+            "show_image":"https://th-i.thgim.com/public/incoming/oz6fxi/article68785897.ece/alternates/FREE_1200/lucky%20baskhar%207.jpg",
             "about": "A cash-strapped cashier embarks on a risky investment scheme.",
             "cast": [
                 {"name": "Dulquer Salmaan", "role": "Actor", "image": "/assets/images/dulquar-salman.jpg"},
@@ -82,16 +105,22 @@
                 {"name": "Suryadevara Naga<br> Vamsi", "role": "Producer", "image": "/assets/images/suryadevara naga vamsi.avif"}
             ],
             "trailerLink": "https://youtu.be/vs6JMdKjoVI?feature=shared",
-            "showtimes": [
-                {
-                    "date": "2024-10-13",
-                    "times": ["9:00 AM", "12:00 PM", "3:00 PM", "6:00 PM"]
-                },
-                {
-                    "date": "2024-10-14",
-                    "times": ["10:30 AM", "1:30 PM", "4:30 PM", "7:30 PM"]
-                }
-            ]
+            "theatres": [
+    {
+        "name": "AGS Cinemas: Maduravoyal",
+        "showtimes": [
+            { "time": "12:45 PM", "premiumPrice": 300, "normalPrice": 200, "link": "#" },
+            { "time": "04:10 PM", "premiumPrice": 350, "normalPrice": 250, "link": "#" }
+        ]
+    },
+    {
+        "name": "The Vijay Park Multiplex",
+        "showtimes": [
+            { "time": "01:35 PM", "premiumPrice": 400, "normalPrice": 300, "link": "#" },
+            { "time": "05:00 PM", "premiumPrice": 450, "normalPrice": 350, "link": "#" }
+        ]
+    }
+]
         },
         {
             "id": "4",
@@ -112,7 +141,23 @@
                 {"name": "Sivabalan_Muthukumar", "role": "Director", "image": "/assets/images/Sivabalan_Muthukumar.jpg"},
                 {"name": "Nelson Dilipkumar", "role": "Producer", "image": "/assets/images/nelson.jpg"}
             ],
-            "trailerLink": "https://youtu.be/L6DqLW0rv-o?feature=shared"
+            "trailerLink": "https://youtu.be/L6DqLW0rv-o?feature=shared",
+            "theatres": [
+    {
+        "name": "AGS Cinemas: Maduravoyal",
+        "showtimes": [
+            { "time": "12:45 PM", "premiumPrice": 300, "normalPrice": 200, "link": "#" },
+            { "time": "04:10 PM", "premiumPrice": 350, "normalPrice": 250, "link": "#" }
+        ]
+    },
+    {
+        "name": "The Vijay Park Multiplex",
+        "showtimes": [
+            { "time": "01:35 PM", "premiumPrice": 400, "normalPrice": 300, "link": "#" },
+            { "time": "05:00 PM", "premiumPrice": 450, "normalPrice": 350, "link": "#" }
+        ]
+    }
+]
         },
         {
             "id": "5",
@@ -133,7 +178,23 @@
                 {"name": "Rajkumar Periasamy", "role": "Director", "image": "/assets/images/rajkumar_periasamy.jpg"},
                 {"name": "Kamala Hassan", "role": "Producers", "image": "/assets/images/kamalahassan.jpg"}
             ],
-            "trailerLink": "https://youtu.be/hylIXfZeB4c?feature=shared"
+            "trailerLink": "https://youtu.be/hylIXfZeB4c?feature=shared",
+            "theatres": [
+    {
+        "name": "AGS Cinemas: Maduravoyal",
+        "showtimes": [
+            { "time": "12:45 PM", "premiumPrice": 300, "normalPrice": 200, "link": "#" },
+            { "time": "04:10 PM", "premiumPrice": 350, "normalPrice": 250, "link": "#" }
+        ]
+    },
+    {
+        "name": "The Vijay Park Multiplex",
+        "showtimes": [
+            { "time": "01:35 PM", "premiumPrice": 400, "normalPrice": 300, "link": "#" },
+            { "time": "05:00 PM", "premiumPrice": 450, "normalPrice": 350, "link": "#" }
+        ]
+    }
+]
         },
         {
             "id": "6",
@@ -155,7 +216,23 @@
                 {"name": "Kelly Marcel", "role": "Director", "image": "/assets/images/kelly_marcel.jpg"},
                 {"name": "Marevel Entertainment", "role": "Producer", "image": "/assets/images/marvel.jpg"}
             ],
-            "trailerLink": "https://youtu.be/HyIyd9joTTc?feature=shared"
+            "trailerLink": "https://youtu.be/HyIyd9joTTc?feature=shared",
+            "theatres": [
+    {
+        "name": "AGS Cinemas: Maduravoyal",
+        "showtimes": [
+            { "time": "12:45 PM", "premiumPrice": 300, "normalPrice": 200, "link": "#" },
+            { "time": "04:10 PM", "premiumPrice": 350, "normalPrice": 250, "link": "#" }
+        ]
+    },
+    {
+        "name": "The Vijay Park Multiplex",
+        "showtimes": [
+            { "time": "01:35 PM", "premiumPrice": 400, "normalPrice": 300, "link": "#" },
+            { "time": "05:00 PM", "premiumPrice": 450, "normalPrice": 350, "link": "#" }
+        ]
+    }
+]
         },
         {
             "id": "7",
@@ -177,7 +254,23 @@
                 {"name": "Tamizharasan Pachamuthu", "role": "Director", "image": "/assets/images/tamilarasan.png"},
                 {"name": "S. Lakshman Kumar", "role": "Producer", "image": "/assets/images/lakshman.jpg"}
             ],
-            "trailerLink": "https://www.youtube.com/watch?v=example7"
+            "trailerLink": "https://www.youtube.com/watch?v=example7",
+            "theatres": [
+    {
+        "name": "AGS Cinemas: Maduravoyal",
+        "showtimes": [
+            { "time": "12:45 PM", "premiumPrice": 300, "normalPrice": 200, "link": "#" },
+            { "time": "04:10 PM", "premiumPrice": 350, "normalPrice": 250, "link": "#" }
+        ]
+    },
+    {
+        "name": "The Vijay Park Multiplex",
+        "showtimes": [
+            { "time": "01:35 PM", "premiumPrice": 400, "normalPrice": 300, "link": "#" },
+            { "time": "05:00 PM", "premiumPrice": 450, "normalPrice": 350, "link": "#" }
+        ]
+    }
+]
         },
         {
             "id": "8",
@@ -200,7 +293,23 @@
                 {"name": "Anirudh Ravichander", "role": "Music Director", "image": "/assets/images/anirudh.jpg"},
                 {"name": "Kalanithi maran", "role": "Producer", "image": "/assets/images/kalanidhi.jpg"}
             ],
-            "trailerLink": "https://www.youtube.com/watch?v=example8"
+            "trailerLink": "https://www.youtube.com/watch?v=example8",
+            "theatres": [
+    {
+        "name": "AGS Cinemas: Maduravoyal",
+        "showtimes": [
+            { "time": "12:45 PM", "premiumPrice": 300, "normalPrice": 200, "link": "#" },
+            { "time": "04:10 PM", "premiumPrice": 350, "normalPrice": 250, "link": "#" }
+        ]
+    },
+    {
+        "name": "The Vijay Park Multiplex",
+        "showtimes": [
+            { "time": "01:35 PM", "premiumPrice": 400, "normalPrice": 300, "link": "#" },
+            { "time": "05:00 PM", "premiumPrice": 450, "normalPrice": 350, "link": "#" }
+        ]
+    }
+]
         }
     ]
 }

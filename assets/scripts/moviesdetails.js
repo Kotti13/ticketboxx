@@ -38,7 +38,7 @@ function displayMovieDetails(movie) {
                 <p><strong>Duration:</strong> ${movie.duration}</p>
                 <p><strong>Language:</strong> ${movie.language}</p>
                 <p><strong>Genre:</strong> ${movie.genre}</p>
-                <a href="booking.html?id=${movie.id}" class="btn btn-success">Book Tickets</a>
+                <a href="shows&theatres.html?id=${movie.id}" class="btn btn-success">Book Tickets</a>
             </div>
         </div>
         <p><strong>Description:</strong> ${movie.description}</p>
@@ -70,6 +70,7 @@ function displayMovieDetails(movie) {
         </a>
         <br><br>
     </div>
+    
     `;
     movieDetailsContainer.innerHTML = html;
 }

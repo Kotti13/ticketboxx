@@ -1,0 +1,106 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.seat-selection-container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.back-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.showtimes-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.showtime {
+    padding: 10px 15px;
+    background: #e6f7ff;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Seat Map */
+.seat-map {
+    display: grid;
+    grid-template-columns: repeat(12, 40px);
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.row-label {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.seat {
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.available {
+    background: #dff0d8;
+    border: 1px solid #4caf50;
+}
+
+.selected {
+    background: #ffeb3b;
+    border: 1px solid #fbc02d;
+}
+
+.sold {
+    background: #e0e0e0;
+    border: 1px solid #bdbdbd;
+    cursor: not-allowed;
+}
+
+/* Booking Summary */
+.booking-summary {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px 15px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.booking-summary p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.book-now {
+    padding: 10px 20px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
