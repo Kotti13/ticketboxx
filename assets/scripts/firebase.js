@@ -41,9 +41,15 @@ document.querySelector('.signup-form').addEventListener('submit', async (e) => {
     const passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
     let isValid = true;
 
-    // Username validation
+    // Username validation - check if username is empty, contains spaces, or is too short
     if (username === "") {
         document.getElementById('usernameError').textContent = "Username is required.";
+        isValid = false;
+    } else if (/\s/.test(username)) {  // Check if the username contains spaces
+        document.getElementById('usernameError').textContent = "Username cannot contain spaces.";
+        isValid = false;
+    } else if (username.length < 5) {  // Check if the username is too short (less than 5 characters)
+        document.getElementById('usernameError').textContent = "Username must be at least 5 characters long.";
         isValid = false;
     }
 
@@ -103,14 +109,19 @@ document.querySelector('.login-form').addEventListener('submit', async (e) => {
         isValid = false;
     }
 
+    // If form is valid, attempt login
     if (isValid) {
         try {
+            // Attempt to sign in
             await signInWithEmailAndPassword(auth, email, password);
             alert("Login successful!");
             window.location.href = "./assets/pages/home.html";
         } catch (error) {
             console.error("Error during login:", error);
-            alert(error.message);
+
+            // Generic error message for invalid username or password
+            document.getElementById('loginEmailError').textContent = "Invalid username or password.";
+            document.getElementById('loginPasswordError').textContent = "Invalid username or password.";
         }
     }
 });
