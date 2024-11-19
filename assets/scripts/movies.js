@@ -1,7 +1,7 @@
-document.getElementById('logoutButton').addEventListener('click', function() {
-    // Clear session data or tokens
-    sessionStorage.removeItem('userLoggedIn'); // Assuming 'userLoggedIn' is set upon login
-
-    // Redirect to index page
-    window.location.href = '../../index.html';
+document.getElementById('logoutButton').addEventListener('click', function () {
+    // Clear session storage on logout
+    sessionStorage.removeItem('userLoggedIn');
+    
+    // Redirect to the login page after logout
+    window.location.href = 'login.html';
 });

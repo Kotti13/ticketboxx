@@ -11,29 +11,99 @@
 
 </head>
 <body >
-    <header>
-        <!-- <div class="logo">TicketBoxx</div> -->
-        <div><img src="../images/ticketboxx -logo.png" alt="" height="40" width="100" ></div>
-        <div><form  method="GET">
-            <input type="search" class="search-bar  form-control" name="q" placeholder="Search For Movies,Sports,Activities " aria-label="Search">
-            <button type="submit" class="search-icon">Search</button>
-          </form>
-          </div>
-        <nav>
-            <ul>
-                <li><a href="home.html">Home</a></li>
-                <li><a href="movies.html" onclick="">Movies</a></li>
-                
-                <li><a href="bookings.html">My Bookings</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
-            </ul>
-        </nav>
-        <!-- <div class="user-icon" id="userIcon" onclick="toggleMenu()"><img src="./assets/images/user.png" alt="" height="40"></div> -->
-    <!-- Logout Button -->
-    <div class="text-center mt-3">
-        <button type="button" class="btn btn-secondary w-100" id="logoutButton">Logout</button>
+  <header class="d-flex justify-content-between align-items-center p-3 bg-light shadow-sm">
+    <!-- Logo -->
+    <div>
+        <a href="home.html">
+            <img src="../images/ticketboxx -logo.png" alt="TicketBoxx Logo" height="40" width="100" />
+        </a>
     </div>
-    </header>
+
+    <!-- Search Bar -->
+    <div class="flex-grow-1 mx-3">
+        <form method="GET" class="d-flex">
+            <input
+                type="search"
+                class="search-bar form-control me-2"
+                name="q"
+                placeholder="Search For Movies, Sports, Activities"
+                aria-label="Search"
+            />
+            <button type="submit" class="btn btn-outline-primary">Search</button>
+        </form>
+    </div>
+
+    <!-- Navigation Links -->
+    <nav>
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link text-dark fw-bold" href="home.html">Home</a>
+            </li>
+            <li class="nav-item dropdown position-relative">
+                <a
+                    href="#"
+                    class="nav-link dropdown-toggle text-dark fw-bold"
+                    id="moviesDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                >
+                    Movies
+                </a>
+                <div class="dropdown-menu movies-dropdown shadow-lg" aria-labelledby="moviesDropdown">
+                    <div class="recommended-movies px-3 py-2">
+                        <!-- <h5 class="text-center mb-3">Recommended Movies</h5> -->
+                        <div class="row gx-3 gy-4">
+                            <!-- Movie Card 1 -->
+                            <div class="col-4">
+                                <div class="movie-card">
+                                    <a href="moviesdetails.html?id=1">
+                                        <img src="../images/kanguva.jpg" alt="Kanguva" class="img-fluid rounded" />
+                                    </a>
+                                    <!-- <h6 class="movie-title mt-2">Kanguva</h6> -->
+                                </div>
+                            </div>
+                            <!-- Movie Card 2 -->
+                            <div class="col-4">
+                                <div class="movie-card">
+                                    <a href="moviesdetails.html?id=2">
+                                        <img src="../images/black.jpg" alt="Black" class="img-fluid rounded" />
+                                    </a>
+                                    <!-- <h6 class="movie-title mt-2">Black</h6> -->
+                                </div>
+                            </div>
+                            <!-- Movie Card 3 -->
+                            <div class="col-4">
+                                <div class="movie-card">
+                                    <a href="moviesdetails.html?id=3">
+                                        <img src="../images/lucky-baskar.jpg" alt="Lucky Basker" class="img-fluid rounded" />
+                                    </a>
+                                    <!-- <h6 class="movie-title mt-2">Lucky Basker</h6> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark fw-bold" href="bookings.html">My Bookings</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark fw-bold" href="contact.html">Contact Us</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Logout Button -->
+    <div>
+        <button type="button" class="btn btn-secondary" id="logoutButton">Logout</button>
+    </div>
+</header>
+
+
+
+
+
     
     
 
@@ -68,6 +138,15 @@
           <span class="visually-hidden">Next</span>
         </button>
       </div>
+
+      <!-- advertisement -->
+      <div class="advertisement">
+        <div class="ad-wrapper">
+          <img src="../images/ad-banner.jpg" alt="Ad Banner">
+        </div>
+      </div>
+      
+
       <section class="recommended-movies">
         <h2>Recommended Movies</h2>
         <div class="movie-slider">
@@ -158,6 +237,65 @@
                 <h3>3D Experience</h3>
             </div>
         </section>
+
+
+        <section class="recommended-movies">
+          <h2>New & Coming Soon</h2>
+          <div class="movie-slider">
+              <div class="movie-card">
+                  <a href="moviesdetails.html?id=10">
+                      <img src="../images/jolly-o-jymkhana.jpg" alt="jolly-o-jymkhana">
+                  </a>
+                  
+              </div>
+              <div class="movie-card">
+                  <a href="moviesdetails.html?id=11">
+                      <img src="../images/Captain_America_Brave_New_World_poster.jpg" alt="Captain_America_Brave_New_World">
+                  </a>
+                 
+              </div>
+      
+              <div class="movie-card">
+                  <a href="moviesdetails.html?id=12">
+                      <img src="../images/good-bad-ugly.jpg" alt="good-bad-ugly">
+                  </a>
+                  
+              </div>
+      
+              <div class="movie-card">
+                  <a href="moviesdetails.html?id=13">
+                      <img src="../images/pushpa-2.jpg" alt="pushpa-2">
+                  </a>
+                  
+              </div>
+      
+              <div class="movie-card">
+                  <a href="moviesdetails.html?id=14">
+                      <img src="../images/miss-you-poster.jpg" alt="miss-you">
+                  </a>
+                 
+              </div>
+      
+              <div class="movie-card">
+                  <a href="moviesdetails.html?id=15">
+                      <img src="../images\/Mechanic_Rocky_film_poster.jpg" alt="Mechanic_Rocky">
+                  </a>
+                  
+              </div>
+      
+              <div class="movie-card">
+                  <a href="moviesdetails.html?id=16">
+                      <img src="../images/Zebra.jpg" alt="Zebra">
+                  </a>
+                  
+              </div>
+      
+              
+              
+              
+              
+          </div>
+      </section>
     </main>
     <footer>
         <div class="container">

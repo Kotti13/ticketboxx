@@ -309,6 +309,46 @@
             { "time": "05:00 PM", "premiumPrice": 450, "normalPrice": 350, "link": "#" }
         ]
     }
+    
+]
+        },
+        {
+            "id": "10",
+            "title": "Jolly O Jymkhana",
+            "rating": "★★★★★",
+            "releaseDate": "22 Nov, 2024",
+            "duration": "2h 40m",
+            "language": "Tamil",
+            "genre": "Comedy",
+            "poster": "/assets/images/jolly-o-jymkhana.jpg",
+            "about":"A Tenkasi-based family finds a dead person, and is forced to go on a journey that makes them reach Kodaikanal.",
+            "cast": [
+                {"name": "Rajinikanth", "role": "Actor", "image": "/assets/images/rajinikanth.jpg"},
+                {"name": "Manju warrrior", "role": "Actress", "image": "/assets/images/manjuwarrior.jpg"}
+                
+            ],
+            "crew": [
+                {"name": "TJ Gnanavel", "role": "Director", "image": "/assets/images/gnanavel.jpg"},
+                {"name": "Anirudh Ravichander", "role": "Music Director", "image": "/assets/images/anirudh.jpg"},
+                {"name": "Kalanithi maran", "role": "Producer", "image": "/assets/images/kalanidhi.jpg"}
+            ],
+            "trailerLink": "https://www.youtube.com/watch?v=example8",
+            "theatres": [
+    {
+        "name": "AGS Cinemas: Maduravoyal",
+        "showtimes": [
+            { "time": "12:45 PM", "premiumPrice": 300, "normalPrice": 200, "link": "#" },
+            { "time": "04:10 PM", "premiumPrice": 350, "normalPrice": 250, "link": "#" }
+        ]
+    },
+    {
+        "name": "The Vijay Park Multiplex",
+        "showtimes": [
+            { "time": "01:35 PM", "premiumPrice": 400, "normalPrice": 300, "link": "#" },
+            { "time": "05:00 PM", "premiumPrice": 450, "normalPrice": 350, "link": "#" }
+        ]
+    }
+    
 ]
         }
     ]

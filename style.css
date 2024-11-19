@@ -139,11 +139,16 @@ ul li img{
 
 .feature-card {
     background: #eee;
-    padding: 20px;
+    
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s;
-    margin: 10px;
+   
+}
+
+.feature-card img{
+    border-radius: 20px;
+    max-height: 120px;
 }
 
 .feature-card:hover {
@@ -311,6 +316,30 @@ form {
 .login-form{
     display: flex;
     flex-direction: column;
+}
+
+
+
+/* advertisement */
+
+.advertisement {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.ad-wrapper {
+    width: 100%;
+    max-width: 1200px; /* Restricts maximum size for larger screens */
+}
+
+.advertisement img {
+    width: 100%; /* Ensures the image fills the wrapper's width */
+    height: 60px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 /* Recommended Movies Section */
 .recommended-movies {

@@ -17,34 +17,129 @@
     <script type="module" src="./assets/scripts/firebase.js"></script>
 </head>
 <body>
-    <header class="d-flex justify-content-between align-items-center p-3">
-        <div><img src="./assets/images/ticketboxx -logo.png" alt="Logo" height="40" width="100"></div>
+    <header class="d-flex justify-content-between align-items-center p-3 bg-light shadow-sm">
+        <!-- Logo -->
         <div>
+            <a href="index.html">
+                <img src="./assets/images/ticketboxx -logo.png" alt="TicketBoxx Logo" height="40" width="100" />
+            </a>
+        </div>
+    
+        <!-- Search Bar -->
+        <div class="flex-grow-1 mx-3">
             <form action="./movies.html" method="GET" class="d-flex">
-                <input type="search" class="search-bar form-control me-2" name="q" placeholder="Search For Movies, Sports, Activities" aria-label="Search">
-                <button type="submit" class="btn btn-outline-secondary">Search</button>
+                <input 
+                    type="search" 
+                    class="search-bar form-control me-2" 
+                    name="q" 
+                    placeholder="Search for Movies, Sports, Activities" 
+                    aria-label="Search" 
+                    required 
+                />
+                <button type="submit" class="btn btn-outline-primary">Search</button>
             </form>
         </div>
-        <nav>
+    
+        <!-- Navigation Links -->
+        <nav class="d-none d-md-block">
             <ul class="nav">
-                <li class="nav-item"><a class="nav-link" style="color: #333;" href="index.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="." style="color: #333;">Movies</a></li>
-             
-                <li class="nav-item"><a class="nav-link" href="bookings.html" style="color: #333;">My Bookings</a></li>
-                <li class="nav-item"><a class="nav-link" href="contact.html" style="color: #333;">Contact Us</a></li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark fw-bold" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark fw-bold" href="#">Movies</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark fw-bold" href="./bookings.html">My Bookings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark fw-bold" href="./contact.html">Contact Us</a>
+                </li>
             </ul>
         </nav>
-        <div class="dropdown" id="authButtons">
-            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                Login/Signup
+    
+        <!-- Authentication Buttons -->
+        <div id="authButtons">
+            <button 
+                class="btn btn-primary dropdown-toggle" 
+                type="button" 
+                id="dropdownMenuButton" 
+                data-bs-toggle="dropdown" 
+                aria-expanded="false"
+            >
+                Account
             </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a></li>
-                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#signupModal">Sign Up</a></li>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                <li>
+                    <a 
+                        class="dropdown-item" 
+                        href="#" 
+                        data-bs-toggle="modal" 
+                        data-bs-target="#loginModal"
+                    >
+                        Login
+                    </a>
+                </li>
+                <li>
+                    <a 
+                        class="dropdown-item" 
+                        href="#" 
+                        data-bs-toggle="modal" 
+                        data-bs-target="#signupModal"
+                    >
+                        Sign Up
+                    </a>
+                </li>
             </ul>
+            <button id="logoutButton" class="btn btn-danger d-none mt-2">Logout</button>
         </div>
-        <button id="logoutButton" class="btn btn-danger d-none">Logout</button>
+    
+        <!-- Mobile Navigation Toggle -->
+        <button 
+            class="btn btn-outline-secondary d-md-none" 
+            type="button" 
+            data-bs-toggle="offcanvas" 
+            data-bs-target="#mobileNav" 
+            aria-controls="mobileNav"
+        >
+            ☰
+        </button>
+    
+        <!-- Mobile Navigation Drawer -->
+        <div 
+            class="offcanvas offcanvas-end" 
+            tabindex="-1" 
+            id="mobileNav" 
+            aria-labelledby="mobileNavLabel"
+        >
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="mobileNavLabel">TicketBoxx Menu</h5>
+                <button 
+                    type="button" 
+                    class="btn-close" 
+                    data-bs-dismiss="offcanvas" 
+                    aria-label="Close"
+                ></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-bold" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-bold" href="./movies.html">Movies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-bold" href="./bookings.html">My Bookings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-bold" href="./contact.html">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </header>
+    
     
 
    <!-- Signup Modal -->
@@ -143,6 +238,14 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
+
+
+        <!-- advertisement -->
+        <div class="advertisement">
+            <a href="https://www.zomato.com/"><img src="./assets/images/offer-banner-1.png" alt="Full-Width Advertisement"></a>
+          </div>
+          
+      </div>
         <section class="recommended-movies">
             <h2>Recommended Movies</h2>
             <div class="movie-slider">
@@ -259,13 +362,72 @@
                 <h3>Latest Releases</h3>
             </div>
             <div class="feature-card">
-                <h3>Exclusive Offers</h3>
+                <!-- <h3>Exclusive Offers</h3> -->
+                 <img src="./assets/images/flipkart-offer-banner.jpg"  style="width: 100%; height: 100%;" alt="">
             </div>
             <div class="feature-card">
                 <h3>3D Experience</h3>
             </div>
         </section>
+        <section class="recommended-movies">
+            <h2>New & Coming Soon</h2>
+            <div class="movie-slider">
+                <div class="movie-card">
+                    <a href="moviesdetails.html?id=10">
+                        <img src="./assets/images/jolly-o-jymkhana.jpg" alt="jolly-o-jymkhana">
+                    </a>
+                    
+                </div>
+                <div class="movie-card">
+                    <a href="moviesdetails.html?id=11">
+                        <img src="./assets/images/Captain_America_Brave_New_World_poster.jpg" alt="Captain_America_Brave_New_World">
+                    </a>
+                   
+                </div>
+        
+                <div class="movie-card">
+                    <a href="moviesdetails.html?id=12">
+                        <img src="./assets/images/good-bad-ugly.jpg" alt="good-bad-ugly">
+                    </a>
+                    
+                </div>
+        
+                <div class="movie-card">
+                    <a href="moviesdetails.html?id=13">
+                        <img src="./assets/images/pushpa-2.jpg" alt="pushpa-2">
+                    </a>
+                    
+                </div>
+        
+                <div class="movie-card">
+                    <a href="moviesdetails.html?id=14">
+                        <img src="./assets/images/miss-you-poster.jpg" alt="miss-you">
+                    </a>
+                   
+                </div>
+        
+                <div class="movie-card">
+                    <a href="moviesdetails.html?id=15">
+                        <img src="./assets/images/Mechanic_Rocky_film_poster.jpg" alt="Mechanic_Rocky">
+                    </a>
+                    
+                </div>
+        
+                <div class="movie-card">
+                    <a href="moviesdetails.html?id=16">
+                        <img src="./assets/images/Zebra.jpg" alt="Zebra">
+                    </a>
+                    
+                </div>
+        
+                
+                
+                
+                
+            </div>
+        </section>
     </main>
+    
 
     
 </body>
@@ -321,35 +483,30 @@
     </div>
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script type="module" src="./assets/scripts/firebase.js"></script>
-    <script type="module">
-        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
-        
-        document.addEventListener('DOMContentLoaded', () => {
-            const auth = getAuth();
-            let isAuthenticated = false;
-    
-            // Check user authentication status
-            onAuthStateChanged(auth, (user) => {
-                isAuthenticated = !!user; // Set authentication flag when state changes
-            });
-            
-            // Select all nav links that require authentication
-            const protectedLinks = document.querySelectorAll('.nav-link, .hero-content .btn');
-            
-            protectedLinks.forEach(link => {
-                link.addEventListener('click', (event) => {
-                    // Ensure authentication check is completed before handling the event
-                    if (!isAuthenticated) {
-                        event.preventDefault(); // Prevent the default link behavior
-                        // Show the login modal
-                        const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
-                        loginModal.show();
-                    }
-                });
+  <script type="module">
+    document.addEventListener('DOMContentLoaded', () => {
+        // Protect all navigation links and buttons
+        const protectedLinks = document.querySelectorAll('.nav-link, .hero-content .btn');
+
+        protectedLinks.forEach(link => {
+            link.addEventListener('click', (event) => {
+                // Check if the user is logged in by verifying sessionStorage
+                const isAuthenticated = sessionStorage.getItem('userLoggedIn') === 'true';
+
+                if (!isAuthenticated) {
+                    event.preventDefault(); // Prevent link action if not logged in
+                    // Show login modal if not authenticated
+                    const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+                    loginModal.show();
+                }
             });
         });
-    </script>
+    });
+</script>
+
+
+
+
     
     
   
