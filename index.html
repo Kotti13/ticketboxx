@@ -481,17 +481,17 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script type="module">
     document.addEventListener('DOMContentLoaded', () => {
-        // Protect all navigation links and buttons
-        const protectedLinks = document.querySelectorAll('.nav-link, .hero-content .btn');
+       
+        const protectedLinks = document.querySelectorAll('.nav-link, .hero-content .btn, .recommended-movies');
 
         protectedLinks.forEach(link => {
             link.addEventListener('click', (event) => {
-                // Check if the user is logged in by verifying sessionStorage
+               
                 const isAuthenticated = sessionStorage.getItem('userLoggedIn') === 'true';
 
                 if (!isAuthenticated) {
                     event.preventDefault(); // Prevent link action if not logged in
-                    // Show login modal if not authenticated
+                    
                     const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
                     loginModal.show();
                 }
