@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     fetch('../data/movies.json')
         .then(response => {
             if (!response.ok) {
-                throw new Error("Failed to fetch movie data.");
+                throw new Error(`HTTP error! Status: ${response.status}`);
             }
             return response.json();
         })
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const movie = data.movies.find(movie => movie.id === movieId);
             if (movie) {
                 displayMovieDetails(movie);
-                populateShowTimes(movie.theatres);
+                populateShowTimes(movie.theatres, movie);
             } else {
                 document.getElementById("movie-details").innerHTML = "<p>Movie not found.</p>";
             }
@@ -66,24 +66,22 @@ function displayMovieDetails(movie) {
     movieDetailsContainer.innerHTML = html;
 }
 
-// Function to populate showtimes with hover effects for prices
-function populateShowTimes(theatres) {
+function populateShowTimes(theatres, movie) {
     const showTimesContainer = document.getElementById("show-times");
-    showTimesContainer.innerHTML = ''; // Clear any existing content
+    showTimesContainer.innerHTML = ''; 
 
     theatres.forEach(theatre => {
-        // Render each theatre block
         const theatreBlock = `
             <div class="theatre-section">
                 <h3>${theatre.name}</h3>
                 <div class="showtimes-container">
                     ${theatre.showtimes.map(showtime => `
                         <div class="showtime-item">
-                            <a href="${showtime.link}" class="showtime-link" data-link="${showtime.link}">${showtime.time}</a>
-                            <div class="tooltip">
-                                Premium: ₹${showtime.premiumPrice}<br>
-                                Normal: ₹${showtime.normalPrice}
-                            </div>
+                            <a href="seat-selection.html?movieName=${encodeURIComponent(movie.title)}&theatre=${encodeURIComponent(theatre.name)}" 
+                               class="showtime-link">
+                                ${showtime.time}
+                            </a>
+                            <div class="tooltip">Showtime: ${showtime.time}</div>
                         </div>
                     `).join('')}
                 </div>
@@ -92,43 +90,37 @@ function populateShowTimes(theatres) {
         showTimesContainer.innerHTML += theatreBlock;
     });
 
-    // Add event listener to each showtime link
+    // Add loading behavior for showtime links
     const showtimeLinks = document.querySelectorAll('.showtime-link');
     showtimeLinks.forEach(link => {
-        link.addEventListener('click', function(event) {
-            event.preventDefault(); // Prevent the default redirect
-
-            // Show the loading spinner
+        link.addEventListener('click', function (event) {
+            event.preventDefault();
             document.getElementById('loading').style.display = 'flex';
 
-            // Simulate loading delay, then redirect
-            setTimeout(function() {
-                window.location.href = link.getAttribute('data-link'); // Redirect to the link
-            }, 1000); // Adjust delay (1000ms = 1 second)
+            setTimeout(function () {
+                window.location.href = link.getAttribute('href');
+            }, 1000);
         });
     });
-}
-
 
     // Add hover functionality to showtime items
     initializeHoverEffects();
+}
 
-// Function to handle hover effects on showtimes
 function initializeHoverEffects() {
     const showtimeItems = document.querySelectorAll('.showtime-item');
 
     showtimeItems.forEach(item => {
         const tooltip = item.querySelector('.tooltip');
+        if (!tooltip) return; // Skip if no tooltip present
 
         item.addEventListener('mouseenter', () => {
-            // Show tooltip on hover
             tooltip.style.display = 'block';
             tooltip.style.opacity = '1';
             tooltip.style.transition = 'opacity 0.3s ease-in-out';
         });
 
         item.addEventListener('mouseleave', () => {
-            // Hide tooltip when the mouse leaves
             tooltip.style.opacity = '0';
             setTimeout(() => {
                 tooltip.style.display = 'none';
@@ -137,17 +129,17 @@ function initializeHoverEffects() {
     });
 }
 
-
-// loading
-document.getElementById('showtime-link').addEventListener('click', function(event) {
-    event.preventDefault(); // Prevent the default redirect
-    
-    // Show the loading spinner
-    document.getElementById('loading').style.display = 'flex';
-    
-    // Wait for a brief moment before redirecting (simulate loading)
-    setTimeout(function() {
-      window.location.href = event.target.href; // Redirect to the link
-    }, 1000); // Adjust delay (1000ms = 1 second)
-  });
-  
+// Global loading spinner behavior for dynamic links
+document.addEventListener('click', function (event) {
+    if (event.target.classList.contains('showtime-link')) {
+        event.preventDefault(); // Prevent immediate navigation
+        
+        // Show the loading spinner
+        document.getElementById('loading').style.display = 'flex';
+        
+        // Simulate a brief delay before redirect
+        setTimeout(function () {
+            window.location.href = event.target.href;
+        }, 1000);
+    }
+});

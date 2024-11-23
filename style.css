@@ -189,18 +189,7 @@ footer {
 }
 
 
-/////
-/* Basic Styling */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
+
   
   /* Slider Container */
   .slider {
@@ -366,7 +355,7 @@ form {
 }
 
 .movie-slider::-webkit-scrollbar {
-    display: none; /* Hide default scrollbar */
+    display: none; 
 }
 
 .movie-card {
@@ -375,7 +364,7 @@ form {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: relative;
-    background-color: #fff;
+   
     overflow: hidden;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -390,7 +379,7 @@ form {
     width: 100%;
     height: 120%;
     object-fit: cover; /* Ensures image covers the entire container */
-    border-bottom: 4px solid #fff; /* Subtle separation from the card info */
+    border-bottom: 4px solid #fff; 
     transition: transform 0.3s ease;
 }
 

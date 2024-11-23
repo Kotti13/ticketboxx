@@ -4,29 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seat Selection</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../css/seat-selection.css">
 </head>
 <body>
-    <div class="seat-selection-container">
-        <header class="header">
-            <a href="javascript:history.back();" class="back-button">← Back</a>
-            <div class="container" id="content">
-                <h1 id="movie-title" class="movie-title"></h1>
-                <p id="theatre-details" class="theatre-details"></p>
-            </div>
-        </header>
-
-        <!-- Showtimes -->
-        <div id="showtimes-container" class="showtimes-container"></div>
-
-        <!-- Seat Map -->
-        <div id="seat-map" class="seat-map"></div>
-
-        <!-- Booking Summary -->
-        <div class="booking-summary">
-            <p>Total: ₹<span id="total-price">0</span></p>
-            <button class="btn book-now">Book Now</button>
+    <!-- Header -->
+    <header class="header">
+        <button class="back-button" href="shows&theatres.html">←</button>
+        <div>
+            <h1></h1>
+            <p></p>
         </div>
+        <span id="ticketSummary">0 Tickets</span>
+    </header>
+
+    <!-- Seat Layout -->
+    <main>
+        <div class="seat-section">
+            <!-- Rs. 190 Section -->
+            <div class="seat-row">
+                <div class="row-title">Rs. 190</div>
+                <div class="seats" id="rs190">
+                    <!-- Seats dynamically added via JS -->
+                </div>
+            </div>
+
+            <!-- Rs. 60 Section -->
+            <div class="seat-row">
+                <div class="row-title">Rs. 60</div>
+                <div class="seats" id="rs60">
+                    <!-- Seats dynamically added via JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen Indicator -->
+        <div class="screen"><p>All eyes this way please!</p><img src="../images/screen-icon.8dd7f126.jpg" alt="" width="600px"></div>
+        
+
+        <!-- Legends -->
+        <div class="legend">
+            <div><span class="seat bestseller"></span> Bestseller</div>
+            <div><span class="seat available"></span> Available</div>
+            <div><span class="seat selected"></span> Selected</div>
+            <div ><span class="seat sold" ></span> Sold</div>
+        </div>
+    </main>
+
+    <!-- Popup Container -->
+    <div id="popup" class="popup">
+        <p id="selectedSeats">Selected Seats: None</p>
+        <p id="totalPrice">Total Price: ₹0</p>
     </div>
 
     <script src="../scripts/seat-selection.js"></script>
