@@ -47,15 +47,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (isValid) {
-            // Show loading spinner
             loadingSpinner.style.display = 'block';
             submitButton.disabled = true;
-
-            // Simulate payment processing (e.g., 2 seconds delay)
+        
+            // Store ticket details in session storage
+            sessionStorage.setItem('movieName', params.get('movieName'));
+            sessionStorage.setItem('theatre', params.get('theatre'));
+            sessionStorage.setItem('showTime', params.get('showTime'));
+            sessionStorage.setItem('seats', params.get('seats'));
+            sessionStorage.setItem('date', params.get('date'));
+            sessionStorage.setItem('poster', params.get('poster')); // Assuming this is passed in query
+        
+            // Simulate payment processing and redirect
             setTimeout(() => {
-                // Payment successful, redirect to confirmation page
-                window.location.href = 'ticket.html'; // Or use an actual payment gateway
-            }, 2000); // Simulated delay (2 seconds)
+                window.location.href = 'ticket.html';
+            }, 2000);
         }
+        
     });
 });
