@@ -9,10 +9,13 @@ body {
 .header {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 10px 20px;
-    background: #222;
-    color: #fff;
+    gap: 5px;
+    height: 100px;
+    padding: 5px 10px;
+    background: white;
+    color: black;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+
 }
 
 .back-button {
@@ -25,8 +28,12 @@ body {
 
 .seat-section {
     padding: 20px;
-    max-width: 800px;
+    /* max-width: 800px; */
+    width: 1200px;
     margin: 0 auto;
+}
+.ticket-count{
+    margin-left: 70%;
 }
 
 .seat-row {
@@ -47,13 +54,13 @@ body {
 .seat {
     width: 25px;
     height: 25px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    border: 0.5px solid red;
+    border-radius: 2px;
     cursor: pointer;
     text-align: center;
     line-height: 25px;
     font-size: 0.8rem;
-    background-color: #fff;
+    background-color:#fafafa;
 }
 
 .seat.bestseller {
@@ -61,7 +68,7 @@ body {
 }
 
 .seat.available {
-    background-color: #a5d6a7;
+    background-color: #fafafa;
 }
 
 .seat.selected {
@@ -106,4 +113,62 @@ body {
     justify-content: space-between;
     align-items: center;
     border-top: 2px solid #42a5f5;
+}
+
+
+/* confirm ticket */
+
+.confirm-ticket{
+    display: block; 
+    text-align: center; 
+    width: 200px; 
+    height: 50px; 
+    line-height: 50px; 
+    background-color: #007BFF; 
+    color: white;
+    text-decoration: none; 
+    border-radius: 5px;
+}
+
+
+/* Basic styles for the anchor tag */
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+/* Loading spinner (hidden by default) */
+.loading-spinner {
+    display: none; /* Hidden initially */
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3; /* Light gray border */
+    border-top: 5px solid #007BFF; /* Blue border */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+
+/* Spinner animation */
+@keyframes spin {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
 }

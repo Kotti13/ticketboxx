@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Seat data and initialization
     const seatData = {
-        rs190: { rows: ['B', 'C', 'D'], totalSeats: 30 },
+        rs190: { rows: ['A', 'B', 'C', 'D', 'E', 'F'], totalSeats: 30 },
         rs60: { rows: ['L', 'M', 'N'], totalSeats: 30 },
     };
 
@@ -30,10 +30,10 @@ document.addEventListener('DOMContentLoaded', () => {
     Object.keys(seatData).forEach((section) => {
         const seatContainer = document.getElementById(section);
         seatData[section].rows.forEach((row) => {
-            for (let i = 1; i <= seatData[section].totalSeats; i++) {
+            for (let i = 1; i <= 15; i++) {
                 const seatId = `${row}${i}`;
                 const seat = document.createElement('div');
-                
+
                 seat.classList.add('seat');
                 seat.textContent = i;
 
@@ -71,12 +71,37 @@ document.addEventListener('DOMContentLoaded', () => {
         const popup = document.getElementById('popup');
         const seatDisplay = document.getElementById('selectedSeats');
         const priceDisplay = document.getElementById('totalPrice');
+        const confirmLink = document.getElementById('confirmBooking');
 
         seatDisplay.textContent = `Selected Seats: ${selectedSeats.join(', ') || 'None'}`;
         priceDisplay.textContent = `Total Price: ₹${totalPrice}`;
         popup.style.display = selectedSeats.length ? 'flex' : 'none';
 
+        // Enable or disable the anchor tag
+        if (selectedSeats.length) {
+            confirmLink.href = `payment.html?movieName=${encodeURIComponent(movieName)}&theatre=${encodeURIComponent(theatreName)}&seats=${encodeURIComponent(selectedSeats.join(','))}&price=${totalPrice}`;
+            confirmLink.classList.remove('disabled');
+        } else {
+            confirmLink.href = "payment.html";
+            confirmLink.classList.add('disabled');
+        }
+
         // Update header ticket count
         document.getElementById('ticketSummary').textContent = `${selectedSeats.length} Tickets`;
     };
+});
+
+
+document.getElementById('confirmBooking').addEventListener('click', (e) => {
+    e.preventDefault(); // Prevent immediate navigation
+
+    // Show the loading spinner
+    const loadingSpinner = document.getElementById('loading');
+    loadingSpinner.style.display = 'block';
+
+    // Simulate loading delay (e.g., 2 seconds)
+    setTimeout(() => {
+        // Navigate to the href of the anchor tag after the delay
+        window.location.href = e.target.href;
+    }, 2000); // 2000ms = 2 seconds
 });

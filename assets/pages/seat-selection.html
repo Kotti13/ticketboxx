@@ -5,16 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seat Selection</title>
     <link rel="stylesheet" href="../css/seat-selection.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <!-- Header -->
     <header class="header">
         <button class="back-button" href="shows&theatres.html">←</button>
         <div>
-            <h1></h1>
+            <h1 style="font-size: 25px;color: blue"></h1>
             <p></p>
         </div>
-        <span id="ticketSummary">0 Tickets</span>
+        <span id="ticketSummary" class="ticket-count">0 Tickets</span>
     </header>
 
     <!-- Seat Layout -->
@@ -54,8 +55,11 @@
     <div id="popup" class="popup">
         <p id="selectedSeats">Selected Seats: None</p>
         <p id="totalPrice">Total Price: ₹0</p>
+        <a id="confirmBooking"  class="confirm-ticket"><i class="fa fa-spinner fa-spin"></i>Confirm</a>
+        
     </div>
-
+    <div id="loading" class="loading-spinner"></div>
+    
     <script src="../scripts/seat-selection.js"></script>
 </body>
 </html>
