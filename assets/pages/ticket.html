@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generated Ticket</title>
     <link rel="stylesheet" href="../css/ticket.css">
+    <!-- jsPDF for generating PDFs -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
+    <!-- QRCode.js for generating QR codes -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
     <!-- Ticket Container -->
@@ -29,9 +30,39 @@
         
         <div id="qrcode"></div>
         
-        <button id="downloadBtn">Download Ticket PDF</button>
-        
+        <!-- <button id="downloadBtn">Download Ticket PDF</button> -->
+    </div>
 
-    <script src="../scripts/ticket.js" type="module"></script>
+    <!-- Firebase App and Firebase Services (as modules) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-analytics.js";
+        import { getStorage } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-storage.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBcFRNdsErrXYHiiuYlCf6txDjupaNwRno",
+            authDomain: "ticketboxx-c4049.firebaseapp.com",
+            databaseURL: "https://ticketboxx-c4049-default-rtdb.firebaseio.com",
+            projectId: "ticketboxx-c4049",
+            storageBucket: "ticketboxx-c4049.firebasestorage.app",
+            messagingSenderId: "1029974974410",
+            appId: "1:1029974974410:web:a94d9c5fe267f3e51db933",
+            measurementId: "G-F7PEJ1WQRV"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const storage = getStorage(app);  // Firebase Storage initialized
+        const db = getFirestore(app);    // Firestore initialized
+
+        // Debug: Firebase initialization is successful
+        console.log('Firebase Initialized:', app);
+    </script>
+
+    <!-- Custom Ticket Logic -->
+    <script type="module" src="../scripts/ticket.js"></script>
 </body>
 </html>

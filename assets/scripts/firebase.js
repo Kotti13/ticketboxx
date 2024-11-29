@@ -1,10 +1,9 @@
-// firebase.js
-
-// Import the functions you need from the SDKs
+// Import Firebase and Supabase SDKs
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
+import { createClient } from 'https://cdn.skypack.dev/@supabase/supabase-js';
 
-// Your web app's Firebase configuration
+// Firebase Configuration
 const firebaseConfig = {
     apiKey: "AIzaSyBcFRNdsErrXYHiiuYlCf6txDjupaNwRno",
     authDomain: "ticketboxx-c4049.firebaseapp.com",
@@ -15,12 +14,40 @@ const firebaseConfig = {
     measurementId: "G-F7PEJ1WQRV"
 };
 
-// Initialize Firebase
+// Supabase Configuration
+const supabaseUrl = 'https://srjumswibbswcwjntcad.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNyanVtc3dpYmJzd2N3am50Y2FkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjk2Nzk5MzcsImV4cCI6MjA0NTI1NTkzN30.e_ZkFg_EPI8ObvFz70Ejc1W4RGpQurr0SoDlK6IoEXY';
+
+// Initialize Firebase & Supabase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const supabase = createClient(supabaseUrl, supabaseKey);
 
-// Enhanced Form Validation with Firebase Integration
+// Function to save user to Supabase
+const saveUserToSupabase = async (user, username) => {
+    const { email, uid } = user;
 
+    try {
+        // Insert the user data into Supabase or update if exists (upsert)
+        const { data, error } = await supabase
+            .from('users')  // Assuming 'users' table exists in Supabase
+            .upsert({
+                email,
+                username,
+                firebase_uid: uid,
+                created_at: new Date()
+            });
+
+        if (error) {
+            console.error('Error saving user to Supabase:', error.message);
+        } else {
+            console.log('User successfully saved to Supabase:', data);
+        }
+    } catch (error) {
+        console.error('Error saving user to Supabase:', error.message);
+    }
+};
+// Sign-up handler
 document.querySelector('.signup-form').addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -30,25 +57,23 @@ document.querySelector('.signup-form').addEventListener('submit', async (e) => {
     document.getElementById('passwordError').textContent = "";
     document.getElementById('confirmPasswordError').textContent = "";
 
-    // Get values
     const username = document.getElementById('username').value.trim();
     const email = document.getElementById('signupEmail').value.trim();
     const password = document.getElementById('signupPassword').value;
     const confirmPassword = document.getElementById('confirmPassword').value;
 
-    // Validation patterns
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
     let isValid = true;
 
-    // Username validation - check if username is empty, contains spaces, or is too short
+    // Username validation
     if (username === "") {
         document.getElementById('usernameError').textContent = "Username is required.";
         isValid = false;
-    } else if (/\s/.test(username)) {  // Check if the username contains spaces
+    } else if (/\s/.test(username)) {
         document.getElementById('usernameError').textContent = "Username cannot contain spaces.";
         isValid = false;
-    } else if (username.length < 5) {  // Check if the username is too short (less than 5 characters)
+    } else if (username.length < 5) {
         document.getElementById('usernameError').textContent = "Username must be at least 5 characters long.";
         isValid = false;
     }
@@ -71,10 +96,25 @@ document.querySelector('.signup-form').addEventListener('submit', async (e) => {
         isValid = false;
     }
 
+    // Proceed if validation is successful
     if (isValid) {
         try {
-            await createUserWithEmailAndPassword(auth, email, password);
-            alert("Sign up successful!");
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
+
+            // Save user to Supabase, including the username
+            await saveUserToSupabase(user, username);
+
+            // Close the sign-up modal
+            const signupModal = new bootstrap.Modal(document.getElementById('signupModal'));
+            signupModal.hide(); // Hide the signup modal
+
+            // Open the login modal
+            const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+            loginModal.show(); // Show the login modal
+
+            alert("Sign up successful! Please log in.");
+
         } catch (error) {
             console.error("Error during sign up:", error);
             alert(error.message);
@@ -82,6 +122,8 @@ document.querySelector('.signup-form').addEventListener('submit', async (e) => {
     }
 });
 
+
+// Login handler
 document.querySelector('.login-form').addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -89,39 +131,77 @@ document.querySelector('.login-form').addEventListener('submit', async (e) => {
     document.getElementById('loginEmailError').textContent = "";
     document.getElementById('loginPasswordError').textContent = "";
 
-    // Get values
     const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value;
 
-    // Validation patterns
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     let isValid = true;
 
-    // Email validation
+    // Validate email
     if (!emailPattern.test(email)) {
         document.getElementById('loginEmailError').textContent = "Please enter a valid email address.";
         isValid = false;
     }
 
-    // Password validation
+    // Validate password
     if (password === "") {
         document.getElementById('loginPasswordError').textContent = "Password is required.";
         isValid = false;
     }
 
-    // If form is valid, attempt login
+    // Proceed if validation is successful
     if (isValid) {
         try {
-            // Attempt to sign in
-            await signInWithEmailAndPassword(auth, email, password);
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
+
+            // Successfully logged in
             alert("Login successful!");
             window.location.href = "./assets/pages/home.html";
         } catch (error) {
             console.error("Error during login:", error);
-
-            // Generic error message for invalid username or password
-            document.getElementById('loginEmailError').textContent = "Invalid username or password.";
-            document.getElementById('loginPasswordError').textContent = "Invalid username or password.";
+            document.getElementById('loginEmailError').textContent = "Invalid email or password.";
+            document.getElementById('loginPasswordError').textContent = "Invalid email or password.";
         }
+    }
+});
+
+// Listen for auth state changes
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        console.log('User is signed in:', user);
+        saveUserToSupabase(user);
+    } else {
+        console.log('No user is signed in');
+    }
+});
+
+// Example of querying user data from Supabase
+const getUserFromSupabase = async (uid) => {
+    try {
+        // Fetch user from Supabase using the Firebase UID
+        const { data, error } = await supabase
+            .from('users')
+            .select('email, username, firebase_uid, created_at')
+            .eq('firebase_uid', uid)  // Searching based on Firebase UID
+            .single();  // Return a single row
+
+        if (error) {
+            console.error('Error fetching user data from Supabase:', error.message);
+        } else {
+            console.log('User data from Supabase:', data);
+            // Use `data` for any further processing
+        }
+    } catch (error) {
+        console.error('Error in Supabase query:', error.message);
+    }
+};
+
+// Call this function when a user logs in (or after auth state change)
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        console.log('User is signed in:', user);
+        // Get user details from Supabase
+        getUserFromSupabase(user.uid);
     }
 });

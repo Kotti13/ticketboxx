@@ -13,56 +13,36 @@
     <!-- Header -->
     <header class="header">
         <button class="back-button" onclick="window.history.back();">←</button>
-        <h1>Payment Details</h1>
+        <h1>Share your Contact Details</h1>
     </header>
 
     <!-- Payment Form -->
-    <main>
-        <form id="paymentForm" class="payment-form" action="#" method="POST" novalidate>
-            <div>
-            <div class="form-group">
-                <label for="cardholderName">Cardholder Name</label>
-                <input type="text" id="cardholderName" name="cardholderName" required placeholder="Enter your name">
-            </div>
+    <main class="payment-container">
+        <!-- Contact Details Section -->
+        <section class="form-section">
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="email">Email Address:</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="mobile">Mobile Number:</label>
+                    <input type="tel" id="mobile" placeholder="Enter your 10-digit mobile number" maxlength="10" required>
+                </div>
+                <button type="button" id="continueButton" class="continue-btn" disabled>Continue</button>
+            </form>
+        </section>
 
+        <!-- Google Pay Section -->
+        <section id="googlePaySection" style="display: none;">
             <div class="form-group">
-                <label for="mobileNumber">Mobile Number</label>
-                <input type="text" id="mobileNumber" name="mobileNumber" required placeholder="Enter your mobile number" maxlength="10">
+                <p style="font-size: large; text-align: center;">Pay with Google Pay</p>
+                <button type="button" id="googlePayButton" class="google-pay-button" disabled>Pay with Google Pay</button>
             </div>
+        </section>
 
-            <div class="form-group">
-                <label for="cardNumber">Card Number</label>
-                <input type="text" id="cardNumber" name="cardNumber" required placeholder="Enter your card number" maxlength="16">
-            </div>
-
-            <div class="form-group">
-                <label for="expiryDate">Expiry Date</label>
-                <input type="text" id="expiryDate" name="expiryDate" required placeholder="MM/YY">
-            </div>
-
-            <div class="form-group">
-                <label for="cvv">CVV</label>
-                <input type="password" id="cvv" name="cvv" required placeholder="Enter CVV" maxlength="3">
-            </div>
-
-            <div class="form-group">
-                <label for="amount">Amount</label>
-                <input type="text" id="amount" name="amount" disabled value="₹0" readonly>
-            </div>
-        </form>
-        
-
-            <p style="font-size: large; text-align: center;">OR</p>
-            <div class="form-group">
-                <button type="button" id="googlePayButton" class="google-pay-button">Pay with Google Pay</button>
-            </div>
-
-            <button type="submit" id="submitPayment" class="submit-button" style="display: none;"><i class="fa fa-spinner fa-spin"></i> Submit Payment</button>
-        
+        <div id="loading" class="loading-spinner" style="display: none;"></div>
     </main>
-
-    <!-- Loading Spinner -->
-    <div id="loading" class="loading-spinner" style="display: none;"></div>
 
     <script src="../scripts/payment.js"></script>
 </body>
