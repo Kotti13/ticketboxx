@@ -19,6 +19,15 @@ document.addEventListener("DOMContentLoaded", function () {
             if (movie) {
                 displayMovieDetails(movie);
                 populateShowTimes(movie.theatres, movie);
+                
+                // Store movie details in localStorage
+                localStorage.setItem('selectedMovie', JSON.stringify({
+                    title: movie.title,
+                    poster: movie.poster,
+                    duration: movie.duration,
+                    genre: movie.genre,
+                    language: movie.language
+                }));
             } else {
                 document.getElementById("movie-details").innerHTML = "<p>Movie not found.</p>";
             }
@@ -89,6 +98,8 @@ function populateShowTimes(theatres, movie) {
         `;
         showTimesContainer.innerHTML += theatreBlock;
     });
+
+
 
     // Add loading behavior for showtime links
     const showtimeLinks = document.querySelectorAll('.showtime-link');

@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generated Ticket</title>
     <link rel="stylesheet" href="../css/ticket.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
 </head>
 <body>
     <!-- Ticket Container -->
@@ -13,26 +15,23 @@
         <div class="ticket-header">
             <h1>Your Movie Ticket</h1>
         </div>
-        <div class="ticket-content">
-            <div class="movie-poster">
-                <img id="moviePoster" src="" alt="Movie Poster">
-            </div>
-            <div class="ticket-details">
-                <h2 id="movieName"></h2>
-                <p><strong>Theatre:</strong> <span id="theatreName"></span></p>
-                <p><strong>Show Time:</strong> <span id="showTime"></span></p>
-                <p><strong>Date:</strong> <span id="date"></span></p>
-                <p><strong>Seats:</strong> <span id="seats"></span></p>
-                <p><strong>Booking ID:</strong> <span id="bookingId"></span></p>
-                <p><strong>Total Amount:</strong> <span id="amount"></span></p>
-            </div>
+        <div class="ticket-info">
+            <h1>Ticket Details</h1>
+            <p><strong>Movie Name:</strong> <span id="movieName"></span></p>
+            <p><strong>Theatre:</strong> <span id="theatreName"></span></p>
+            <p><strong>Show Time:</strong> <span id="showTime"></span></p>
+            <p><strong>Date:</strong> <span id="date"></span></p>
+            <p><strong>Seats:</strong> <span id="seats"></span></p>
+            <p><strong>Amount: ₹</strong> <span id="amount"></span></p>
+            <p><strong>Booking ID:</strong> <span id="bookingId"></span></p>
+            <img id="moviePoster" src="" alt="Movie Poster" height="100">
         </div>
-        <div class="qr-code">
-            <h3>Scan QR Code for Details</h3>
-            <div id="qrcode"></div>
-        </div>
-    </div>
+        
+        <div id="qrcode"></div>
+        
+        <button id="downloadBtn">Download Ticket PDF</button>
+        
 
-    <script src="../scripts/ticket.js"></script>
+    <script src="../scripts/ticket.js" type="module"></script>
 </body>
 </html>

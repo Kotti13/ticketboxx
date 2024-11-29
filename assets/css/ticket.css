@@ -1,66 +1,122 @@
-body {
-    font-family: Arial, sans-serif;
+/* Global Styles */
+* {
     margin: 0;
     padding: 0;
-    background-color: #f5f5f5;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
 }
 
 .ticket-container {
+    width: 100%;
     max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #ffffff;
+    background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 20px;
     text-align: center;
 }
 
-.ticket-header {
+/* Header Styling */
+.ticket-header h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-bottom: 2px solid #000;
+    padding-bottom: 10px;
+}
+
+/* Ticket Information */
+.ticket-info {
+    text-align: left;
     margin-bottom: 20px;
 }
 
-.ticket-header h1 {
-    font-size: 24px;
-    color: #333333;
-}
-
-.ticket-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-}
-
-.movie-poster img {
-    width: 150px;
-    border-radius: 8px;
-}
-
-.ticket-details {
-    text-align: left;
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
-}
-
-.ticket-details h2 {
-    font-size: 20px;
+.ticket-info h1 {
+    font-size: 2rem;
+    color: #444;
     margin-bottom: 10px;
-    color: #444444;
 }
 
-.ticket-details p {
-    font-size: 16px;
-    margin: 5px 0;
-    color: #555555;
+.ticket-info p {
+    font-size: 1.1rem;
+    margin: 8px 0;
+    color: #555;
 }
 
-.qr-code {
+.ticket-info strong {
+    font-weight: 700;
+    color: #333;
+}
+
+#moviePoster {
+    max-width: 100%;
     margin-top: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.qr-code h3 {
-    font-size: 18px;
-    margin-bottom: 10px;
-    color: #333333;
+/* QR Code */
+#qrcode {
+    margin-top: 30px;
+    text-align: center;
+}
+
+#qrcode canvas {
+    margin-top: 10px;
+}
+
+/* Download Button */
+#downloadBtn {
+    background-color: #f39c12;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#downloadBtn:hover {
+    background-color: #e67e22;
+    transform: translateY(-2px);
+}
+
+#downloadBtn:active {
+    background-color: #d35400;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .ticket-container {
+        width: 90%;
+    }
+
+    .ticket-header h1 {
+        font-size: 2rem;
+    }
+
+    .ticket-info p {
+        font-size: 1rem;
+    }
+
+    #downloadBtn {
+        width: 100%;
+        padding: 15px;
+        font-size: 1.2rem;
+    }
 }

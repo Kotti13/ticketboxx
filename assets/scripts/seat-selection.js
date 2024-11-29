@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const movieName = params.get('movieName'); // Fetch movie name
     const theatreName = params.get('theatre'); // Fetch theatre name
 
+    // Get movie details from localStorage
+    const selectedMovie = JSON.parse(localStorage.getItem('selectedMovie'));
     const headerTitle = document.querySelector('header h1');
     const headerDetails = document.querySelector('header p');
 
@@ -45,7 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     seat.classList.add('available');
                 }
 
-                // Seat click event
                 seat.addEventListener('click', () => {
                     if (seat.classList.contains('sold')) return;
 
@@ -77,7 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
         priceDisplay.textContent = `Total Price: ₹${totalPrice}`;
         popup.style.display = selectedSeats.length ? 'flex' : 'none';
 
-        // Enable or disable the anchor tag
         if (selectedSeats.length) {
             confirmLink.href = `payment.html?movieName=${encodeURIComponent(movieName)}&theatre=${encodeURIComponent(theatreName)}&seats=${encodeURIComponent(selectedSeats.join(','))}&price=${totalPrice}`;
             confirmLink.classList.remove('disabled');
@@ -86,22 +86,20 @@ document.addEventListener('DOMContentLoaded', () => {
             confirmLink.classList.add('disabled');
         }
 
-        // Update header ticket count
         document.getElementById('ticketSummary').textContent = `${selectedSeats.length} Tickets`;
     };
 });
 
 
-document.getElementById('confirmBooking').addEventListener('click', (e) => {
-    e.preventDefault(); // Prevent immediate navigation
 
-    // Show the loading spinner
+document.getElementById('confirmBooking').addEventListener('click', (e) => {
+    e.preventDefault();
+
     const loadingSpinner = document.getElementById('loading');
     loadingSpinner.style.display = 'block';
 
-    // Simulate loading delay (e.g., 2 seconds)
     setTimeout(() => {
-        // Navigate to the href of the anchor tag after the delay
+       
         window.location.href = e.target.href;
-    }, 2000); // 2000ms = 2 seconds
+    }, 2000); 
 });
