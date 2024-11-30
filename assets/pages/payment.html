@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../css/payment.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Google Pay API -->
-    <script async src="https://pay.google.com/gp/p/js/pay.js"></script>
+   
 </head>
 <body>
     <!-- Header -->
@@ -20,7 +20,7 @@
     <main class="payment-container">
         <!-- Contact Details Section -->
         <section class="form-section">
-            <form id="contactForm">
+            <form id="contactForm" autocomplete="off">
                 <div class="form-group">
                     <label for="email">Email Address:</label>
                     <input type="email" id="email" placeholder="Enter your email" required>
@@ -44,6 +44,7 @@
         <div id="loading" class="loading-spinner" style="display: none;"></div>
     </main>
 
-    <script src="../scripts/payment.js"></script>
+    <script async src="../scripts/payment.js"></script>
+    <script async src="https://pay.google.com/gp/p/js/pay.js"></script>
 </body>
 </html>

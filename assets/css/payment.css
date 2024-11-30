@@ -33,6 +33,7 @@ main {
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
 /* contact details */
 /* General Form Styles */
 #contactForm {
@@ -89,19 +90,27 @@ main {
     transition: background-color 0.3s ease;
 }
 
+/* Disabled button */
 #contactForm .continue-btn:disabled {
     background-color: #cccccc;
     cursor: not-allowed;
 }
 
+/* Hover effect for enabled continue button */
 #contactForm .continue-btn:not(:disabled):hover {
     background-color: #45a049;
 }
 
+/* Active effect for continue button */
 #contactForm .continue-btn:active {
     background-color: #3e8e41;
 }
 
+/* Fix for hover on disabled button to not show the blocked cursor */
+#contactForm .continue-btn:disabled:hover {
+    cursor: not-allowed; /* Ensure blocked cursor is not applied */
+    background-color: #cccccc; /* Keep the color as disabled */
+}
 
 /* Google Pay Button */
 .google-pay-button {
