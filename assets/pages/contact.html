@@ -29,26 +29,30 @@
     <main>
         <h1>Contact Us</h1>
         <p>If you have any questions, feel free to reach out!</p>
-        <form action="https://api.web3forms.com/submit" method="POST">
+
+        <!-- Error messages will appear here -->
+        <div id="errorMessages"></div>
+
+        <form onsubmit="validateForm(event)" action="https://api.web3forms.com/submit" method="POST" novalidate>
             <!-- Access Key for Web3Forms -->
             <input type="hidden" name="access_key" value="339a7cf1-644c-4b73-b7d5-888309a87465">
-        
-            <!-- Form Inputs. Each input must have a name="" attribute -->
+
+            <!-- Form Inputs -->
             <label for="name">Name:</label>
             <input type="text" name="name" id="name" required>
-        
+
             <label for="email">Email:</label>
             <input type="email" name="email" id="email" required>
-        
+
             <label for="message">Message:</label>
             <textarea name="message" id="message" required></textarea>
-        
+
             <!-- Honeypot Spam Protection -->
             <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
-        
+
             <!-- Optional Custom Confirmation / Success Page -->
             <!-- <input type="hidden" name="redirect" value="https://mywebsite.com/thanks.html"> -->
-        
+
             <button type="submit" class="btn">Send</button>
         </form>
         
@@ -58,4 +62,5 @@
         <p>&copy; 2024 Cinema Booking. All Rights Reserved.</p>
     </footer>
 </body>
+<script src="../scripts/contact.js"></script>
 </html>
