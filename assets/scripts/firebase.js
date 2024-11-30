@@ -47,6 +47,28 @@ const saveUserToSupabase = async (user, username) => {
         console.error('Error saving user to Supabase:', error.message);
     }
 };
+
+// GitHub login handler
+document.getElementById('githubLoginLink').addEventListener('click', async (event) => {
+    event.preventDefault(); // Prevent the default link behavior
+
+    try {
+        // Initiate GitHub OAuth login via Supabase
+        const { error } = await supabase.auth.signInWithOAuth({
+            provider: 'github', // GitHub as the OAuth provider
+            redirectTo: 'https://srjumswibbswcwjntcad.supabase.co/auth/v1/callback', // Callback URL
+        });
+
+        if (error) {
+            console.error('Error during GitHub login:', error.message);
+            alert('GitHub login failed. Please try again.');
+        }
+    } catch (error) {
+        console.error('Error during GitHub login process:', error);
+        alert('Something went wrong with GitHub login. Please try again.');
+    }
+});
+
 // Sign-up handler
 document.querySelector('.signup-form').addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -104,7 +126,7 @@ document.querySelector('.signup-form').addEventListener('submit', async (e) => {
 
             // Save user to Supabase, including the username
             await saveUserToSupabase(user, username);
-
+      
             // Close the sign-up modal
             const signupModal = new bootstrap.Modal(document.getElementById('signupModal'));
             signupModal.hide(); // Hide the signup modal
@@ -112,7 +134,7 @@ document.querySelector('.signup-form').addEventListener('submit', async (e) => {
             // Open the login modal
             const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
             loginModal.show(); // Show the login modal
-
+             
             alert("Sign up successful! Please log in.");
 
         } catch (error) {
@@ -121,7 +143,6 @@ document.querySelector('.signup-form').addEventListener('submit', async (e) => {
         }
     }
 });
-
 
 // Login handler
 document.querySelector('.login-form').addEventListener('submit', async (e) => {
@@ -155,7 +176,6 @@ document.querySelector('.login-form').addEventListener('submit', async (e) => {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
 
-            // Successfully logged in
             alert("Login successful!");
             window.location.href = "./assets/pages/home.html";
         } catch (error) {
@@ -197,11 +217,13 @@ const getUserFromSupabase = async (uid) => {
     }
 };
 
-// Call this function when a user logs in (or after auth state change)
-onAuthStateChanged(auth, (user) => {
+// Handle Supabase callback after GitHub login
+window.onload = async () => {
+    const { user, error } = await supabase.auth.getSession();
     if (user) {
-        console.log('User is signed in:', user);
-        // Get user details from Supabase
-        getUserFromSupabase(user.uid);
+        console.log('Supabase user session:', user);
+        saveUserToSupabase(user);  // Save user info to Supabase
+    } else {
+        console.error('GitHub login error:', error);
     }
-});
+};
