@@ -7,14 +7,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const seats = sessionStorage.getItem('seats') || "N/A";
     const amount = sessionStorage.getItem('price') || "₹0";
 
-    // Retrieve customer's email from localStorage
+    
     const customerEmail = localStorage.getItem('userEmail');
-    const customerName = "Customer Name"; // Replace with dynamic customer name if available
+    const customerName = "Customer Name"; 
 
-    // Generate a random 7-character booking ID
+   
     const bookingId = generateBookingId();
 
-    // Set values in the HTML elements for ticket details
+   
     document.getElementById('movieName').textContent = movieName;
     document.getElementById('theatreName').textContent = theatreName;
     document.getElementById('showTime').textContent = showTime;
@@ -23,17 +23,17 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('bookingId').textContent = bookingId;
     document.getElementById('amount').textContent = amount;
 
-    // Fetch movie poster dynamically based on movie name
+   
     fetchMoviePoster(movieName).then(poster => {
         document.getElementById('moviePoster').src = poster;
 
-        // Trigger PDF download automatically once poster is fetched
+        
         downloadTicketPDF(movieName, theatreName, showTime, date, seats, bookingId, amount, poster, customerEmail, customerName);
     }).catch(error => {
         console.error('Error fetching movie poster:', error);
         document.getElementById('moviePoster').src = "../images/default-poster.png"; // Default image if error occurs
 
-        // Trigger PDF download even if poster fetch fails
+       
         downloadTicketPDF(movieName, theatreName, showTime, date, seats, bookingId, amount, "../images/default-poster.png", customerEmail, customerName);
     });
 
@@ -79,7 +79,7 @@ async function fetchMoviePoster(movieName) {
         }
 
         const data = await response.json();
-        console.log('Fetched movie data:', data);  // Log the entire data for debugging
+        console.log('Fetched movie data:', data);  
 
         // Validate that data.movies is an array
         if (!Array.isArray(data.movies)) {
@@ -87,7 +87,7 @@ async function fetchMoviePoster(movieName) {
         }
 
         const movie = data.movies.find(movie => {
-            console.log('Checking movie:', movie);  // Log each movie
+            console.log('Checking movie:', movie);  
             // Ensure movie.title is a valid string
             if (movie.title && typeof movie.title === 'string') {
                 return movie.title.toLowerCase() === movieName.toLowerCase();
@@ -96,21 +96,22 @@ async function fetchMoviePoster(movieName) {
         });
 
         if (movie) {
-            console.log('Found movie:', movie);  // Log the found movie
+            console.log('Found movie:', movie);  
+            // const poster=movie.poster;
             return movie.poster;
         } else {
-            console.log('Movie not found:', movieName);  // Log if movie is not found
+            console.log('Movie not found:', movieName);  
             throw new Error('Movie not found');
         }
     } catch (error) {
         console.error('Error fetching movie poster:', error);
-        return "../images/default-poster.png";  // Return default poster if there's an error
+        return "../images/default-poster.png";  r
     }
 }
 
-// Your existing downloadTicketPDF function and other code...
+
 function downloadTicketPDF(movieName, theatreName, showTime, date, seats, bookingId, amount, poster, customerEmail, customerName) {
-    const { jsPDF } = window.jspdf;
+    const { jsPDF } = window.jspdf;// Return default poster if there's an erro
     const doc = new jsPDF();
 
     // Add ticket details to the PDF
@@ -143,10 +144,10 @@ function downloadTicketPDF(movieName, theatreName, showTime, date, seats, bookin
         console.error("Failed to load the image:", err);
         const pdfData = doc.output('datauristring');
         console.log("PDF generated without image.");
-        // Check if email has already been sent
+        
         if (!localStorage.getItem('emailSent')) {
             sendTicketEmail(pdfData, customerEmail, customerName, movieName, theatreName, showTime, date, seats, bookingId, amount);
-            // Mark the email as sent by storing a flag in localStorage
+            
             localStorage.setItem('emailSent', 'true');
         } else {
             console.log("Email has already been sent to the customer.");
@@ -154,7 +155,7 @@ function downloadTicketPDF(movieName, theatreName, showTime, date, seats, bookin
     });
 }
 
-// Helper function to load the image asynchronously
+
 function loadImage(src) {
     return new Promise((resolve, reject) => {
         const img = new Image();
@@ -168,9 +169,10 @@ function loadImage(src) {
 emailjs.init('HUyUhaCECVcKvYEaJ');  // Replace with your actual public key
 
 // Send email function remains the same
-function sendTicketEmail(pdfData, customerEmail, customerName, movieName, theatreName, showTime, date, seats, bookingId, amount) {
+function sendTicketEmail(pdfData,customerEmail, customerName,movieposter, movieName, theatreName, showTime, date, seats, bookingId, amount) {
     console.log("Sending email to:", customerEmail);
     emailjs.send('service_pxdwrds', 'template_x9p0hwb', {
+        movie_poster: movieposter,
         to_name: customerName,
         to_email: customerEmail,
         movie_name: movieName,
