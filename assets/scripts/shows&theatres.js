@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (movie) {
                 displayMovieDetails(movie);
                 populateShowTimes(movie.theatres, movie);
-                
+
                 // Store movie details in localStorage
                 localStorage.setItem('selectedMovie', JSON.stringify({
                     title: movie.title,
@@ -52,8 +52,8 @@ function displayMovieDetails(movie) {
                     <span>▶</span> Watch Trailer
                 </a>
                 <div class="tabs">
-                    <button class="tab active">Showlisting</button>
-                    <button class="tab">Reviews & More</button>
+                    <button class="tab active" id="showlisting-tab">Showlisting</button>
+                    <button class="tab" id="reviews-tab">Reviews & More</button>
                 </div>
             </div>
             <div class="movie-poster">
@@ -70,9 +70,31 @@ function displayMovieDetails(movie) {
             </select>
         </div>
         <div id="show-times" class="show-times-container"></div>
+        <div id="reviews" class="reviews-container" style="display: none;"></div>
     </div>
     `;
     movieDetailsContainer.innerHTML = html;
+
+    // Add event listeners for tabs
+    const showlistingTab = document.getElementById("showlisting-tab");
+    const reviewsTab = document.getElementById("reviews-tab");
+
+    showlistingTab.addEventListener("click", () => {
+        showlistingTab.classList.add("active");
+        reviewsTab.classList.remove("active");
+        document.getElementById("show-times").style.display = "block";
+        document.getElementById("reviews").style.display = "none";
+    });
+
+    reviewsTab.addEventListener("click", () => {
+        reviewsTab.classList.add("active");
+        showlistingTab.classList.remove("active");
+        document.getElementById("show-times").style.display = "none";
+        document.getElementById("reviews").style.display = "block";
+
+        // Fetch and display reviews
+        fetchReviews(movie.id);
+    });
 }
 
 function populateShowTimes(theatres, movie) {
@@ -99,23 +121,39 @@ function populateShowTimes(theatres, movie) {
         showTimesContainer.innerHTML += theatreBlock;
     });
 
-
-
-    // Add loading behavior for showtime links
-    const showtimeLinks = document.querySelectorAll('.showtime-link');
-    showtimeLinks.forEach(link => {
-        link.addEventListener('click', function (event) {
-            event.preventDefault();
-            document.getElementById('loading').style.display = 'flex';
-
-            setTimeout(function () {
-                window.location.href = link.getAttribute('href');
-            }, 1000);
-        });
-    });
-
     // Add hover functionality to showtime items
     initializeHoverEffects();
+}
+
+function fetchReviews(movieId) {
+    // Simulate a fetch to get reviews for the movie
+    const reviewsContainer = document.getElementById("reviews");
+    reviewsContainer.innerHTML = ""; // Clear existing reviews if any
+
+    // Example reviews data (in real-world scenarios, you can fetch from an API)
+    const reviews = [
+        {
+            username: "john_doe",
+            review: "Amazing movie! The storyline was fantastic, and the acting was top-notch.",
+            rating: 4
+        },
+        {
+            username: "jane_smith",
+            review: "Not as good as expected. The pacing was slow, but the visuals were great.",
+            rating: 3
+        }
+    ];
+
+    // Display reviews
+    reviews.forEach(review => {
+        const reviewHtml = `
+            <div class="review-item">
+                <p><strong>${review.username}</strong> - ⭐ ${review.rating} / 5</p>
+                <p>${review.review}</p>
+            </div>
+        `;
+        reviewsContainer.innerHTML += reviewHtml;
+    });
 }
 
 function initializeHoverEffects() {
@@ -139,18 +177,3 @@ function initializeHoverEffects() {
         });
     });
 }
-
-// Global loading spinner behavior for dynamic links
-document.addEventListener('click', function (event) {
-    if (event.target.classList.contains('showtime-link')) {
-        event.preventDefault(); // Prevent immediate navigation
-        
-        // Show the loading spinner
-        document.getElementById('loading').style.display = 'flex';
-        
-        // Simulate a brief delay before redirect
-        setTimeout(function () {
-            window.location.href = event.target.href;
-        }, 1000);
-    }
-});

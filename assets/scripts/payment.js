@@ -130,4 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
     emailInput.addEventListener('input', validateInputs);
     mobileInput.addEventListener('input', validateInputs);
     continueButton.addEventListener('click', onContinue);
+
+    // Initial validation check to enable or disable the button
+    validateInputs(); 
 });

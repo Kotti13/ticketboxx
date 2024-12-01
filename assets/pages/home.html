@@ -11,6 +11,7 @@
     <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, proxy-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
+  
 </head>
 <body >
   <header class="d-flex justify-content-between align-items-center p-3 bg-light shadow-sm">
@@ -29,8 +30,7 @@
                 class="search-bar form-control me-2"
                 name="q"
                 placeholder="Search For Movies, Sports, Activities"
-                aria-label="Search"
-            />
+                aria-label="Search"/>
             <button type="submit" class="btn btn-outline-primary">Search</button>
         </form>
     </div>
@@ -363,9 +363,41 @@
         </form>
       </div> -->
 </body>
-<script>
-    
-</script>
-<script src="../scripts/movies.js"></script>
+<!-- Right Side Popup for Username -->
+<div id="usernamePopup" class="popup">
+    Welcome back, <span id="username">User</span>!
+</div>
+<style>
+    /* Right-side popup styles */
+.popup {
+    position: fixed;
+    top: 20%;
+    right: 0;
+    width: 300px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s, visibility 0.5s;
+}
+
+.popup.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup.hide {
+    opacity: 0;
+    visibility: hidden;
+}
+
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.12.0/dist/umd/supabase.min.js" defer></script>
+<script src="../scripts/movies.js" defer></script>
+
+
 
 </html>

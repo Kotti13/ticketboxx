@@ -383,6 +383,31 @@ nav a:hover {
     font-size: 20px;
     z-index: 9999;
   }
+
+  /* review  */
+  /* Style for active tab */
+.tabs .tab.active {
+    font-weight: bold;
+    color: #007bff;
+}
+
+/* Style for reviews section */
+.reviews-container {
+    margin-top: 20px;
+}
+
+.review-item {
+    margin-bottom: 15px;
+}
+
+.review-item p {
+    font-size: 14px;
+}
+
+.review-item strong {
+    font-weight: bold;
+}
+
   
   .spinner {
     border: 4px solid rgba(255, 255, 255, 0.3);

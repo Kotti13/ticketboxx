@@ -78,6 +78,36 @@ body {
     margin-top: 10px;
 }
 
+/* right side error popup */
+/* Popup container */
+.popup {
+    position: fixed;
+    top: 20%; /* Adjust this for how far down the popup appears */
+    right: 0; /* This will make the popup appear on the right edge */
+    width: 300px;
+    background-color: #4CAF50; /* Green background */
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    opacity: 0; /* Initially hidden */
+    visibility: hidden; /* Initially hidden */
+    transition: opacity 0.5s, visibility 0.5s; /* Smooth transition */
+}
+
+/* Show popup when class 'show' is added */
+.popup.show {
+    opacity: 1;
+    visibility: visible; /* Make it visible */
+}
+
+/* Optional: Hide the popup after 3 seconds */
+.popup.hide {
+    opacity: 0;
+    visibility: hidden;
+}
+
+
 /* Download Button */
 #downloadBtn {
     background-color: #f39c12;
