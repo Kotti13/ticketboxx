@@ -15,12 +15,12 @@
             "poster": "https://m.media-amazon.com/images/M/MV5BOGM5N2FkNGMtNmYzMS00MGRiLWI5ZDItOTRmNThiYWNlNDZhXkEyXkFqcGc@._V1_.jpg",
             "about": "A violent storm and unsettling forces unravel their marriage. Vasanth must uncover the truth behind these supernatural occurrences before everything falls apart.A young couple move into a serene row house, eager for peace and privacy. A violent storm and unsettling forces unravel their marriage.",
             "cast": [
-                {"name": "Jiiva", "role": "Actor", "image": "./assets/images/jiiva.jpg"},
-                {"name": "Priya Bhavani Shankar", "role": "Actress", "image": "./assets/images/priya-bhavani-shankar.jpg"}
+                {"name": "Jiiva", "role": "Actor", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/jiiva-960-16-09-2017-05-56-23.jpg"},
+                {"name": "Priya Bhavani Shankar", "role": "Actress", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/priya-bhavani-shankar-1086843-1723440361.jpg"}
             ],
             "crew": [
-                {"name": "KG Balasubramani", "role": "Director", "image": "./assets/images/kg.avif"},
-                {"name": "S. R. Prakash Babu", "role": "Producer", "image": "/assets/images/SR-Prabhu.jpg"}
+                {"name": "KG Balasubramani", "role": "Director", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/kg-balasubramani-2040988-1728023440.jpg"},
+                {"name": "Madhan karky", "role": "lyrichist", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/madhan-karky-40067-24-04-2018-12-20-42.jpg"}
             ],
             "trailerLink": "https://youtu.be/By-VTqrdqFI?feature=shared",
           "theatres": [
@@ -28,7 +28,7 @@
         "name": "AGS Cinemas: Maduravoyal",
         "showtimes": [
             { "time": "12:45 PM", "premiumPrice": 300, "normalPrice": 200, "link": "../pages/seat-selection.html" },
-            { "time": "04:10 PM", "premiumPrice": 350, "normalPrice": 250, "link": "#" }
+            { "time": "04:10 PM", "premiumPrice": 350, "normalPrice": 250, "link": "../pages/seat-selection.html" }
         ]
     },
     {
@@ -137,12 +137,12 @@
             "poster": "./assets/images/bloody-begger.jpg",
             "about":"Bloody Beggar is a 2024 Indian Tamil-language black comedy drama film written and directed by Sivabalan Muthukumar. It is produced by Nelson Dilipkumar under Filament Pictures. The film stars Kavin in the lead role, alongside Redin Kingsley, Maruthi Prakashraj, Sunil Sukhada, T. M. Karthik. It is the directorial debut of Muthukumar and the debut production of Filament Pictures. The film follows a beggar who finds himself in trouble when a misadventure turns his life upside down.",
             "cast": [
-                {"name": "Kavin", "role": "Actor", "image": "./assets/images/kavin.jpg"},
-                {"name": "Anarkali Nazar", "role": "Actress", "image": "./assets/images/Anarkali_Nazar.jpg"}
+                {"name": "Kavin", "role": "Actor", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/kavin-raj-1083416-1674121518.jpg"},
+                {"name": "Anarkali Nazar", "role": "Actress", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/anarkali-nazar-2012508-18-03-2021-03-06-19.jpg"}
             ],
             "crew": [
-                {"name": "Sivabalan_Muthukumar", "role": "Director", "image": "./assets/images/Sivabalan_Muthukumar.jpg"},
-                {"name": "Nelson Dilipkumar", "role": "Producer", "image": "./assets/images/nelson.jpg"}
+                {"name": "Sivabalan_Muthukumar", "role": "Director", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/sivabalan-muthukumar-2040509-1726927675.jpg"},
+                {"name": "Nelson Dilipkumar", "role": "Producer", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/nelson-dilipkumar-1090825-14-08-2018-11-45-27.jpg"}
             ],
             "trailerLink": "https://youtu.be/L6DqLW0rv-o?feature=shared",
             "theatres": [
@@ -174,12 +174,12 @@
             "poster": "https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/amaran-et00417203-1729696593.jpg",
             "about": "Amaran is a true-life story of Major Mukund Varadarajan (Sivakarthikeyan), a commissioned officer in the Indian Army`s Rajput Regiment, who was posthumously awarded the Ashok Chakra for his valor during a counterterrorism operation while on deputation to the 44th Rashtriya Rifles battalion in Jammu and Kashmir.Besides being a tale of courage, it portrays the selfless love of his wife, Indhu Rebecaa Varghese (Sai Pallavi). The supporting cast includes Bhuvan Arora, Rahul Bose, and Rohman Shawl, all contributing to this real-life story that deserves to be told and shared in the annals of history. From the well-known house of Raaj Kamal Films International and Sony Pictures Films India, Director Rajkumar Periasamy has deftly woven the threads of this story with reality, allowing the audience to relate to the daily trials and tribulations our brave soldiers face, which many of us tend to take for granted.It`s time to stand and salute these brave warriors of our frontiers! The film is produced by Kamal Haasan, Sony Pictures International Productions, and R. Mahendran.",
             "cast": [
-                {"name": "Sivakarthikeyan", "role": "Actor", "image": "./assets/images/sk.jpg"},
-                {"name": "Sai Pallavi", "role": "Actress", "image": "./assets/images/sai_pallavi.jpg"}
+                {"name": "Sivakarthikeyan", "role": "Actor", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/sivakarthikeyan-1042969-18-09-2017-03-37-23.jpg"},
+                {"name": "Sai Pallavi", "role": "Actress", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/sai-pallavi-1065111-1654347116.jpg"}
             ],
             "crew": [
-                {"name": "Rajkumar Periasamy", "role": "Director", "image": "./assets/images/rajkumar_periasamy.jpg"},
-                {"name": "Kamala Hassan", "role": "Producers", "image": "./assets/images/kamalahassan.jpg"}
+                {"name": "Rajkumar Periasamy", "role": "Director", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/rajkumar-periasamy-1081559-25-05-2017-14-10-59.jpg"},
+                {"name": "Kamala Hassan", "role": "Producers", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/kamal-haasan-2886-24-03-2017-17-54-38.jpg"}
             ],
             "trailerLink": "https://youtu.be/hylIXfZeB4c?feature=shared",
             "theatres": [
@@ -211,13 +211,13 @@
             "poster": "https://m.media-amazon.com/images/M/MV5BZDMyYWU4NzItZDY0MC00ODE2LTkyYTMtMzNkNDdmYmFhZDg0XkEyXkFqcGc@._V1_.jpg",
             "about": "Eddie and Venom are on the run, hunted by both of their worlds, leading to a devastating decision that will bring the curtains down on their last dance.",
             "cast": [
-                {"name": "Tom Hardy", "role": "Actor", "image": "./assets/images/tom_hardy.jpg"},
-                {"name": "Juno temple", "role": "Actress", "image": "./assets/images/juno_temple.jpg"}
+                {"name": "Tom Hardy", "role": "Actor", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/tom-hardy-8994-24-03-2017-12-37-04.jpg"},
+                {"name": "Juno temple", "role": "Actress", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/juno-temple-15557-24-03-2017-15-54-53.jpg"}
                 
             ],
             "crew": [
-                {"name": "Kelly Marcel", "role": "Director", "image": "./assets/images/kelly_marcel.jpg"},
-                {"name": "Marevel Entertainment", "role": "Producer", "image": "./assets/images/marvel.jpg"}
+                {"name": "Kelly Marcel", "role": "Director", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/kelly-marcel-38915-1705034709.jpg"},
+                {"name": "Hutch Parker", "role": "Producer", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/hutch-parker-iein076007-04-06-2019-16-07-22.jpg"}
             ],
             "trailerLink": "https://youtu.be/HyIyd9joTTc?feature=shared",
             "theatres": [
@@ -249,13 +249,13 @@
             "poster": "https://m.media-amazon.com/images/M/MV5BYWVkOWRhZmUtZDlmZC00YjJhLTkxOWItZTNmNDM4ZTI1ODNhXkEyXkFqcGc@._V1_.jpg",
             "about":"Lubber Pandhu is a 2024 Indian Tamil-language sports drama film directed by Tamizharasan Pachamuthu, in his directorial debut and produced by Prince Pictures. The film stars Gethu Dinesh and Harish Kalyan in the lead roles, alongside Sanjana Krishnamoorthy, Swasika, Bala Saravanan, Kaali Venkat, Geetha Kailasam, Devadarshini, TSK, Jenson Diwakar and Pradeep Durairaj.",
             "cast": [
-                {"name": "Harish Kalyan", "role": "Actor", "image": "./assets/images/harish.jpg"},
-                {"name": "Attakathi Dheena", "role": "Actress", "image": "./assets/images/attakathi.jpg"},
-                {"name": "Sanjana Krishnamurthy", "role": "Actress", "image": "./assets/images/sanjana.jpg"}
+                {"name": "Harish Kalyan", "role": "Actor", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/harish-kalyan-1047576-24-03-2017-12-50-47.jpg"},
+                {"name": "Attakathi Dheena", "role": "Actress", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/attakathi-dinesh-1048095-24-03-2017-18-02-14.jpg"},
+                {"name": "Sanjana Krishnamurthy", "role": "Actress", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/sanjana-krishnamoorthy-2039945-1724999729.jpg"}
             ],
             "crew": [
-                {"name": "Tamizharasan Pachamuthu", "role": "Director", "image": "./assets/images/tamilarasan.png"},
-                {"name": "S. Lakshman Kumar", "role": "Producer", "image": "./assets/images/lakshman.jpg"}
+                {"name": "Tamizharasan Pachamuthu", "role": "Director", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/tamizharasan-pachamuthu-2039939-1724999367.jpg"},
+                {"name": "S. Lakshman Kumar", "role": "Producer", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/s-lakshman-kumar-2039951-1725001718.jpg"}
             ],
             "trailerLink": "https://www.youtube.com/watch?v=example7",
             "theatres": [
@@ -287,53 +287,13 @@
             "poster": "https://m.media-amazon.com/images/M/MV5BMjExZDc1MzUtNDc3Mi00NDcxLWFmYTAtYzI2MzhlMmE3YzBiXkEyXkFqcGc@._V1_.jpg",
             "about":"Lubber Pandhu is a 2024 Indian Tamil-language sports drama film directed by Tamizharasan Pachamuthu, in his directorial debut and produced by Prince Pictures. The film stars Gethu Dinesh and Harish Kalyan in the lead roles, alongside Sanjana Krishnamoorthy, Swasika, Bala Saravanan, Kaali Venkat, Geetha Kailasam, Devadarshini, TSK, Jenson Diwakar and Pradeep Durairaj.",
             "cast": [
-                {"name": "Rajinikanth", "role": "Actor", "image": "./assets/images/rajinikanth.jpg"},
-                {"name": "Manju warrrior", "role": "Actress", "image": "./assets/images/manjuwarrior.jpg"}
+                {"name": "Rajinikanth", "role": "Actor", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/rajinikanth-1795-29-12-2016-01-58-24.jpg"},
+                {"name": "Manju warrrior", "role": "Actress", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/manju-warrier-1045703-1721833876.jpg"}
                 
             ],
             "crew": [
-                {"name": "TJ Gnanavel", "role": "Director", "image": "./assets/images/gnanavel.jpg"},
-                {"name": "Anirudh Ravichander", "role": "Music Director", "image": "./assets/images/anirudh.jpg"},
-                {"name": "Kalanithi maran", "role": "Producer", "image": "./assets/images/kalanidhi.jpg"}
-            ],
-            "trailerLink": "https://www.youtube.com/watch?v=example8",
-            "theatres": [
-    {
-        "name": "AGS Cinemas: Maduravoyal",
-        "showtimes": [
-            { "time": "12:45 PM", "premiumPrice": 300, "normalPrice": 200, "link": "#" },
-            { "time": "04:10 PM", "premiumPrice": 350, "normalPrice": 250, "link": "#" }
-        ]
-    },
-    {
-        "name": "The Vijay Park Multiplex",
-        "showtimes": [
-            { "time": "01:35 PM", "premiumPrice": 400, "normalPrice": 300, "link": "#" },
-            { "time": "05:00 PM", "premiumPrice": 450, "normalPrice": 350, "link": "#" }
-        ]
-    }
-    
-]
-        },
-       {
-            "id": "10",
-            "title": "Jolly O Jymkhana",
-            "rating": "★★★★★",
-            "releaseDate": "22 Nov, 2024",
-            "duration": "2h 40m",
-            "language": "Tamil",
-            "genre": "Comedy",
-            "poster": "https://assetscdn1.paytm.com/images/cinema/Jolly-O-Gymkhana--6baf0b40-a3fa-11ef-b945-57c02e367648.jpg",
-            "about":"A Tenkasi-based family finds a dead person, and is forced to go on a journey that makes them reach Kodaikanal.",
-            "cast": [
-                {"name": "Rajinikanth", "role": "Actor", "image": "./assets/images/rajinikanth.jpg"},
-                {"name": "Manju warrrior", "role": "Actress", "image": "/assets/images/manjuwarrior.jpg"}
-                
-            ],
-            "crew": [
-                {"name": "TJ Gnanavel", "role": "Director", "image": "./assets/images/gnanavel.jpg"},
-                {"name": "Anirudh Ravichander", "role": "Music Director", "image": "./assets/images/anirudh.jpg"},
-                {"name": "Kalanithi maran", "role": "Producer", "image": "./assets/images/kalanidhi.jpg"}
+                {"name": "TJ Gnanavel", "role": "Director", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/tj-gnanavel-2013773-1727921323.jpg"},
+                {"name": "Anirudh Ravichander", "role": "Music Director", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/anirudh-ravichander-34897-24-03-2017-13-54-49.jpg"}
             ],
             "trailerLink": "https://www.youtube.com/watch?v=example8",
             "theatres": [
@@ -354,5 +314,6 @@
     
 ]
         }
+      
     ]
 }

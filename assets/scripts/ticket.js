@@ -7,14 +7,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const seats = sessionStorage.getItem('seats') || "N/A";
     const amount = sessionStorage.getItem('price') || "₹0";
 
-    
     const customerEmail = localStorage.getItem('userEmail');
     const customerName = "Customer Name"; 
 
-   
     const bookingId = generateBookingId();
 
-   
     document.getElementById('movieName').textContent = movieName;
     document.getElementById('theatreName').textContent = theatreName;
     document.getElementById('showTime').textContent = showTime;
@@ -23,17 +20,14 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('bookingId').textContent = bookingId;
     document.getElementById('amount').textContent = amount;
 
-   
     fetchMoviePoster(movieName).then(poster => {
         document.getElementById('moviePoster').src = poster;
 
-        
         downloadTicketPDF(movieName, theatreName, showTime, date, seats, bookingId, amount, poster, customerEmail, customerName);
     }).catch(error => {
         console.error('Error fetching movie poster:', error);
         document.getElementById('moviePoster').src = "../images/default-poster.png"; // Default image if error occurs
 
-       
         downloadTicketPDF(movieName, theatreName, showTime, date, seats, bookingId, amount, "../images/default-poster.png", customerEmail, customerName);
     });
 
@@ -97,7 +91,6 @@ async function fetchMoviePoster(movieName) {
 
         if (movie) {
             console.log('Found movie:', movie);  
-            // const poster=movie.poster;
             return movie.poster;
         } else {
             console.log('Movie not found:', movieName);  
@@ -105,13 +98,12 @@ async function fetchMoviePoster(movieName) {
         }
     } catch (error) {
         console.error('Error fetching movie poster:', error);
-        return "../images/default-poster.png";  r
+        return "../images/default-poster.png";  // Return default poster if there's an error
     }
 }
 
-
 function downloadTicketPDF(movieName, theatreName, showTime, date, seats, bookingId, amount, poster, customerEmail, customerName) {
-    const { jsPDF } = window.jspdf;// Return default poster if there's an erro
+    const { jsPDF } = window.jspdf; // Return default poster if there's an error
     const doc = new jsPDF();
 
     // Add ticket details to the PDF
@@ -132,6 +124,7 @@ function downloadTicketPDF(movieName, theatreName, showTime, date, seats, bookin
         doc.addImage(img, 'JPEG', 20, 100, 50, 75); // Add the image to the PDF
         const pdfData = doc.output('datauristring');
         console.log("PDF generated successfully with image.");
+
         // Check if email has already been sent
         if (!localStorage.getItem('emailSent')) {
             sendTicketEmail(pdfData, customerEmail, customerName, movieName, theatreName, showTime, date, seats, bookingId, amount);
@@ -140,21 +133,36 @@ function downloadTicketPDF(movieName, theatreName, showTime, date, seats, bookin
         } else {
             console.log("Email has already been sent to the customer.");
         }
+
+        // Remove the emailSent flag after ticket generation
+        localStorage.removeItem('emailSent');
+
+        // Set timeout of 1000ms and then redirect to home.html
+        setTimeout(() => {
+            window.location.href = "home.html"; // Redirect after 1000ms (1 second)
+        }, 1000);
+
     }).catch((err) => {
         console.error("Failed to load the image:", err);
         const pdfData = doc.output('datauristring');
         console.log("PDF generated without image.");
-        
+
         if (!localStorage.getItem('emailSent')) {
             sendTicketEmail(pdfData, customerEmail, customerName, movieName, theatreName, showTime, date, seats, bookingId, amount);
-            
             localStorage.setItem('emailSent', 'true');
         } else {
             console.log("Email has already been sent to the customer.");
         }
+
+        // Remove the emailSent flag after ticket generation
+        localStorage.removeItem('emailSent');
+
+        // Set timeout of 1000ms and then redirect to home.html
+        setTimeout(() => {
+            window.location.href = "home.html"; // Redirect after 1000ms (1 second)
+        }, 10000);
     });
 }
-
 
 function loadImage(src) {
     return new Promise((resolve, reject) => {
@@ -169,10 +177,10 @@ function loadImage(src) {
 emailjs.init('HUyUhaCECVcKvYEaJ');  // Replace with your actual public key
 
 // Send email function remains the same
-function sendTicketEmail(pdfData,customerEmail, customerName,movieposter, movieName, theatreName, showTime, date, seats, bookingId, amount) {
+function sendTicketEmail(pdfData, customerEmail, customerName, movieName, theatreName, showTime, date, seats, bookingId, amount) {
     console.log("Sending email to:", customerEmail);
     emailjs.send('service_pxdwrds', 'template_x9p0hwb', {
-        movie_poster: movieposter,
+        movie_poster: movieName,
         to_name: customerName,
         to_email: customerEmail,
         movie_name: movieName,
@@ -188,24 +196,4 @@ function sendTicketEmail(pdfData,customerEmail, customerName,movieposter, movieN
     }).catch((error) => {
         console.error('Failed to send email:', error);
     });
-}
-
-// for whataspp
-function sendWhatsAppMessage() {
-    const mobileNumber = localStorage.getItem('userMobile');  // Retrieve customer mobile number
-    const movieName = "Movie Title";
-    const theatreName = "Theatre Name";
-    const showTime = "Show Time";
-    const date = "Show Date";
-    const seats = "Seats Info";
-    const bookingId = "Booking ID";
-    const amount = "Amount";
-
-    const message = `Movie: ${movieName}\nTheatre: ${theatreName}\nShow Time: ${showTime}\nDate: ${date}\nSeats: ${seats}\nBooking ID: ${bookingId}\nAmount: ${amount}`;
-
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/${mobileNumber}?text=${encodedMessage}`;
-
-    // Open WhatsApp with prefilled message
-    window.open(whatsappUrl, '_blank');
 }
