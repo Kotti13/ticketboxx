@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         setTimeout(() => {
             loadingSpinner.style.display = 'none';
-            window.location.href = 'ticket.html';
+            window.location.href = 'ticket.html';  // Redirect to a ticket confirmation page
         }, 1000);
     };
 

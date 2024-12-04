@@ -1,11 +1,19 @@
 {
-    "name": "TicketBoxx",
-    "short_name": "TicketBoxx",
+    "name": "My App",
+    "short_name": "App",
     "icons": [
-        {
-            "src": "./assets/images/ticketboxx -logo.png",
-            "sizes": "192x192",
-            "type": "image/png"
-        }
-    ]
-}
+      {
+        "src": "icons/icon-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "icons/icon-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ],
+    "start_url": ".",
+    "display": "standalone"
+  }
+  
