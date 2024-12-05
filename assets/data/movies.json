@@ -1,7 +1,54 @@
 {
     "movies": [
         {
-           "id":"0"       
+           "id":"0"   ,
+           "title": "Pushpa-2 the rule",
+            "rating": "★★★★☆",
+            "releaseDate": "5 Dec, 2024",
+            "duration": "2h 15m",
+            "language": "Tamil",
+            "genre": "Action, Thriller",
+            "description": "An epic action-thriller that keeps you on the edge of your seat.",
+            "poster": "https://m.media-amazon.com/images/M/MV5BOGM5N2FkNGMtNmYzMS00MGRiLWI5ZDItOTRmNThiYWNlNDZhXkEyXkFqcGc@._V1_.jpg",
+            "about": "A violent storm and unsettling forces unravel their marriage. Vasanth must uncover the truth behind these supernatural occurrences before everything falls apart.A young couple move into a serene row house, eager for peace and privacy. A violent storm and unsettling forces unravel their marriage.",
+            "cast": [
+                {"name": "Allu arjun", "role": "Actor", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/allu-arjun-125-03-10-2016-01-55-06.jpg"},
+                {"name": "Fahazh fasil", "role": "Actor", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/fahadh-faasil-37756-1661702033.jpg"},
+                {"name": "Rashmika mandanna", "role": "Actress", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/rashmika-mandanna-1076783-28-12-2016-12-20-39.jpg"},
+                {"name": "Rao ramesh", "role": "Actor", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/rao-ramesh-8665-04-03-2021-03-32-52.jpg"},
+                {"name": "Sunil", "role": "Actor", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/sunil-2292-24-03-2017-18-02-16.jpg"}
+            ],
+            "crew": [
+                {"name": "Sukumar Bandreddi", "role": "Director", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/sukumar-bandreddi-2278-1671448479.jpg"},
+                {"name": "Naveen yerneni", "role": "producer", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/naveen-yerneni-1261037-1654492034.jpg"},
+                {"name": "ravi-shankar<br>yalamanchili", "role": "lyrichist", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/ravi-shankar-yalamanchili-1261036-1681727291.jpg"}
+
+            ],
+            "trailerLink": "https://youtu.be/By-VTqrdqFI?feature=shared",
+          "theatres": [
+    {
+        "name": "AGS Cinemas: Maduravoyal",
+        "showtimes": [
+            { "time": "12:45 PM", "premiumPrice": 300, "normalPrice": 200, "link": "../pages/seat-selection.html" },
+            { "time": "04:10 PM", "premiumPrice": 350, "normalPrice": 250, "link": "../pages/seat-selection.html" }
+        ]
+    },
+    {
+        "name": "The Vijay Park Multiplex",
+        "showtimes": [
+            { "time": "01:35 PM", "premiumPrice": 400, "normalPrice": 300, "link": "#" },
+            { "time": "05:00 PM", "premiumPrice": 450, "normalPrice": 350, "link": "#" }
+        ]
+    },
+    {
+        "name":"Kamala Cinemas , Vadapalani, Chennai",
+        "showtimes": [
+            { "time": "07:30 PM", "premiumPrice": 400, "normalPrice": 300, "link": "#" },
+            { "time": "10:55 PM", "premiumPrice": 450, "normalPrice": 350, "link": "#" }
+        ]
+
+    }
+]    
          },
         {
             "id": "1",

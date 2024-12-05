@@ -18,8 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Seat data and initialization
     const seatData = {
-        rs190: { rows: ['A', 'B', 'C', 'D', 'E', 'F'], totalSeats: 30 },
-        rs60: { rows: ['L', 'M', 'N'], totalSeats: 30 },
+        rs190: { rows: ['A', 'B', 'C', 'D', 'E', 'F',"G","H","I","J","K","L","M","N","O"], totalSeats: 30 },
+        rs60: { rows: ['P', 'Q', "R"], totalSeats: 30 },
     };
 
     const unavailableSeats = ['B7', 'C15', 'D19', 'L4', 'M10']; // Example unavailable
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     Object.keys(seatData).forEach((section) => {
         const seatContainer = document.getElementById(section);
         seatData[section].rows.forEach((row) => {
-            for (let i = 1; i <= 15; i++) {
+            for (let i = 1; i <= 18; i++) {
                 const seatId = `${row}${i}`;
                 const seat = document.createElement('div');
 
