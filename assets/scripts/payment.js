@@ -1,3 +1,5 @@
+let isProcessingPayment = false; // Flag to track if payment is already being processed
+
 document.addEventListener('DOMContentLoaded', () => {
     const params = new URLSearchParams(window.location.search);
     const totalPrice = params.get('price') || '0';
@@ -97,6 +99,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Trigger Google Pay payment
     const onGooglePayButtonClicked = () => {
+        if (isProcessingPayment) {
+            alert('Payment is already being processed. Please wait.');
+            return; // Prevent duplicate payment attempts
+        }
+
+        isProcessingPayment = true; // Set flag to prevent multiple submissions
+        googlePayButton.disabled = true; // Disable the payment button to prevent further clicks
+        loadingSpinner.style.display = 'block'; // Show loading spinner
+
         googlePayClient.loadPaymentData(paymentDataRequest)
             .then((paymentData) => {
                 // Store session details
@@ -112,18 +123,26 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch((err) => {
                 console.error('Google Pay payment failed:', err);
                 alert('Payment failed. Please try again.');
+                resetPaymentState(); // Reset the payment state on failure
             });
     };
 
     // Simulate payment processing
     const processPayment = (paymentData) => {
         console.log('Processing payment with data:', paymentData);
-        loadingSpinner.style.display = 'block';
 
+        // Simulate a delay in payment processing
         setTimeout(() => {
             loadingSpinner.style.display = 'none';
             window.location.href = 'ticket.html';  // Redirect to a ticket confirmation page
-        }, 1000);
+        }, 2000);
+    };
+
+    // Reset payment state (in case of failure or completion)
+    const resetPaymentState = () => {
+        isProcessingPayment = false; // Reset the flag
+        googlePayButton.disabled = false; // Enable the payment button again
+        loadingSpinner.style.display = 'none'; // Hide loading spinner
     };
 
     // Event listeners for input validation and buttons
