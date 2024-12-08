@@ -464,14 +464,14 @@ form {
     right: 0;
   }
   
-  /* footer */
-  footer {
+ /* Footer */
+footer {
     background-color: #333;
     color: #fff;
     padding: 40px 0;
-}
-
-.footer-content {
+  }
+  
+  .footer-content {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -479,85 +479,149 @@ form {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-}
-
-.logo {
+  }
+  
+  .logo {
     flex: 1 1 100px;
     display: flex;
     align-items: center;
     margin-bottom: 20px;
-}
-
-.logo img {
+  }
+  
+  .logo img {
     width: 100px;
     height: auto;
-}
-
-.footer-links {
+  }
+  
+  .footer-links {
     display: flex;
     flex: 3 1 700px;
     justify-content: space-between;
     flex-wrap: wrap;
-}
-
-.column {
+  }
+  
+  .column {
     flex: 1 1 150px;
     margin-bottom: 20px;
-}
-
-.column h3 {
+  }
+  
+  .column h3 {
     color: #ffcc00;
     font-size: 18px;
     margin-bottom: 10px;
-}
-
-.column ul {
+  }
+  
+  .column ul {
     list-style: none;
     padding: 0;
-}
-
-.column ul li {
+  }
+  
+  .column ul li {
     margin-bottom: 8px;
-}
-
-.column ul li a {
+  }
+  
+  .column ul li a {
     color: #ccc;
     text-decoration: none;
     font-size: 14px;
     transition: color 0.3s;
-}
-
-.column ul li a:hover {
+  }
+  
+  .column ul li a:hover {
     color: #ffcc00;
-}
-
-.social-links a {
+  }
+  
+  .social-links a {
     display: inline-block;
     margin-right: 10px;
     transition: transform 0.3s;
-}
-
-.social-links a:hover {
+  }
+  
+  .social-links a:hover {
     transform: scale(1.1);
-}
-
-.social-links img {
+  }
+  
+  .social-links img {
     width: 40px;
     height: 40px;
-}
-
-.footer-bottom {
+  }
+  
+  .footer-bottom {
     text-align: center;
     border-top: 1px solid #555;
     padding-top: 20px;
     margin-top: 20px;
-}
-
-.footer-bottom p {
+  }
+  
+  .footer-bottom p {
     margin: 0;
     font-size: 14px;
     color: #aaa;
-}
-
-
-
+  }
+  
+  /* Footer Bottom Links Styling */
+  .footer-bottom ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footer-bottom ul li {
+    display: inline-block;
+    margin: 0 15px;
+  }
+  
+  .footer-bottom ul li a {
+    color: #fff;
+    text-decoration: none;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  /* Hover Effect for Links */
+  .footer-bottom ul li a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Tooltip Content for Terms and Conditions, etc */
+  #contactUsLink::after,
+  #termsLink::after,
+  #refundPolicyLink::after {
+    content: '';
+    position: absolute;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    max-width: 300px;
+    z-index: 10;
+    width: 900px;
+    white-space: pre-wrap;
+    display: none; /* Ensure it's hidden by default */
+    top: -620%; /* Positioning it above the link */
+    left: 50%;
+    transform: translateX(-50%); /* Center the tooltip */
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  
+  #contactUsLink:hover::after {
+    content: 'Contact Us - Last updated on 08-12-2024 21:49:08\nYou may contact us using the information below:\n\nMerchant Legal entity name: KOTTAI SAMY.K\nRegistered Address: 7/12, Navalar street,saligramam, Chennai, Tamil Nadu, PIN: 600093\nTelephone No: 8610239012\nE-Mail ID: skottai85@gmail.com';
+    display: block; /* Show tooltip */
+  }
+  
+  #termsLink:hover::after {
+    content: 'Terms & Conditions - Last updated on 08-12-2024 21:49:30\nThese Terms and Conditions, along with privacy policy or other terms (“Terms”) constitute a binding agreement by and between KOTTAI SAMY.K, (“Website Owner”) and you (“you” or “your”) and relate to your use of our website, goods or services.\nBy using our website, you agree that you have read and accepted these Terms.';
+    display: block; /* Show tooltip */
+  }
+  
+  #refundPolicyLink:hover::after {
+    content: 'Cancellation & Refund Policy - Last updated on 08-12-2024 21:49:55\nKOTTAI SAMY.K has a liberal cancellation policy. Cancellations will only be considered if the request is made immediately after placing the order.';
+    display: block; /* Show tooltip */
+  }
+  
+  /* Hide Tooltip by Default */
+  footer a::after {
+    display: none;
+  }
+  

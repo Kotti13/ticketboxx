@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const params = new URLSearchParams(window.location.search);
     const movieId = params.get("id");
-
+    
     if (!movieId) {
         document.getElementById("movie-details").innerHTML = "<p>No movie selected.</p>";
         return;
@@ -69,6 +69,15 @@ function displayMovieDetails(movie) {
                 <option>Mumbai</option>
             </select>
         </div>
+        
+        <!-- Date scroll added here -->
+        <div class="date-selection">
+            <label for="date-picker">Select Date:</label>
+            <div id="date-scroll-container" class="date-scroll-container">
+                <!-- Date items will be injected here by JS -->
+            </div>
+        </div>
+        
         <div id="show-times" class="show-times-container"></div>
         <div id="reviews" class="reviews-container" style="display: none;"></div>
     </div>
@@ -95,6 +104,50 @@ function displayMovieDetails(movie) {
         // Fetch and display reviews
         fetchReviews(movie.id);
     });
+
+    // Generate the date selection scroll
+    generateDateScroll();
+}
+
+function generateDateScroll() {
+    const dateScrollContainer = document.getElementById("date-scroll-container");
+    const currentDate = new Date();
+
+    // Format date to YYYY-MM-DD
+    const formatDate = (date) => date.toISOString().split('T')[0];
+
+    // Create date elements for the next 6 days
+    for (let i = 0; i < 6; i++) {
+        const date = new Date();
+        date.setDate(currentDate.getDate() + i);
+
+        const dateStr = formatDate(date);
+        const dateText = date.toLocaleDateString('en-GB', {
+            weekday: 'short',  // "Mon", "Tue", etc.
+            day: 'numeric',    // "1", "2", etc.
+            month: 'short'     // "Jan", "Feb", etc.
+        });
+
+        const dateElement = document.createElement("div");
+        dateElement.classList.add("date-item");
+        dateElement.dataset.date = dateStr;
+        dateElement.innerText = dateText;
+
+        // Add click event to select a date
+        dateElement.addEventListener("click", function() {
+            // Remove the 'selected' class from all dates
+            document.querySelectorAll(".date-item").forEach(item => item.classList.remove("selected"));
+            // Add the 'selected' class to the clicked date
+            dateElement.classList.add("selected");
+
+            // Store the selected date along with movie details in localStorage
+            const selectedMovie = JSON.parse(localStorage.getItem('selectedMovie')) || {};
+            selectedMovie.selectedDate = dateStr; // Add selected date
+            localStorage.setItem('selectedMovie', JSON.stringify(selectedMovie));
+        });
+
+        dateScrollContainer.appendChild(dateElement);
+    }
 }
 
 function populateShowTimes(theatres, movie) {
@@ -108,7 +161,7 @@ function populateShowTimes(theatres, movie) {
                 <div class="showtimes-container">
                     ${theatre.showtimes.map(showtime => `
                         <div class="showtime-item">
-                            <a href="seat-selection.html?movieName=${encodeURIComponent(movie.title)}&theatre=${encodeURIComponent(theatre.name)}" 
+                            <a href="seat-selection.html?movieName=${encodeURIComponent(movie.title)}&theatre=${encodeURIComponent(theatre.name)}&date=${JSON.parse(localStorage.getItem('selectedMovie')).selectedDate}" 
                                class="showtime-link">
                                 ${showtime.time}
                             </a>

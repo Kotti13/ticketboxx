@@ -25,19 +25,22 @@
         <div id="movie-details" class="container">
             <!-- Movie details will be dynamically injected here -->
         </div>
-        <div id="controls">
+        <!-- <div id="controls">
             <select id="price-filter">
                 <option value="500">All Prices</option>
                 <option value="300">Up to ₹300</option>
                 <option value="250">Up to ₹250</option>
             </select>
         </div>
+         -->
         
-        <div id="show-times" class="show-times"></div>
         
-        <div id="show-times" class="show-times">
+        
+        <!-- <div id="show-times" class="show-times"></div> -->
+        
+        <!-- <div id="show-times" class="show-times">
 
-        </div>
+        </div> -->
         
 <!-- Loading Spinner -->
 <div id="loading" class="loading" style="display: none;">
@@ -45,7 +48,42 @@
     
   </div>
   
-  
+  <style>
+    .date-selection {
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+}
+
+#date-scroll-container {
+    display: flex;
+    overflow-x: scroll;
+    padding: 10px 0;
+    gap: 10px;
+    border-bottom: 2px solid #ccc;
+}
+
+.date-item {
+    padding: 10px 20px;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    min-width: 100px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.date-item:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.selected {
+    background-color: #007bff;
+    color: white;
+}
+
+  </style>
         
     </main>
 
@@ -56,4 +94,47 @@
     <script src="../scripts/shows&theatres.js"></script>
     <script src="//code.tidio.co/odorcjjrzhu3eeqm6osngauulfzmbqiz.js" async></script>
 </body>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    // Create the date scroll bar for the next 5 days from today
+    const dateScrollContainer = document.getElementById("date-scroll-container");
+    
+    const currentDate = new Date();
+    
+    // Function to format the date in YYYY-MM-DD format
+    const formatDate = (date) => date.toISOString().split('T')[0];
+
+    // Create date elements for the next 5 days
+    for (let i = 0; i < 5; i++) {
+        const date = new Date();
+        date.setDate(currentDate.getDate() + i);
+        
+        const dateStr = formatDate(date);
+        const dateText = date.toLocaleDateString('en-GB', {
+            weekday: 'short',  // "Mon", "Tue", etc.
+            day: 'numeric',    // "1", "2", etc.
+            month: 'short'     // "Jan", "Feb", etc.
+        });
+        
+        const dateElement = document.createElement("div");
+        dateElement.classList.add("date-item");
+        dateElement.dataset.date = dateStr;
+        dateElement.innerText = dateText;
+
+        // Add click event to select a date
+        dateElement.addEventListener("click", function() {
+            // Remove the 'selected' class from all dates
+            document.querySelectorAll(".date-item").forEach(item => item.classList.remove("selected"));
+            // Add the 'selected' class to the clicked date
+            dateElement.classList.add("selected");
+
+            // You can save the selected date or perform further actions here
+            console.log("Selected date:", dateStr);
+        });
+
+        dateScrollContainer.appendChild(dateElement);
+    }
+});
+
+</script>
 </html>

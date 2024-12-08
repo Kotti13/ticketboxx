@@ -1,9 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
     // Retrieve values from sessionStorage
+    const selectedMovie = JSON.parse(localStorage.getItem('selectedMovie')) || {};
     const movieName = sessionStorage.getItem('movieName') || "N/A";
     const theatreName = sessionStorage.getItem('theatre') || "N/A";
     const showTime = sessionStorage.getItem('showTime') || "N/A";
-    const date = sessionStorage.getItem('date') || "N/A";
+    const date = selectedMovie.selectedDate || "N/A"; // Retrieve the stored date
     const seats = sessionStorage.getItem('seats') || "N/A";
     const amount = sessionStorage.getItem('price') || "₹0";
 
@@ -12,10 +13,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const bookingId = generateBookingId();
 
+    // Populate the elements with data
     document.getElementById('movieName').textContent = movieName;
     document.getElementById('theatreName').textContent = theatreName;
     document.getElementById('showTime').textContent = showTime;
-    document.getElementById('date').textContent = date;
+    document.getElementById('date').textContent = date; // Set the date here
     document.getElementById('seats').textContent = seats;
     document.getElementById('bookingId').textContent = bookingId;
     document.getElementById('amount').textContent = amount;
@@ -125,42 +127,26 @@ function downloadTicketPDF(movieName, theatreName, showTime, date, seats, bookin
         const pdfData = doc.output('datauristring');
         console.log("PDF generated successfully with image.");
 
-        // Check if email has already been sent
-        if (!localStorage.getItem('emailSent')) {
-            sendTicketEmail(pdfData, customerEmail, customerName, movieName, theatreName, showTime, date, seats, bookingId, amount);
-            // Mark the email as sent by storing a flag in localStorage
-            localStorage.setItem('emailSent', 'true');
-        } else {
-            console.log("Email has already been sent to the customer.");
-        }
-
-        // Remove the emailSent flag after ticket generation
-        localStorage.removeItem('emailSent');
+        // Send email without checking if it was already sent
+        sendTicketEmail(pdfData, customerEmail, customerName, movieName, theatreName, showTime, date, seats, bookingId, amount);
 
         // Set timeout of 1000ms and then redirect to home.html
         setTimeout(() => {
             window.location.href = "home.html"; // Redirect after 1000ms (1 second)
-        }, 1000);
+        }, 100000000000000);
 
     }).catch((err) => {
         console.error("Failed to load the image:", err);
         const pdfData = doc.output('datauristring');
         console.log("PDF generated without image.");
 
-        if (!localStorage.getItem('emailSent')) {
-            sendTicketEmail(pdfData, customerEmail, customerName, movieName, theatreName, showTime, date, seats, bookingId, amount);
-            localStorage.setItem('emailSent', 'true');
-        } else {
-            console.log("Email has already been sent to the customer.");
-        }
-
-        // Remove the emailSent flag after ticket generation
-        localStorage.removeItem('emailSent');
+        // Send email without checking if it was already sent
+        sendTicketEmail(pdfData, customerEmail, customerName, movieName, theatreName, showTime, date, seats, bookingId, amount);
 
         // Set timeout of 1000ms and then redirect to home.html
         setTimeout(() => {
             window.location.href = "home.html"; // Redirect after 1000ms (1 second)
-        }, 10000);
+        }, 10000000);
     });
 }
 

@@ -2,7 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const params = new URLSearchParams(window.location.search);
     const movieName = params.get('movieName'); // Fetch movie name
     const theatreName = params.get('theatre'); // Fetch theatre name
-
+    const fordate=JSON.parse(localStorage.getItem('selectedMovie'));
+    console.log(fordate);
     // Get movie details from localStorage
     const selectedMovie = JSON.parse(localStorage.getItem('selectedMovie'));
     const headerTitle = document.querySelector('header h1');
@@ -97,6 +98,7 @@ document.getElementById('confirmBooking').addEventListener('click', (e) => {
 
     const loadingSpinner = document.getElementById('loading');
     loadingSpinner.style.display = 'block';
+    
 
     setTimeout(() => {
        
