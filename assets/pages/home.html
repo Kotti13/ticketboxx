@@ -22,14 +22,13 @@
 
     <!-- Search Bar -->
     <div class="flex-grow-1 mx-3">
-        <form method="GET" class="d-flex">
-            <input
-                type="search"
-                class="search-bar form-control me-2"
-                name="q"
-                placeholder="Search For Movies, Sports, Activities"
-                aria-label="Search"/>
-            <button type="submit" class="btn btn-outline-primary">Search</button>
+        <form id="searchForm">
+            <input type="text" id="searchQuery" class="search-bar form-control" placeholder="Search For Movies, Sports, Activities">
+            <button type="submit" class="search-icon">Search</button>
+        </form>
+        
+        
+        
         </form>
     </div>
 
@@ -86,7 +85,7 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-dark fw-bold" href="bookings.html">My Bookings</a>
+                <a class="nav-link text-dark fw-bold" href="my_booking.html">My Bookings</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-dark fw-bold" href="contact.html">Contact Us</a>
@@ -103,7 +102,7 @@
 
 
     <main>
-        <div id="searchResults" class="mt-4"></div>
+       
 
 
         <div id="searchResults" class="mt-4"></div>
@@ -129,7 +128,7 @@
           <span class="visually-hidden">Next</span>
         </button>
       </div>
-
+      <div id="movie-details" class="container"></div>
       <!-- advertisement -->
       <!-- <div class="advertisement">
         <div class="ad-wrapper">
@@ -139,7 +138,7 @@
       <div class="advertisement">
         <a href="https://www.zomato.com/" target="_blank"><img src="../images/offer-banner-1.png" alt="Full-Width Advertisement"></a>
       </div>
-
+      <div id="searchResults" class="container mt-4"></div>
       <section class="recommended-movies">
         <h2>Recommended Movies</h2>
         <div class="movie-slider">
@@ -417,7 +416,7 @@
 
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.12.0/dist/umd/supabase.min.js" defer></script>
-<script src="../scripts/movies.js" defer></script>
+<script type="module" src="../scripts/movies.js" defer></script>
 <script src="//code.tidio.co/odorcjjrzhu3eeqm6osngauulfzmbqiz.js" async></script>
 
 

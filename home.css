@@ -104,8 +104,25 @@ header {
     margin-top: 10px;
 }
 
+/* for search deatails */
+.movie-result{
+    margin: auto;
+    width: 50%;
+    display: flex;
+    margin-left: 400px;
+    justify-content: space-around;
+    
 
+}
+.movie-result img{
+    border-radius: 20px;
+}
+.balance-deatils{
+    margin-top: 20%;
+}
 /* Main Content */
+
+
 main {
     padding: 20px;
 }

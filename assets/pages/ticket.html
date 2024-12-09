@@ -14,23 +14,28 @@
     <!-- Ticket Container -->
     <div class="ticket-container">
         <div class="ticket-header">
-            <h1 class="your-movie">Your Movie Ticket</h1>
+            <!-- <h1 class="your-movie">Your Movie Ticket</h1> -->
         </div>
         <div class="ticket-info">
-            <h1>Ticket Details</h1>
-            <p><strong>Movie Name:</strong> <span id="movieName"></span></p>
-            <p><strong>Theatre:</strong> <span id="theatreName"></span></p>
-            <p><strong>Show Time:</strong> <span id="showTime"></span></p>
-            <p><strong>Date:</strong> <span id="date"></span></p>
-            <p><strong>Seats:</strong> <span id="seats"></span></p>
-            <p><strong>Amount: ₹</strong> <span id="amount"></span></p>
-            <p><strong>Booking ID:</strong> <span id="bookingId"></span></p>
+            <!-- <h1>Ticket Details</h1> -->
             <img id="moviePoster" src="" alt="Movie Poster" height="100">
+            <div class="nametheatre"> 
+                <p> <span id="movieName"></span></p>
+                <p>Tamil,2D</p>
+           <div class="moviename&time"><p id="date"></p><p id="showTime"></p></div>
+        
+            <p> <span id="theatreName"></span></p>
         </div>
+        
+        </div>
+        <p><strong>Booking ID:</strong> <span id="bookingId"></span></p>
+        <p><strong>Seats:</strong> <span id="seats"></span></p>
+        <p><strong>Amount: ₹</strong> <span id="amount"></span></p>
         
         <div id="qrcode"></div>
         
         <!-- <button id="downloadBtn">Download Ticket PDF</button> -->
+    
     </div>
 
 <!-- Right side popup -->
@@ -39,9 +44,10 @@
 </div>
 
     <!-- Custom Ticket Logic -->
-    <script type="module" src="../scripts/ticket.js"></script>
+    <script type="module" src="../scripts/ticket.js" defer></script>
     
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.12.0/dist/umd/supabase.min.js"></script>
+    
 </body>
 </html>

@@ -61,7 +61,72 @@ function showUsernamePopup(username) {
     }, 3000); // Hide after 3 seconds
 }
 
-// Initialize Supabase client here (if needed)
-const supabaseUrl = 'https://srjumswibbswcwjntcad.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNyanVtc3dpYmJzd2N3am50Y2FkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjk2Nzk5MzcsImV4cCI6MjA0NTI1NTkzN30.e_ZkFg_EPI8ObvFz70Ejc1W4RGpQurr0SoDlK6IoEXY';  // Replace with your actual Supabase key
-const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+// // Initialize Supabase client here (if needed)
+// const supabaseUrl = 'https://srjumswibbswcwjntcad.supabase.co';
+// const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNyanVtc3dpYmJzd2N3am50Y2FkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjk2Nzk5MzcsImV4cCI6MjA0NTI1NTkzN30.e_ZkFg_EPI8ObvFz70Ejc1W4RGpQurr0SoDlK6IoEXY';  // Replace with your actual Supabase key
+// const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+
+// for  search
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+import { getDatabase, ref, get, query, orderByChild, equalTo } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBcFRNdsErrXYHiiuYlCf6txDjupaNwRno",
+    authDomain: "ticketboxx-c4049.firebaseapp.com",
+    databaseURL: "https://ticketboxx-c4049-default-rtdb.firebaseio.com",
+    projectId: "ticketboxx-c4049",
+    storageBucket: "ticketboxx-c4049.firebasestorage.app",
+    messagingSenderId: "1029974974410",
+    appId: "1:1029974974410:web:a94d9c5fe267f3e51db933",
+    measurementId: "G-F7PEJ1WQRV"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
+
+// Handle search form submission
+document.getElementById("searchForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const queryText = document.getElementById("searchQuery").value.trim().toLowerCase();
+    if (!queryText) return;
+
+    const moviesRef = ref(database, 'movies');
+    const searchResultsContainer = document.getElementById("searchResults");
+    searchResultsContainer.innerHTML = "<p>Loading results...</p>";
+
+    // Query the database for movies with matching title
+    get(moviesRef).then((snapshot) => {
+        if (snapshot.exists()) {
+            const allMovies = snapshot.val();
+            const matchedMovies = Object.entries(allMovies).filter(([id, movie]) => 
+                movie.title.toLowerCase().includes(queryText)
+            );
+
+            if (matchedMovies.length === 0) {
+                searchResultsContainer.innerHTML = "<p>No movies found.</p>";
+                return;
+            }
+
+            // Display search results
+            searchResultsContainer.innerHTML = matchedMovies.map(([id, movie]) => `
+                <div class="movie-result">
+                    <img src="${movie.poster}" alt="${movie.title}" class="movie-poster img-thumbnail" height="200" width="350">
+                    <div class="balance-deatils">
+                        <h5>${movie.title}</h5>
+                        <p><strong>Release Date:</strong> ${movie.releaseDate}</p>
+                        <a href="./moviesdetails.html?id=${id}" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            `).join('');
+        } else {
+            searchResultsContainer.innerHTML = "<p>No movies found.</p>";
+        }
+    }).catch((error) => {
+        console.error("Error fetching data:", error);
+        searchResultsContainer.innerHTML = "<p>Error loading results.</p>";
+    });
+});
