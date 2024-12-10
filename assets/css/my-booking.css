@@ -1,0 +1,26 @@
+/* Example styles for bookings */
+#bookingsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.booking {
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.booking h3 {
+    color: #333;
+}
+
+.booking p {
+    font-size: 14px;
+    color: #555;
+}
+
+.booking strong {
+    font-weight: bold;
+}

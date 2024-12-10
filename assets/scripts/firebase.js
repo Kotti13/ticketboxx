@@ -175,14 +175,9 @@ document.querySelector('.login-form').addEventListener('submit', async (e) => {
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
-
-            // Save user email in localStorage
-            localStorage.setItem('userEmail', user.email);
-
-            // Redirect to the "My Bookings" page
+            localStorage.setItem("usermail",user.email)
             alert("Login successful!");
-            window.location.href = "./assets/pages/my-bookings.html";  // Change this line to redirect to the My Bookings page
-
+            window.location.href = "./assets/pages/home.html";
         } catch (error) {
             console.error("Error during login:", error);
             document.getElementById('loginEmailError').textContent = "Invalid email or password.";
@@ -190,7 +185,6 @@ document.querySelector('.login-form').addEventListener('submit', async (e) => {
         }
     }
 });
-
 
 // Listen for auth state changes
 onAuthStateChanged(auth, (user) => {

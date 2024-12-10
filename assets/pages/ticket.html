@@ -22,11 +22,9 @@
             <div class="nametheatre"> 
                 <p> <span id="movieName"></span></p>
                 <p>Tamil,2D</p>
-           <div class="moviename&time"><p id="date"></p><p id="showTime"></p></div>
-        
-            <p> <span id="theatreName"></span></p>
-        </div>
-        
+                <div class="moviename&time"><p id="date"></p><p id="showTime"></p></div>
+                <p> <span id="theatreName"></span></p>
+            </div>
         </div>
         <p><strong>Booking ID:</strong> <span id="bookingId"></span></p>
         <p><strong>Seats:</strong> <span id="seats"></span></p>
@@ -34,20 +32,13 @@
         
         <div id="qrcode"></div>
         
-        <!-- <button id="downloadBtn">Download Ticket PDF</button> -->
-    
+       
     </div>
-
-<!-- Right side popup -->
-<div id="emailPopup" class="popup">
-    <p>Email has already been sent to the customer.</p>
-</div>
 
     <!-- Custom Ticket Logic -->
     <script type="module" src="../scripts/ticket.js" defer></script>
     
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.12.0/dist/umd/supabase.min.js"></script>
-    
 </body>
 </html>

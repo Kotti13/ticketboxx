@@ -3,31 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>My Bookings</title>
+    <link rel="stylesheet" href="../../style.css">
 </head>
+<style>
+    /* Example styles for bookings */
+#bookingsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 40%;
+    margin-top: 10%;
+   margin-left: 30%;
+   
+}
+
+.booking {
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.booking h3 {
+    color: #333;
+}
+
+.booking p {
+    font-size: 14px;
+    color: #555;
+}
+
+.booking strong {
+    font-weight: bold;
+}
+
+</style>
 <body>
-    <header>
-        <div><img src="../images/ticketboxx -logo.png" alt="TicketBoxx" height="40" width="100"></div>
-        <form action="./movies.html" method="GET">
-            <input type="search" class="search-bar form-control" name="q" placeholder="Search For Movies, Sports, Activities" aria-label="Search">
-            <button type="submit" class="search-icon">Search</button>
-        </form>
+    <header class="d-flex justify-content-between align-items-center p-3 bg-light shadow-sm">
+        <!-- Logo -->
+        <div>
+            <a href="home.html">
+                <img src="../images/ticketboxx -logo.png" alt="TicketBoxx Logo" height="40" width="100" />
+            </a>
+        </div>
+    
+        <!-- Search Bar -->
+        <div class="flex-grow-1 mx-3">
+            <form id="searchForm">
+                <input type="text" id="searchQuery" class="search-bar form-control" placeholder="Search For Movies, Sports, Activities">
+                <button type="submit" class="search-icon">Search</button>
+            </form>
+            
+            
+            
+            </form>
+        </div>
+    
+        <!-- Navigation Links -->
         <nav>
-            <ul>
-                <li><a href="home.html">Home</a></li>
-                <li><a href="movies.html">Movies</a></li>
-                <li><a href="bookings.html">My Bookings</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link text-dark fw-bold" href="home.html">Home</a>
+                </li>
+                <li class="nav-item dropdown position-relative">
+                    <a
+                        href="#"
+                        class="nav-link dropdown-toggle text-dark fw-bold"
+                        id="moviesDropdown"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                    >
+                        Movies
+                    </a>
+                    
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark fw-bold" href="my_booking.html">My Bookings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark fw-bold" href="contact.html">Contact Us</a>
+                </li>
             </ul>
         </nav>
+    
+       
     </header>
     <main>
         <div id="bookingsContainer">
-            <!-- User's bookings will be inserted here dynamically -->
+            
         </div>
     </main>
-    
+
+    <script type="module">
+        import { createClient } from 'https://cdn.skypack.dev/@supabase/supabase-js';
+
+        const supabaseUrl = 'https://srjumswibbswcwjntcad.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNyanVtc3dpYmJzd2N3am50Y2FkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjk2Nzk5MzcsImV4cCI6MjA0NTI1NTkzN30.e_ZkFg_EPI8ObvFz70Ejc1W4RGpQurr0SoDlK6IoEXY';
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+        // Function to fetch and display bookings based on user email
+        async function fetchBookings() {
+            const userEmail = localStorage.getItem("usermail");
+
+            if (!userEmail) {
+                console.log("No user is logged in.");
+                return;
+            }
+
+            try {
+                // Fetch bookings from Supabase where customer_email matches the logged-in user's email
+                const { data, error } = await supabase
+                    .from('bookings')
+                    .select('*')
+                    .eq('customer_email', userEmail); // Fetch bookings for the logged-in user
+                
+                if (error) {
+                    console.error('Error fetching bookings:', error.message);
+                    return;
+                }
+
+                // If data exists, display bookings
+                if (data && data.length > 0) {
+                    displayBookings(data);
+                } else {
+                    document.getElementById('bookingsContainer').innerHTML = '<p>No bookings found.</p>';
+                }
+            } catch (error) {
+                console.error('Error in fetchBookings function:', error);
+            }
+        }
+
+        // Function to display bookings dynamically
+        function displayBookings(bookings) {
+            const bookingsContainer = document.getElementById('bookingsContainer');
+            bookingsContainer.innerHTML = ''; // Clear the container first
+
+            bookings.forEach(booking => {
+                const bookingDiv = document.createElement('div');
+                bookingDiv.classList.add('booking');
+
+                // Create and append elements for each booking's details
+                bookingDiv.innerHTML = `
+                    <h3>Booking ID: ${booking.booking_id}</h3>
+                    <p><strong>Movie:</strong> ${booking.movie_name}</p>
+                    <p><strong>Theatre:</strong> ${booking.theatre_name}</p>
+                    <p><strong>Show Time:</strong> ${booking.show_time}</p>
+                    <p><strong>Booking Date:</strong> ${new Date(booking.booking_date).toLocaleDateString()}</p>
+                    <p><strong>Seats:</strong> ${booking.seats}</p>
+                    <p><strong>Amount:</strong> $${booking.amount.toFixed(2)}</p>
+                `;
+
+                bookingsContainer.appendChild(bookingDiv);
+            });
+        }
+
+        // Call the function when the page loads
+        fetchBookings();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.0/dist/umd/supabase.min.js"></script>
 </body>
-<script type="module" src="../scripts/my-bookings.js" defer></script>
-<script src="https://cdn.skypack.dev/@supabase/supabase-js"></script>
 </html>

@@ -123,9 +123,9 @@ function generateDateScroll() {
 
         const dateStr = formatDate(date);
         const dateText = date.toLocaleDateString('en-GB', {
-            weekday: 'short',  // "Mon", "Tue", etc.
-            day: 'numeric',    // "1", "2", etc.
-            month: 'short'     // "Jan", "Feb", etc.
+            weekday: 'short', 
+            day: 'numeric',    
+            month: 'short'     
         });
 
         const dateElement = document.createElement("div");
@@ -150,9 +150,10 @@ function generateDateScroll() {
     }
 }
 
+
 function populateShowTimes(theatres, movie) {
     const showTimesContainer = document.getElementById("show-times");
-    showTimesContainer.innerHTML = ''; 
+    showTimesContainer.innerHTML = '';  // Clear any existing showtimes
 
     theatres.forEach(theatre => {
         const theatreBlock = `
@@ -161,7 +162,7 @@ function populateShowTimes(theatres, movie) {
                 <div class="showtimes-container">
                     ${theatre.showtimes.map(showtime => `
                         <div class="showtime-item">
-                            <a href="seat-selection.html?movieName=${encodeURIComponent(movie.title)}&theatre=${encodeURIComponent(theatre.name)}&date=${JSON.parse(localStorage.getItem('selectedMovie')).selectedDate}" 
+                            <a href="seat-selection.html?movieName=${encodeURIComponent(movie.title)}&theatre=${encodeURIComponent(theatre.name)}&date=${JSON.parse(localStorage.getItem('selectedMovie')).selectedDate}&movieId=${movie.id}" 
                                class="showtime-link">
                                 ${showtime.time}
                             </a>
@@ -177,6 +178,7 @@ function populateShowTimes(theatres, movie) {
     // Add hover functionality to showtime items
     initializeHoverEffects();
 }
+
 
 function fetchReviews(movieId) {
     // Simulate a fetch to get reviews for the movie

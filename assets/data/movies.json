@@ -31,7 +31,8 @@
         "showtimes": [
             { "time": "12:45 PM", "premiumPrice": 300, "normalPrice": 200, "link": "../pages/seat-selection.html" },
             { "time": "04:10 PM", "premiumPrice": 350, "normalPrice": 250, "link": "../pages/seat-selection.html" }
-        ]
+        ],
+        "seats": []
     },
     {
         "name": "The Vijay Park Multiplex",

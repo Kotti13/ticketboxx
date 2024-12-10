@@ -82,7 +82,7 @@ header {
 /* Movie Cards */
 .movie-card {
     text-align: center;
-    padding: 10px;
+    /* padding: 10px; */
     transition: transform 0.3s ease;
 }
 
@@ -278,3 +278,7 @@ footer {
     }
 }
 
+/* .search-bar:focus{
+    padding-bottom: 400px;
+
+} */

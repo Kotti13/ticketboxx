@@ -1,6 +1,8 @@
 let isProcessingPayment = false; // Flag to track if payment is already being processed
 
 document.addEventListener('DOMContentLoaded', () => {
+    const usermail=localStorage.getItem("usermail");
+    console.log(usermail);
     const params = new URLSearchParams(window.location.search);
     const totalPrice = params.get('price') || '0';
     const movieName = params.get('movieName');
