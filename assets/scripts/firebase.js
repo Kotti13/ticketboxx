@@ -1,7 +1,7 @@
 // Import Firebase and Supabase SDKs
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
-import { createClient } from 'https://cdn.skypack.dev/@supabase/supabase-js';
+import { createClient } from 'https://cdn.skypack.dev/@supabase/supabase-js@2.0.0';
 
 // Firebase Configuration
 const firebaseConfig = {
@@ -14,23 +14,29 @@ const firebaseConfig = {
     measurementId: "G-F7PEJ1WQRV"
 };
 
+// Initialize Firebase
+const app = initializeApp(firebaseConfig); // Initialize Firebase app
+const auth = getAuth(app); // Now you can safely use Firebase authentication
+
+
 // Supabase Configuration
 const supabaseUrl = 'https://srjumswibbswcwjntcad.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNyanVtc3dpYmJzd2N3am50Y2FkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjk2Nzk5MzcsImV4cCI6MjA0NTI1NTkzN30.e_ZkFg_EPI8ObvFz70Ejc1W4RGpQurr0SoDlK6IoEXY';
 
-// Initialize Firebase & Supabase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+// // Initialize Firebase & Supabase
+// const app = initializeApp(firebaseConfig);
+// const auth = getAuth(app);
+// Initialize Supabase client
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-// Function to save user to Supabase
+// Example of a query
 const saveUserToSupabase = async (user, username) => {
     const { email, uid } = user;
 
     try {
-        // Insert the user data into Supabase or update if exists (upsert)
+        // Try inserting the user data into Supabase
         const { data, error } = await supabase
-            .from('users')  // Assuming 'users' table exists in Supabase
+            .from('users')
             .upsert({
                 email,
                 username,
@@ -40,34 +46,37 @@ const saveUserToSupabase = async (user, username) => {
 
         if (error) {
             console.error('Error saving user to Supabase:', error.message);
+            alert('Failed to save user data to Supabase');
         } else {
             console.log('User successfully saved to Supabase:', data);
         }
     } catch (error) {
         console.error('Error saving user to Supabase:', error.message);
+        alert('Something went wrong while saving user data');
     }
 };
 
-// GitHub login handler
-document.getElementById('githubLoginLink').addEventListener('click', async (event) => {
-    event.preventDefault(); // Prevent the default link behavior
 
-    try {
-        // Initiate GitHub OAuth login via Supabase
-        const { error } = await supabase.auth.signInWithOAuth({
-            provider: 'github', // GitHub as the OAuth provider
-            redirectTo: 'https://srjumswibbswcwjntcad.supabase.co/auth/v1/callback', // Callback URL
-        });
+// // GitHub login handler
+// document.getElementById('githubLoginLink').addEventListener('click', async (event) => {
+//     event.preventDefault(); // Prevent the default link behavior
 
-        if (error) {
-            console.error('Error during GitHub login:', error.message);
-            alert('GitHub login failed. Please try again.');
-        }
-    } catch (error) {
-        console.error('Error during GitHub login process:', error);
-        alert('Something went wrong with GitHub login. Please try again.');
-    }
-});
+//     try {
+//         // Initiate GitHub OAuth login via Supabase
+//         const { error } = await supabase.auth.signInWithOAuth({
+//             provider: 'github', // GitHub as the OAuth provider
+//             redirectTo: 'https://srjumswibbswcwjntcad.supabase.co/auth/v1/callback', // Callback URL
+//         });
+
+//         if (error) {
+//             console.error('Error during GitHub login:', error.message);
+//             alert('GitHub login failed. Please try again.');
+//         }
+//     } catch (error) {
+//         console.error('Error during GitHub login process:', error);
+//         alert('Something went wrong with GitHub login. Please try again.');
+//     }
+// });
 
 // Sign-up handler
 document.querySelector('.signup-form').addEventListener('submit', async (e) => {
