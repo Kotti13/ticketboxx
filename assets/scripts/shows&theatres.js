@@ -153,7 +153,7 @@ function generateDateScroll() {
 
 function populateShowTimes(theatres, movie) {
     const showTimesContainer = document.getElementById("show-times");
-    showTimesContainer.innerHTML = '';  // Clear any existing showtimes
+    showTimesContainer.innerHTML = ''; // Clear any existing showtimes
 
     theatres.forEach(theatre => {
         const theatreBlock = `
@@ -162,7 +162,7 @@ function populateShowTimes(theatres, movie) {
                 <div class="showtimes-container">
                     ${theatre.showtimes.map(showtime => `
                         <div class="showtime-item">
-                            <a href="seat-selection.html?movieName=${encodeURIComponent(movie.title)}&theatre=${encodeURIComponent(theatre.name)}&date=${JSON.parse(localStorage.getItem('selectedMovie')).selectedDate}&movieId=${movie.id}" 
+                            <a href="seat-selection.html?movieName=${encodeURIComponent(movie.title)}&theatre=${encodeURIComponent(theatre.name)}&date=${JSON.parse(localStorage.getItem('selectedMovie')).selectedDate}&movieId=${movie.id}&showtime=${encodeURIComponent(showtime.time)}" 
                                class="showtime-link">
                                 ${showtime.time}
                             </a>
@@ -177,7 +177,23 @@ function populateShowTimes(theatres, movie) {
 
     // Add hover functionality to showtime items
     initializeHoverEffects();
+
+    // Add click events to store selected showtime in localStorage
+    const showtimeLinks = document.querySelectorAll('.showtime-link');
+    showtimeLinks.forEach(link => {
+        link.addEventListener('click', function (event) {
+            const selectedShowtime = this.innerText;
+            const selectedMovie = JSON.parse(localStorage.getItem('selectedMovie')) || {};
+            selectedMovie.selectedShowtime = selectedShowtime;  // Store showtime directly in the object
+            selectedMovie.selectedTheatre = link.closest('.theatre-section').querySelector('h3').innerText; // Store theatre name
+            localStorage.setItem('selectedMovie', JSON.stringify(selectedMovie));
+
+            console.log('Selected Showtime:', selectedShowtime); // Debugging
+        });
+    });
 }
+
+
 
 
 function fetchReviews(movieId) {

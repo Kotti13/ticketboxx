@@ -90,6 +90,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 });
 
+const selectedMovie = JSON.parse(localStorage.getItem('selectedMovie'));
+console.log(selectedMovie)
 
 
 document.getElementById('confirmBooking').addEventListener('click', (e) => {
@@ -103,3 +105,11 @@ document.getElementById('confirmBooking').addEventListener('click', (e) => {
         window.location.href = e.target.href;
     }, 2000); 
 });
+// Retrieve the selected movie details from localStorage
+// const selectedMovie = JSON.parse(localStorage.getItem('selectedMovie'));
+
+// Get the showtime value from the stored object
+const selectedShowtime = selectedMovie ? selectedMovie.selectedShowtime : null;
+
+// Print the selected showtime to the console
+console.log(selectedShowtime);

@@ -16,10 +16,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     const selectedMovie = JSON.parse(localStorage.getItem('selectedMovie')) || {};
     const movieName = sessionStorage.getItem('movieName') || "N/A";
     const theatreName = sessionStorage.getItem('theatre') || "N/A";
-    const showTime = sessionStorage.getItem('showTime') || "N/A";
+    // const showTime = sessionStorage.getItem('showTime') || "N/A";
     const date = selectedMovie.selectedDate || "N/A"; // Retrieve the stored date
     const seats = sessionStorage.getItem('seats') || "N/A";
     const amount = sessionStorage.getItem('price') || "₹0";
+    const showTime = selectedMovie ? selectedMovie.selectedShowtime : null;
 
    
     const customerEmail=localStorage.getItem("usermail");

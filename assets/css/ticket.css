@@ -1,23 +1,164 @@
-*{
+/* General reset and box sizing */
+* {
     margin: 0;
     padding: 0;
-}
-.ticket-info{
-    display: flex;
-    gap: 5%;
-    background-color:#f3e6ce;
-    width: 500px;
-    margin: auto;
-    
-    border-radius: 30px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
-#moviePoster{
-    height: 300px;
-    border-radius: 20px;
-    margin: 30px;
+    box-sizing: border-box;
 }
 
-.nametheatre{
-   margin-top: 100px;
+/* Body Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+    padding: 20px;
+}
+
+/* Ticket Container */
+.ticket-container {
+    max-width: 600px;
+    margin: 20px auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    font-size: 16px;
+    color: #333;
+    position: relative;
+}
+
+.ticket-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.ticket-header h1 {
+    font-size: 24px;
+    color: #fcbf49;
+    font-weight: 600;
+}
+
+.ticket-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.ticket-info img {
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.nametheatre {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.nametheatre p {
+    font-size: 18px;
+    color: #333;
+    font-weight: 500;
+}
+
+.moviename&time {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.moviename&time p {
+    font-size: 14px;
+    color: #777;
+}
+
+#movieName {
+    font-size: 20px;
+    color: #fcbf49;
+    font-weight: bold;
+}
+
+#date, #showTime {
+    font-size: 16px;
+    color: #333;
+}
+
+#theatreName {
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+/* QR Code Styling */
+#qrcode {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Booking and Payment Details */
+#bookingId, #seats, #amount {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+strong {
+    font-weight: bold;
+    color: #444;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .ticket-container {
+        padding: 15px;
+    }
+
+    .ticket-info {
+        flex-direction: column;
+    }
+
+    .moviename&time {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    #moviePoster {
+        height: 80px;
+    }
+}
+
+/* Button Styles (for example, if you plan to add print or download buttons later) */
+button {
+    background-color: #fcbf49;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 15px;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #f09d37;
+}
+
+/* Footer Styles */
+.ticket-container::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: #fcbf49;
+    border-radius: 5px;
 }
