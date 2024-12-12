@@ -1,8 +1,9 @@
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.0/+esm';
+
 // Initialize Supabase client
 const supabaseUrl = 'https://srjumswibbswcwjntcad.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNyanVtc3dpYmJzd2N3am50Y2FkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjk2Nzk5MzcsImV4cCI6MjA0NTI1NTkzN30.e_ZkFg_EPI8ObvFz70Ejc1W4RGpQurr0SoDlK6IoEXY';
 const supabase = createClient(supabaseUrl, supabaseKey);
-
 
 async function fetchBookings() {
     const userEmail = localStorage.getItem("usermail");
@@ -13,18 +14,16 @@ async function fetchBookings() {
     }
 
     try {
-        
         const { data, error } = await supabase
             .from('bookings')
             .select('*')
-            .eq('customer_email', userEmail); 
-        
+            .eq('customer_email', userEmail);
+
         if (error) {
             console.error('Error fetching bookings:', error.message);
             return;
         }
 
-       
         if (data && data.length > 0) {
             displayBookings(data);
         } else {
@@ -35,7 +34,6 @@ async function fetchBookings() {
     }
 }
 
-
 function displayBookings(bookings) {
     const bookingsContainer = document.getElementById('bookingsContainer');
     bookingsContainer.innerHTML = ''; // Clear the container first
@@ -44,7 +42,6 @@ function displayBookings(bookings) {
         const bookingDiv = document.createElement('div');
         bookingDiv.classList.add('booking');
 
-       
         bookingDiv.innerHTML = `
             <h3>Booking ID: ${booking.booking_id}</h3>
             <p><strong>Movie:</strong> ${booking.movie_name}</p>
@@ -58,6 +55,5 @@ function displayBookings(bookings) {
         bookingsContainer.appendChild(bookingDiv);
     });
 }
-
 
 fetchBookings();

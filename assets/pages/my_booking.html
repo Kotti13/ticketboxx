@@ -96,64 +96,8 @@
         </div>
     </main>
 
-    <script type="module">
-        // Function to fetch and display bookings based on user email
-async function fetchBookings() {
-    const userEmail = localStorage.getItem("usermail");
-
-    if (!userEmail) {
-        console.log("No user is logged in.");
-        return;
-    }
-
-    try {
-        // Fetch bookings from Flask API (Python backend)
-        const response = await fetch(`http://127.0.0.1:5000/api/bookings/${userEmail}`);
+    <script type="module" src="../scripts/my-bookings.js">
         
-        if (!response.ok) {
-            throw new Error('Error fetching bookings');
-        }
-
-        const data = await response.json();
-
-        // If data exists, display bookings
-        if (data && data.length > 0) {
-            displayBookings(data);
-        } else {
-            document.getElementById('bookingsContainer').innerHTML = '<p>No bookings found.</p>';
-        }
-    } catch (error) {
-        console.error('Error in fetchBookings function:', error);
-    }
-}
-
-// Function to display bookings dynamically
-function displayBookings(bookings) {
-    const bookingsContainer = document.getElementById('bookingsContainer');
-    bookingsContainer.innerHTML = ''; // Clear the container first
-
-    bookings.forEach(booking => {
-        const bookingDiv = document.createElement('div');
-        bookingDiv.classList.add('booking');
-
-        // Create and append elements for each booking's details
-        bookingDiv.innerHTML = `
-            <h3>Booking ID: ${booking.booking_id}</h3>
-            <p><strong>Movie:</strong> ${booking.movie_name}</p>
-            <p><strong>Theatre:</strong> ${booking.theatre_name}</p>
-            <p><strong>Show Time:</strong> ${booking.show_time}</p>
-            <p><strong>Booking Date:</strong> ${new Date(booking.booking_date).toLocaleDateString()}</p>
-            <p><strong>Seats:</strong> ${booking.seats}</p>
-            <p><strong>Amount:</strong> $${booking.amount.toFixed(2)}</p>
-        `;
-
-        bookingsContainer.appendChild(bookingDiv);
-    });
-}
-
-// Call the function when the page loads
-fetchBookings();
-
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.0/dist/umd/supabase.min.js"></script>
 </body>
