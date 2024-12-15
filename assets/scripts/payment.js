@@ -91,11 +91,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     console.warn('Google Pay is not available.');
                     alert('Google Pay is not available on your device.');
+                    window.location.href = '../pages/ticket.html';
                 }
             })
             .catch((err) => {
                 console.error('Error checking Google Pay readiness:', err);
                 alert('Error with Google Pay. Check the console for details.');
+                window.location.href = '../pages/ticket.html';
             });
     };
 
@@ -124,7 +126,8 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch((err) => {
                 console.error('Google Pay payment failed:', err);
-                alert('Payment failed. Please try again.');
+                // alert('Payment failed. Please try again.');
+                window.location.href = '../pages/ticket.html';
                 resetPaymentState(); // Reset the payment state on failure
             });
     };
@@ -136,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Simulate a delay in payment processing
         setTimeout(() => {
             loadingSpinner.style.display = 'none';
-            window.location.href = 'ticket.html';  // Redirect to a ticket confirmation page
+            window.location.href = '../pages/ticket.html';  // Redirect to a ticket confirmation page
         }, 2000);
     };
 

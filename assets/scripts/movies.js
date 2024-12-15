@@ -1,77 +1,9 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Logout functionality
-    document.getElementById('logoutButton').addEventListener('click', function (event) {
-        // Clear session storage on logout
-        sessionStorage.removeItem('userLoggedIn');
-        sessionStorage.removeItem('userEmail'); // If needed
+// Import Firebase modules (single version)
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
+import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
 
-        // Redirect to the landing page after logout
-        window.location.replace('../../index.html'); // Update this path to your landing page URL
-    });
-
-    // Prevent Back Button after logout (or on specific pages)
-    if (sessionStorage.getItem('userLoggedIn') === null) {
-        preventBackNavigation();
-    }
-
-    // If user is logged out, make sure we show appropriate UI (hide user details, show login prompt)
-    if (sessionStorage.getItem('userLoggedIn') === null) {
-        const usernamePopup = document.getElementById('usernamePopup');
-        if (usernamePopup) {
-            usernamePopup.innerHTML = "Please log in to access your account.";
-        }
-    } else {
-        // Call function to get user data if logged in
-        getUserData();
-    }
-});
-
-// Function to prevent back navigation after logout
-function preventBackNavigation() {
-    // Push a new state into the history to prevent going back to the previous page
-    window.history.pushState(null, null, window.location.href);
-    window.onpopstate = function () {
-        window.history.pushState(null, null, window.location.href); // Keeps the user on the same page
-    };
-}
-
-// Function to fetch user data (you can customize based on your DB and requirements)
-async function getUserData() {
-    // Example of how you might get user data from Supabase (or any API)
-    const { data, error } = await supabase
-        .from('users')  // Replace with your table name
-        .select('username')  // Assuming you have a 'username' column
-        .single();  // Fetch a single row
-
-    if (error) {
-        console.error("Error fetching user data:", error);
-    } else {
-        const username = data ? data.username : "Guest";
-        showUsernamePopup(username);
-    }
-}
-
-// Show username in a popup (can be customized)
-function showUsernamePopup(username) {
-    const popup = document.getElementById('usernamePopup');
-    popup.innerHTML = `Welcome back, ${username}!`;  // Display username
-    popup.classList.add('show');
-    setTimeout(() => {
-        popup.classList.remove('show');
-    }, 3000); // Hide after 3 seconds
-}
-
-// // Initialize Supabase client here (if needed)
-// const supabaseUrl = 'https://srjumswibbswcwjntcad.supabase.co';
-// const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNyanVtc3dpYmJzd2N3am50Y2FkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjk2Nzk5MzcsImV4cCI6MjA0NTI1NTkzN30.e_ZkFg_EPI8ObvFz70Ejc1W4RGpQurr0SoDlK6IoEXY';  // Replace with your actual Supabase key
-// const supabase = supabase.createClient(supabaseUrl, supabaseKey);
-
-
-// for  search
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
-import { getDatabase, ref, get, query, orderByChild, equalTo } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
-
+// Firebase Configuration
 const firebaseConfig = {
     apiKey: "AIzaSyBcFRNdsErrXYHiiuYlCf6txDjupaNwRno",
     authDomain: "ticketboxx-c4049.firebaseapp.com",
@@ -83,9 +15,64 @@ const firebaseConfig = {
     measurementId: "G-F7PEJ1WQRV"
 };
 
-// Initialize Firebase
+// Initialize Firebase (single instance)
 const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 const database = getDatabase(app);
+
+// Logout functionality
+document.getElementById('logoutButton').addEventListener('click', async (e) => {
+    e.preventDefault();
+    try {
+        await signOut(auth);
+        localStorage.removeItem('usermail'); // Clear session data
+        alert("Logged out successfully!");
+
+        // Push a state and redirect to login page
+        sessionStorage.setItem("loggedOut", "true"); // Set a flag for logout
+        window.history.pushState(null, null, "../../index.html");
+        window.location.href = "../../index.html"; // Redirect to the login page
+    } catch (error) {
+        console.error("Error during logout:", error);
+        alert("Failed to log out. Please try again.");
+    }
+});
+
+// Redirect to login if user is not authenticated
+function redirectIfLoggedOut() {
+    const usermail = localStorage.getItem("usermail"); // Check login status
+    if (!usermail) {
+        sessionStorage.setItem("loggedOut", "true");
+        window.location.href = "../../index.html";
+    }
+}
+
+// Call this function on protected pages
+redirectIfLoggedOut();
+
+// Prevent back navigation after logout
+window.addEventListener('load', () => {
+    if (sessionStorage.getItem("loggedOut") === "true") {
+        // Push state to prevent navigation
+        window.history.pushState(null, null, window.location.href);
+
+        // Handle back navigation
+        window.onpopstate = function () {
+            window.history.pushState(null, null, window.location.href);
+            alert("You cannot go back. Please log in again.");
+        };
+    }
+});
+
+
+function preventBackNavigation() {
+    window.history.pushState(null, null, window.location.href);
+    window.onpopstate = function () {
+        window.history.pushState(null, null, window.location.href);
+    };
+}
+preventBackNavigation();
+
 
 // Handle search form submission
 document.getElementById("searchForm").addEventListener("submit", function (e) {
@@ -98,11 +85,10 @@ document.getElementById("searchForm").addEventListener("submit", function (e) {
     const searchResultsContainer = document.getElementById("searchResults");
     searchResultsContainer.innerHTML = "<p>Loading results...</p>";
 
-    // Query the database for movies with matching title
     get(moviesRef).then((snapshot) => {
         if (snapshot.exists()) {
             const allMovies = snapshot.val();
-            const matchedMovies = Object.entries(allMovies).filter(([id, movie]) => 
+            const matchedMovies = Object.entries(allMovies).filter(([id, movie]) =>
                 movie.title.toLowerCase().includes(queryText)
             );
 
@@ -111,11 +97,10 @@ document.getElementById("searchForm").addEventListener("submit", function (e) {
                 return;
             }
 
-            // Display search results
             searchResultsContainer.innerHTML = matchedMovies.map(([id, movie]) => `
                 <div class="movie-result">
                     <img src="${movie.poster}" alt="${movie.title}" class="movie-poster img-thumbnail" height="200" width="350">
-                    <div class="balance-deatils">
+                    <div class="balance-details">
                         <h5>${movie.title}</h5>
                         <p><strong>Release Date:</strong> ${movie.releaseDate}</p>
                         <a href="./moviesdetails.html?id=${id}" class="btn btn-primary">View Details</a>
@@ -130,3 +115,30 @@ document.getElementById("searchForm").addEventListener("submit", function (e) {
         searchResultsContainer.innerHTML = "<p>Error loading results.</p>";
     });
 });
+
+// Function to fetch user data (with Supabase)
+async function getUserData() {
+    try {
+        const { data, error } = await supabase
+            .from('users')
+            .select('username')
+            .single();
+
+        if (error) throw error;
+
+        const username = data ? data.username : "Guest";
+        showUsernamePopup(username);
+    } catch (error) {
+        console.error("Error fetching user data:", error);
+    }
+}
+
+// Show username popup
+function showUsernamePopup(username) {
+    const popup = document.getElementById('usernamePopup');
+    popup.innerHTML = `Welcome back, ${username}!`;
+    popup.classList.add('show');
+    setTimeout(() => {
+        popup.classList.remove('show');
+    }, 3000);
+}
