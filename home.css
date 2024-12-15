@@ -15,6 +15,9 @@ header {
     border-bottom: 1px solid #ddd;
 }
 
+/* dropdown for user icon */
+
+
 /* Dropdown base styles */
 .movie-header .dropdown-menu {
     display: none;
