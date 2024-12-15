@@ -16,14 +16,14 @@ document.addEventListener('DOMContentLoaded', () => {
         headerDetails.textContent = "";
     }
 
-    // Seat data and initialization
+   
     const seatData = {
         rs190: { rows: ['A', 'B', 'C', 'D', 'E', 'F',"G","H","I","J","K","L","M","N","O"], totalSeats: 30 },
         rs60: { rows: ['P', 'Q', "R"], totalSeats: 30 },
     };
 
-    const unavailableSeats = ['B7', 'C15', 'D19', 'L4', 'M10']; // Example unavailable
-    const bestsellerSeats = ['B12', 'C7', 'L20']; // Example bestseller
+    const unavailableSeats = ['B7', 'C15', 'D19', 'L4', 'M10']; 
+    const bestsellerSeats = ['B12', 'C7', 'L20']; 
 
     const selectedSeats = [];
     let totalPrice = 0;
@@ -79,7 +79,17 @@ document.addEventListener('DOMContentLoaded', () => {
         popup.style.display = selectedSeats.length ? 'flex' : 'none';
 
         if (selectedSeats.length) {
-            confirmLink.href = `payment.html?movieName=${encodeURIComponent(movieName)}&theatre=${encodeURIComponent(theatreName)}&seats=${encodeURIComponent(selectedSeats.join(','))}&price=${totalPrice}`;
+            // razorpay
+            if (totalPrice === 60 * selectedSeats.length) {
+                // Rs. 60 section 
+                confirmLink.href = "https://rzp.io/rzp/x7sANvs";
+            } else if (totalPrice === 190 * selectedSeats.length) {
+                // Rs. 190 section 
+                confirmLink.href = "https://rzp.io/rzp/xsPr0q8N";
+            } else {
+                // Mixed selection
+                confirmLink.href = "#"; 
+            }
             confirmLink.classList.remove('disabled');
         } else {
             confirmLink.href = "payment.html";
@@ -90,10 +100,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 });
 
-const selectedMovie = JSON.parse(localStorage.getItem('selectedMovie'));
-console.log(selectedMovie)
-
-
 document.getElementById('confirmBooking').addEventListener('click', (e) => {
     e.preventDefault();
 
@@ -101,15 +107,7 @@ document.getElementById('confirmBooking').addEventListener('click', (e) => {
     loadingSpinner.style.display = 'block';
 
     setTimeout(() => {
-       
-        window.location.href = e.target.href;
+        window.location.href = e.target.href; 
     }, 2000); 
 });
-// Retrieve the selected movie details from localStorage
-// const selectedMovie = JSON.parse(localStorage.getItem('selectedMovie'));
 
-// Get the showtime value from the stored object
-const selectedShowtime = selectedMovie ? selectedMovie.selectedShowtime : null;
-
-// Print the selected showtime to the console
-console.log(selectedShowtime);
