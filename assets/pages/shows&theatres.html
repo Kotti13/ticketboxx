@@ -27,7 +27,7 @@
         <div id="movie-details" class="container">
             <!-- Movie details will be dynamically injected here -->
         </div>
-        <div id="date-scroll-container" class="date-scroll-container"></div>
+        <!-- <div id="date-scroll-container" class="date-scroll-container"></div> -->
         <!-- <div id="controls">
             <select id="price-filter">
                 <option value="500">All Prices</option>
@@ -98,46 +98,6 @@
     <script src="//code.tidio.co/odorcjjrzhu3eeqm6osngauulfzmbqiz.js" async></script>
 </body>
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-    // Create the date scroll bar for the next 5 days from today
-    const dateScrollContainer = document.getElementById("date-scroll-container");
-    
-    const currentDate = new Date();
-    
-    // Function to format the date in YYYY-MM-DD format
-    const formatDate = (date) => date.toISOString().split('T')[0];
-
-    // Create date elements for the next 5 days
-    for (let i = 0; i < 5; i++) {
-        const date = new Date();
-        date.setDate(currentDate.getDate() + i);
-        
-        const dateStr = formatDate(date);
-        const dateText = date.toLocaleDateString('en-GB', {
-            weekday: 'short',  // "Mon", "Tue", etc.
-            day: 'numeric',    // "1", "2", etc.
-            month: 'short'     // "Jan", "Feb", etc.
-        });
-        
-        const dateElement = document.createElement("div");
-        dateElement.classList.add("date-item");
-        dateElement.dataset.date = dateStr;
-        dateElement.innerText = dateText;
-
-        // Add click event to select a date
-        dateElement.addEventListener("click", function() {
-            // Remove the 'selected' class from all dates
-            document.querySelectorAll(".date-item").forEach(item => item.classList.remove("selected"));
-            // Add the 'selected' class to the clicked date
-            dateElement.classList.add("selected");
-
-            // You can save the selected date or perform further actions here
-            console.log("Selected date:", dateStr);
-        });
-
-        dateScrollContainer.appendChild(dateElement);
-    }
-});
-
+  
 </script>
 </html>
