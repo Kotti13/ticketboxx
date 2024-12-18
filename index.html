@@ -323,17 +323,17 @@
     
             // Check user authentication status
             onAuthStateChanged(auth, (user) => {
-                isAuthenticated = !!user; // Set authentication flag when state changes
+                isAuthenticated = !!user; 
             });
             
-            // Select all nav links that require authentication
+           
             const protectedLinks = document.querySelectorAll('.nav-link, .hero-content .btn');
             
             protectedLinks.forEach(link => {
                 link.addEventListener('click', (event) => {
-                    // Ensure authentication check is completed before handling the event
+                    
                     if (!isAuthenticated) {
-                        event.preventDefault(); // Prevent the default link behavior
+                        event.preventDefault(); 
                         // Show the login modal
                         const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
                         loginModal.show();

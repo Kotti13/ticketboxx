@@ -1,40 +1,40 @@
-// Import Firebase and Supabase SDKs
+// First, we import the necessary SDKs from Firebase and Supabase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
 import { createClient } from 'https://cdn.skypack.dev/@supabase/supabase-js@2.0.0';
 
-// Firebase Configuration
+// Accessing Firebase Configuration from Environment Variables
 const firebaseConfig = {
-    apiKey: "AIzaSyBcFRNdsErrXYHiiuYlCf6txDjupaNwRno",
-    authDomain: "ticketboxx-c4049.firebaseapp.com",
-    projectId: "ticketboxx-c4049",
-    storageBucket: "ticketboxx-c4049.appspot.com",
-    messagingSenderId: "1029974974410",
-    appId: "1:1029974974410:web:a94d9c5fe267f3e51db933",
-    measurementId: "G-F7PEJ1WQRV"
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_FIREBASE_APP_ID,
+    measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig); // Initialize Firebase app
-const auth = getAuth(app); // Now you can safely use Firebase authentication
+const app = initializeApp(firebaseConfig);  
+const auth = getAuth(app); 
+const apiKey = import.meta.env.VITE_FIREBASE_API_KEY;
+console.log(apiKey)
+// Accessing Supabase Configuration from Environment Variables
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseKey = import.meta.env.VITE_SUPABASE_KEY;
 
-
-// Supabase Configuration
-const supabaseUrl = 'https://srjumswibbswcwjntcad.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNyanVtc3dpYmJzd2N3am50Y2FkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjk2Nzk5MzcsImV4cCI6MjA0NTI1NTkzN30.e_ZkFg_EPI8ObvFz70Ejc1W4RGpQurr0SoDlK6IoEXY';
-
-// // Initialize Firebase & Supabase
-// const app = initializeApp(firebaseConfig);
-// const auth = getAuth(app);
 // Initialize Supabase client
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-// Example of a query
+console.log('Firebase Config:', firebaseConfig);
+console.log('Supabase URL:', supabaseUrl);
+console.log('Supabase Key:', supabaseKey);
+
+// Function to save user data into Supabase
 const saveUserToSupabase = async (user, username) => {
     const { email, uid } = user;
 
     try {
-        // Try inserting the user data into Supabase
         const { data, error } = await supabase
             .from('users')
             .upsert({
@@ -46,7 +46,6 @@ const saveUserToSupabase = async (user, username) => {
 
         if (error) {
             console.error('Error saving user to Supabase:', error.message);
-            alert('Failed to save user data to Supabase');
         } else {
             console.log('User successfully saved to Supabase:', data);
         }
@@ -56,29 +55,7 @@ const saveUserToSupabase = async (user, username) => {
     }
 };
 
-
-// // GitHub login handler
-// document.getElementById('githubLoginLink').addEventListener('click', async (event) => {
-//     event.preventDefault(); // Prevent the default link behavior
-
-//     try {
-//         // Initiate GitHub OAuth login via Supabase
-//         const { error } = await supabase.auth.signInWithOAuth({
-//             provider: 'github', // GitHub as the OAuth provider
-//             redirectTo: 'https://srjumswibbswcwjntcad.supabase.co/auth/v1/callback', // Callback URL
-//         });
-
-//         if (error) {
-//             console.error('Error during GitHub login:', error.message);
-//             alert('GitHub login failed. Please try again.');
-//         }
-//     } catch (error) {
-//         console.error('Error during GitHub login process:', error);
-//         alert('Something went wrong with GitHub login. Please try again.');
-//     }
-// });
-
-// Sign-up handler
+// Signup form handler
 document.querySelector('.signup-form').addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -88,11 +65,13 @@ document.querySelector('.signup-form').addEventListener('submit', async (e) => {
     document.getElementById('passwordError').textContent = "";
     document.getElementById('confirmPasswordError').textContent = "";
 
+    // Get input values
     const username = document.getElementById('username').value.trim();
     const email = document.getElementById('signupEmail').value.trim();
     const password = document.getElementById('signupPassword').value;
     const confirmPassword = document.getElementById('confirmPassword').value;
 
+    // Validate the form
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
     let isValid = true;
@@ -127,33 +106,32 @@ document.querySelector('.signup-form').addEventListener('submit', async (e) => {
         isValid = false;
     }
 
-    // Proceed if validation is successful
+    // Proceed if the form is valid
     if (isValid) {
         try {
+            // Firebase sign-up
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
 
-            // Save user to Supabase, including the username
+            // Save the user data to Supabase
             await saveUserToSupabase(user, username);
-      
-            // Close the sign-up modal
+
+            // Hide the sign-up modal and show the login modal
             const signupModal = new bootstrap.Modal(document.getElementById('signupModal'));
-            signupModal.hide(); // Hide the signup modal
+            signupModal.hide();
 
-            // Open the login modal
             const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
-            loginModal.show(); // Show the login modal
-             
-            alert("Sign up successful! Please log in.");
+            loginModal.show();
 
+            alert("Sign-up successful! Please log in.");
         } catch (error) {
-            console.error("Error during sign up:", error);
+            console.error("Error during sign-up:", error);
             alert(error.message);
         }
     }
 });
 
-// Login handler
+// Login form handler
 document.querySelector('.login-form').addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -179,12 +157,16 @@ document.querySelector('.login-form').addEventListener('submit', async (e) => {
         isValid = false;
     }
 
-    // Proceed if validation is successful
+    // Proceed if the form is valid
     if (isValid) {
         try {
+            // Firebase login
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
-            localStorage.setItem("usermail",user.email)
+
+            // Store email in localStorage for session management
+            localStorage.setItem("usermail", user.email);
+
             alert("Login successful!");
             window.location.href = "./assets/pages/home.html";
         } catch (error) {
@@ -195,7 +177,7 @@ document.querySelector('.login-form').addEventListener('submit', async (e) => {
     }
 });
 
-// Listen for auth state changes
+// Listen for authentication state changes
 onAuthStateChanged(auth, (user) => {
     if (user) {
         console.log('User is signed in:', user);
@@ -205,33 +187,31 @@ onAuthStateChanged(auth, (user) => {
     }
 });
 
-// Example of querying user data from Supabase
+// Function to fetch user data from Supabase
 const getUserFromSupabase = async (uid) => {
     try {
-        // Fetch user from Supabase using the Firebase UID
         const { data, error } = await supabase
             .from('users')
             .select('email, username, firebase_uid, created_at')
-            .eq('firebase_uid', uid)  // Searching based on Firebase UID
-            .single();  // Return a single row
+            .eq('firebase_uid', uid)  
+            .single();
 
         if (error) {
             console.error('Error fetching user data from Supabase:', error.message);
         } else {
             console.log('User data from Supabase:', data);
-            // Use `data` for any further processing
         }
     } catch (error) {
         console.error('Error in Supabase query:', error.message);
     }
 };
 
-// Handle Supabase callback after GitHub login
+// Example of handling a session with Supabase (could be GitHub or other OAuth provider)
 window.onload = async () => {
     const { user, error } = await supabase.auth.getSession();
     if (user) {
         console.log('Supabase user session:', user);
-        saveUserToSupabase(user);  // Save user info to Supabase
+        saveUserToSupabase(user);  // Save user data to Supabase
     } else {
         console.error('GitHub login error:', error);
     }

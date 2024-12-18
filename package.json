@@ -1,0 +1,16 @@
+{
+  "name": "final-ticketboxx",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "firebase": "^9.0.0",
+    "supabase-js": "^2.0.0"
+  },
+  "devDependencies": {
+    "vite": "^4.0.0"
+  }
+}

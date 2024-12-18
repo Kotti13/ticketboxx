@@ -173,14 +173,14 @@ function populateShowTimes(theatres = [], movie) {
     });
 }
 
-// Fetch Reviews Function (Mock Example)
+// for reviews and once I chnaged dynamic to store reviews in supabase I will change this
 function fetchReviews(movieId) {
     const reviewsContainer = document.getElementById("reviews");
     reviewsContainer.innerHTML = "<p>Loading reviews...</p>";
 
     const reviews = [
-        { username: "john_doe", review: "Fantastic movie!", rating: 5 },
-        { username: "jane_smith", review: "Great visuals, but pacing was slow.", rating: 3 }
+        { username: "sheriff", review: "nicemovie!", rating: 3 },
+        { username: "santhosh", review: "Onetime watch.", rating: 3 }
     ];
 
     const reviewsHTML = reviews.map(review => `
@@ -199,7 +199,7 @@ function initializeHoverEffects() {
 
     showtimeItems.forEach(item => {
         const tooltip = item.querySelector('.tooltip');
-        if (!tooltip) return; // Skip if no tooltip present
+        if (!tooltip) return; 
 
         item.addEventListener('mouseenter', () => {
             tooltip.style.display = 'block';
@@ -211,7 +211,7 @@ function initializeHoverEffects() {
             tooltip.style.opacity = '0';
             setTimeout(() => {
                 tooltip.style.display = 'none';
-            }, 300); // Matches the transition duration
+            }, 300); 
         });
     });
 }

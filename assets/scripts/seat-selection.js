@@ -1,113 +1,120 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const params = new URLSearchParams(window.location.search);
-    const movieName = params.get('movieName'); // Fetch movie name
-    const theatreName = params.get('theatre'); // Fetch theatre name
+document.addEventListener('DOMContentLoaded', function () {
+    // Fetch URL parameters
+    var params = new URLSearchParams(window.location.search);
+    var movieName = params.get('movieName');
+    var theatreName = params.get('theatre');
 
-    // Get movie details from localStorage
-    const selectedMovie = JSON.parse(localStorage.getItem('selectedMovie'));
-    const headerTitle = document.querySelector('header h1');
-    const headerDetails = document.querySelector('header p');
+    // Fetch movie details from localStorage
+    var selectedMovie = JSON.parse(localStorage.getItem('selectedMovie'));
+
+    // Set movie title and theatre name
+    var headerTitle = document.getElementById('movieTitle');
+    var headerDetails = document.getElementById('theatreName');
 
     if (movieName && theatreName) {
         headerTitle.textContent = movieName;
         headerDetails.textContent = theatreName;
     } else {
-        headerTitle.textContent = "Movie not found";
-        headerDetails.textContent = "";
+        headerTitle.textContent = selectedMovie ? selectedMovie.name : "Movie not found";
+        headerDetails.textContent = selectedMovie ? selectedMovie.theatre : "";
     }
 
-   
-    const seatData = {
-        rs190: { rows: ['A', 'B', 'C', 'D', 'E', 'F',"G","H","I","J","K","L","M","N","O"], totalSeats: 30 },
-        rs60: { rows: ['P', 'Q', "R"], totalSeats: 30 },
+    // Seat data setup
+    var seatData = {
+        rs190: { rows: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O'], totalSeats: 30 },
+        rs60: { rows: ['P', 'Q', 'R'], totalSeats: 30 },
     };
 
-    const unavailableSeats = ['B7', 'C15', 'D19', 'L4', 'M10']; 
-    const bestsellerSeats = ['B12', 'C7', 'L20']; 
+    var unavailableSeats = ['B7', 'C15','B12', 'D19', 'L4', 'M10','C7','L20']; 
+    // var bestsellerSeats = ['B12', 'C7', 'L20'];
 
-    const selectedSeats = [];
-    let totalPrice = 0;
+    var selectedSeats = [];
+    var totalPrice = 0;
 
-    // Generate seat grid
-    Object.keys(seatData).forEach((section) => {
-        const seatContainer = document.getElementById(section);
-        seatData[section].rows.forEach((row) => {
-            for (let i = 1; i <= 18; i++) {
-                const seatId = `${row}${i}`;
-                const seat = document.createElement('div');
+    // Generate seat grid for Rs. 190 and Rs. 60 sections
+    var sectionKeys = Object.keys(seatData);
+    for (var i = 0; i < sectionKeys.length; i++) {
+        var section = sectionKeys[i];
+        var seatContainer = document.getElementById(section);
+        var rows = seatData[section].rows;
 
+        for (var j = 0; j < rows.length; j++) {
+            var row = rows[j];
+            for (var k = 1; k <= 18; k++) {
+                var seatId = row + k;
+                var seat = document.createElement('div');
                 seat.classList.add('seat');
-                seat.textContent = i;
+                seat.textContent = k;
 
-                if (unavailableSeats.includes(seatId)) {
-                    seat.classList.add('sold');
-                } else if (bestsellerSeats.includes(seatId)) {
-                    seat.classList.add('bestseller', 'available');
-                } else {
+                // Check if the seat is sold or bestseller
+                if (unavailableSeats.indexOf(seatId) !== -1) {
+                    seat.classList.add('sold');}
+                // } else if (bestsellerSeats.indexOf(seatId) !== -1) {
+                //     seat.classList.add('bestseller', 'available');
+                // } 
+                else {
                     seat.classList.add('available');
                 }
 
-                seat.addEventListener('click', () => {
-                    if (seat.classList.contains('sold')) return;
+                // Bind the price for each seat directly in the click listener
+                seat.addEventListener('click', function (section, seatId) {
+                    return function () {
+                        if (this.classList.contains('sold')) return;
 
-                    seat.classList.toggle('selected');
-                    if (seat.classList.contains('selected')) {
-                        selectedSeats.push(seatId);
-                        totalPrice += section === 'rs190' ? 190 : 60;
-                    } else {
-                        const index = selectedSeats.indexOf(seatId);
-                        selectedSeats.splice(index, 1);
-                        totalPrice -= section === 'rs190' ? 190 : 60;
-                    }
-                    updatePopup();
-                });
+                        this.classList.toggle('selected');
+                        if (this.classList.contains('selected')) {
+                            selectedSeats.push(seatId);
+                            totalPrice += (section === 'rs60') ? 60 : 190;
+                        } else {
+                            var index = selectedSeats.indexOf(seatId);
+                            if (index > -1) {
+                                selectedSeats.splice(index, 1);
+                                totalPrice -= (section === 'rs60') ? 60 : 190;
+                            }
+                        }
+
+                        // Update the popup
+                        var seatDisplay = document.getElementById('selectedSeats');
+                        var priceDisplay = document.getElementById('totalPrice');
+                        var ticketSummary = document.getElementById('ticketSummary');
+                        var confirmLink = document.getElementById('confirmBooking');
+
+                        seatDisplay.textContent = "Selected Seats: " + (selectedSeats.length ? selectedSeats.join(', ') : "None");
+                        priceDisplay.textContent = "Total Price: ₹" + totalPrice;
+                        ticketSummary.textContent = selectedSeats.length + " Tickets";
+
+                        if (selectedSeats.length > 0) {
+                            if (totalPrice === 60 * selectedSeats.length) {
+                                confirmLink.href = "https://rzp.io/rzp/x7sANvs";
+                            } else if (totalPrice === 190 * selectedSeats.length) {
+                                confirmLink.href = "https://rzp.io/rzp/xsPr0q8N";
+                            } else {
+                                confirmLink.href = "#";  // Mixed selection
+                            }
+                            confirmLink.classList.remove('disabled');
+                        } else {
+                            confirmLink.href = "payment.html";
+                            confirmLink.classList.add('disabled');
+                        }
+
+                        document.getElementById('popup').style.display = selectedSeats.length ? 'flex' : 'none';
+                    };
+                }(section, seatId));
 
                 seatContainer.appendChild(seat);
             }
-        });
-    });
-
-    // Update Popup
-    const updatePopup = () => {
-        const popup = document.getElementById('popup');
-        const seatDisplay = document.getElementById('selectedSeats');
-        const priceDisplay = document.getElementById('totalPrice');
-        const confirmLink = document.getElementById('confirmBooking');
-
-        seatDisplay.textContent = `Selected Seats: ${selectedSeats.join(', ') || 'None'}`;
-        priceDisplay.textContent = `Total Price: ₹${totalPrice}`;
-        popup.style.display = selectedSeats.length ? 'flex' : 'none';
-
-        if (selectedSeats.length) {
-            // razorpay
-            if (totalPrice === 60 * selectedSeats.length) {
-                // Rs. 60 section 
-                confirmLink.href = "https://rzp.io/rzp/x7sANvs";
-            } else if (totalPrice === 190 * selectedSeats.length) {
-                // Rs. 190 section 
-                confirmLink.href = "https://rzp.io/rzp/xsPr0q8N";
-            } else {
-                // Mixed selection
-                confirmLink.href = "#"; 
-            }
-            confirmLink.classList.remove('disabled');
-        } else {
-            confirmLink.href = "payment.html";
-            confirmLink.classList.add('disabled');
         }
+    }
 
-        document.getElementById('ticketSummary').textContent = `${selectedSeats.length} Tickets`;
-    };
+    // Confirm booking
+    var confirmBookingButton = document.getElementById('confirmBooking');
+    confirmBookingButton.addEventListener('click', function (e) {
+        e.preventDefault();
+        var loadingSpinner = document.getElementById('loading');
+        loadingSpinner.style.display = 'block';
+
+        setTimeout(function () {
+            window.location.href = e.target.href;
+        }, 2000);
+    });
 });
-
-document.getElementById('confirmBooking').addEventListener('click', (e) => {
-    e.preventDefault();
-
-    const loadingSpinner = document.getElementById('loading');
-    loadingSpinner.style.display = 'block';
-
-    setTimeout(() => {
-        window.location.href = e.target.href; 
-    }, 2000); 
-});
-
