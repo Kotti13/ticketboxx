@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Seat data setup
     var seatData = {
         rs190: { rows: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O'], totalSeats: 30 },
-        rs60: { rows: ['P', 'Q', 'R'], totalSeats: 30 },
+        rs60: { rows: ['P', 'Q', 'R','S'], totalSeats: 30 },
     };
 
     var unavailableSeats = ['B7', 'C15','B12', 'D19', 'L4', 'M10','C7','L20']; 
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 seat.classList.add('seat');
                 seat.textContent = k;
 
-                // Check if the seat is sold or bestseller
+                
                 if (unavailableSeats.indexOf(seatId) !== -1) {
                     seat.classList.add('sold');}
                 // } else if (bestsellerSeats.indexOf(seatId) !== -1) {
@@ -89,9 +89,9 @@ document.addEventListener('DOMContentLoaded', function () {
                             } else if (totalPrice === 190 * selectedSeats.length) {
                                 confirmLink.href = "https://rzp.io/rzp/xsPr0q8N";
                             } else {
-                                confirmLink.href = "#";  // Mixed selection
-                            }
-                            confirmLink.classList.remove('disabled');
+                                confirmLink.href = "../pages/payment.html";  // Mixed selection
+  }
+                            // confirmLink.classList.remove('disabled');
                         } else {
                             confirmLink.href = "payment.html";
                             confirmLink.classList.add('disabled');
@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Confirm booking
+    // Confirm booking button
     var confirmBookingButton = document.getElementById('confirmBooking');
     confirmBookingButton.addEventListener('click', function (e) {
         e.preventDefault();

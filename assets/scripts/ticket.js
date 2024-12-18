@@ -26,11 +26,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     try {
         const poster = await fetchMoviePoster(movieName);
         document.getElementById('moviePoster').src = poster;
-        downloadTicketPDF(movieName, theatreName, showTime, date, seats, bookingId, amount, poster, customerEmail, customerName);
     } catch (error) {
         console.error('Error fetching movie poster:', error);
         document.getElementById('moviePoster').src = "../images/default-poster.png";
-        downloadTicketPDF(movieName, theatreName, showTime, date, seats, bookingId, amount, "../images/default-poster.png", customerEmail, customerName);
     }
 
     sessionStorage.setItem('bookingId', bookingId);
@@ -72,43 +70,7 @@ function generateBookingId() {
     return id;
 }
 
-
-// Un-comment and modify the downloadTicketPDF function
-function downloadTicketPDF(movieName, theatreName, showTime, date, seats, bookingId, amount, poster, customerEmail, customerName) {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-
-    doc.setFontSize(16);
-    doc.text('Your Movie Ticket', 20, 20);
-    doc.setFontSize(12);
-    doc.text(`Movie: ${movieName}`, 20, 30);
-    doc.text(`Theatre: ${theatreName}`, 20, 40);
-    doc.text(`Show Time: ${showTime}`, 20, 50);
-    doc.text(`Date: ${date}`, 20, 60);
-    doc.text(`Seats: ${seats}`, 20, 70);
-    doc.text(`Booking ID: ${bookingId}`, 20, 80);
-    doc.text(`Amount: ${amount}`, 20, 90);
-
-    loadImage(poster).then((img) => {
-        doc.addImage(img, 'JPEG', 20, 100, 50, 75);
-        const pdfData = doc.output('datauristring');
-        sendTicketEmail(pdfData, customerEmail, customerName, movieName, theatreName, showTime, date, seats, bookingId, amount).then(() => {
-            window.location.href = "../pages/home.html";
-        }).catch((err) => {
-            console.error('Error sending email:', err);
-            window.location.href = "../pages/home.html";
-        });
-    }).catch((err) => {
-        console.error("Failed to load the image:", err);
-        const pdfData = doc.output('datauristring');
-        sendTicketEmail(pdfData, customerEmail, customerName, movieName, theatreName, showTime, date, seats, bookingId, amount).then(() => {
-            window.location.href = "../pages/home.html";
-        }).catch((err) => {
-            console.error('Error sending email:', err);
-            window.location.href = "../pages/home.html";
-        });
-    });
-}
+// Remove the downloadTicketPDF function entirely
 
 function loadImage(src) {
     return new Promise((resolve, reject) => {

@@ -18,25 +18,33 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
-// Function to get the movie ID from the URL
+
 function getMovieIdFromUrl() {
     const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('id'); // 'id' is the query parameter for movieId
+    return urlParams.get('id'); 
 }
 
-// Function to display movie details
+// after get movie id from url params 
+const movieId = getMovieIdFromUrl();  // Get movie ID from URL params
+if (movieId) {
+    displayMovieDetails(movieId);  // Fetch and display movie details
+} else {
+    console.log("Movie ID not found in URL.");
+}
+
 function displayMovieDetails(movieId) {
     const movieDetailsContainer = document.getElementById("movie-details");
 
-    // Reference to the movie in Firebase based on movie ID
+   
     const movieRef = ref(database, 'movies/' + movieId);
 
     // Fetch movie data from Firebase
     get(movieRef).then((snapshot) => {
         if (snapshot.exists()) {
             const movie = snapshot.val();
+            console.log('movie',movie); //for my understand 
 
-            // Create the HTML structure based on the movie data
+            // displaymovie details in conatiner 
             const html = `
                 <div class="movie-details-container">
                     <h1 class="movie-title">${movie.title}</h1>
@@ -95,10 +103,4 @@ function displayMovieDetails(movieId) {
     });
 }
 
-// Example usage: Get the movie ID from URL and display movie details
-const movieId = getMovieIdFromUrl();  // Get movie ID from URL params
-if (movieId) {
-    displayMovieDetails(movieId);  // Fetch and display movie details
-} else {
-    console.log("Movie ID not found in URL.");
-}
+

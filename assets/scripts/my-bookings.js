@@ -36,7 +36,7 @@ async function fetchBookings() {
 
 function displayBookings(bookings) {
     const bookingsContainer = document.getElementById('bookingsContainer');
-    bookingsContainer.innerHTML = ''; // Clear the container first
+    bookingsContainer.innerHTML = ''; 
 
     bookings.forEach(booking => {
         const bookingDiv = document.createElement('div');

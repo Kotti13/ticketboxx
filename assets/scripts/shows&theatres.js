@@ -119,7 +119,7 @@ function generateDateScroll() {
     const currentDate = new Date();
     const formatDate = (date) => date.toISOString().split('T')[0];
 
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 5; i++) {
         const date = new Date();
         date.setDate(currentDate.getDate() + i);
 
@@ -179,8 +179,8 @@ function fetchReviews(movieId) {
     reviewsContainer.innerHTML = "<p>Loading reviews...</p>";
 
     const reviews = [
-        { username: "sheriff", review: "nicemovie!", rating: 3 },
-        { username: "santhosh", review: "Onetime watch.", rating: 3 }
+        { username: "sheriff", review: "nicemovie!", rating: 3 },   //sample reviews
+        { username: "santhosh", review: "Onetime watch.", rating: 3 }  //sample reviews
     ];
 
     const reviewsHTML = reviews.map(review => `

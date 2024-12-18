@@ -108,13 +108,13 @@ document.addEventListener('DOMContentLoaded', () => {
             return; // Prevent duplicate payment attempts
         }
 
-        isProcessingPayment = true; // Set flag to prevent multiple submissions
-        googlePayButton.disabled = true; // Disable the payment button to prevent further clicks
-        loadingSpinner.style.display = 'block'; // Show loading spinner
+        isProcessingPayment = true; 
+        googlePayButton.disabled = true; 
+        loadingSpinner.style.display = 'block'; 
 
         googlePayClient.loadPaymentData(paymentDataRequest)
             .then((paymentData) => {
-                // Store session details
+                
                 sessionStorage.setItem('movieName', movieName);
                 sessionStorage.setItem('theatre', theatre);
                 sessionStorage.setItem('showTime', showTime);
@@ -126,9 +126,9 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch((err) => {
                 console.error('Google Pay payment failed:', err);
-                // alert('Payment failed. Please try again.');
+                
                 window.location.href = '../pages/ticket.html';
-                resetPaymentState(); // Reset the payment state on failure
+                resetPaymentState(); 
             });
     };
 
@@ -139,15 +139,15 @@ document.addEventListener('DOMContentLoaded', () => {
         // Simulate a delay in payment processing
         setTimeout(() => {
             loadingSpinner.style.display = 'none';
-            window.location.href = '../pages/ticket.html';  // Redirect to a ticket confirmation page
+            window.location.href = '../pages/ticket.html';  
         }, 2000);
     };
 
-    // Reset payment state (in case of failure or completion)
+    
     const resetPaymentState = () => {
-        isProcessingPayment = false; // Reset the flag
-        googlePayButton.disabled = false; // Enable the payment button again
-        loadingSpinner.style.display = 'none'; // Hide loading spinner
+        isProcessingPayment = false; 
+        googlePayButton.disabled = false;
+        loadingSpinner.style.display = 'none';
     };
 
     // Event listeners for input validation and buttons

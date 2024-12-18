@@ -28,8 +28,8 @@ document.getElementById('logoutButton').addEventListener('click', async (e) => {
         localStorage.removeItem('usermail'); // Clear session data
         alert("Logged out successfully!");
 
-        // Push a state and redirect to login page
-        sessionStorage.setItem("loggedOut", "true"); // Set a flag for logout
+       
+        sessionStorage.setItem("loggedOut", "true"); 
         window.history.pushState(null, null, "../../index.html");
         window.location.href = "../../index.html"; // Redirect to the login page
     } catch (error) {
