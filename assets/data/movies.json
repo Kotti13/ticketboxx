@@ -122,7 +122,8 @@
         "name": "AGS Cinemas: Maduravoyal",
         "showtimes": [
             { "time": "12:45 PM", "premiumPrice": 300, "normalPrice": 200, "link": "#" },
-            { "time": "04:10 PM", "premiumPrice": 350, "normalPrice": 250, "link": "#" }
+            { "time": "04:10 PM", "premiumPrice": 350, "normalPrice": 250, "link": "#" },
+            {"time": "10:10 PM", "premiumPrice": 350, "normalPrice": 250, "link": "#"}
         ]
     },
     {

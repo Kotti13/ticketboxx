@@ -15,8 +15,8 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig); // Initialize Firebase app
-const auth = getAuth(app); // Now you can safely use Firebase authentication
+const app = initializeApp(firebaseConfig); 
+const auth = getAuth(app); 
 
 
 // Supabase Configuration
@@ -34,7 +34,7 @@ const saveUserToSupabase = async (user, username) => {
     const { email, uid } = user;
 
     try {
-        // Try inserting the user data into Supabase
+        // inserting and upadte user data into Supabase
         const { data, error } = await supabase
             .from('users')
             .upsert({
@@ -46,7 +46,7 @@ const saveUserToSupabase = async (user, username) => {
 
         if (error) {
             console.error('Error saving user to Supabase:', error.message);
-            alert('Failed to save user data to Supabase');
+            // alert('Failed to save user data to Supabase');
         } else {
             console.log('User successfully saved to Supabase:', data);
         }
@@ -118,7 +118,7 @@ document.querySelector('.signup-form').addEventListener('submit', async (e) => {
       
             // Close the sign-up modal
             const signupModal = new bootstrap.Modal(document.getElementById('signupModal'));
-            signupModal.hide(); // Hide the signup modal
+            signupModal.hide(); 
 
             // Open the login modal
             const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
@@ -164,7 +164,7 @@ document.querySelector('.login-form').addEventListener('submit', async (e) => {
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
-            localStorage.setItem("usermail",user.email)
+            localStorage.setItem("usermail",user.email)      //for ticketsending
             alert("Login successful!");
             window.location.href = "./assets/pages/home.html";
         } catch (error) {
