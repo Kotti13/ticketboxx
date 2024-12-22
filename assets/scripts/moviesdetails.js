@@ -61,7 +61,7 @@ function displayMovieDetails(movieId) {
                             <a href="shows&theatres.html?id=${movie.id}" class="btn btn-success">Book Tickets</a>
                         </div>
                     </div>
-                    <p><strong>Description:</strong> ${movie.description}</p>
+                    <p class="movie-description"><strong>Description:</strong> ${movie.description}</p>
                     <p><strong>About Movie:</strong> ${movie.about}</p>
 
                     <h2>Cast</h2>
@@ -79,7 +79,7 @@ function displayMovieDetails(movieId) {
                         ${movie.crew.map(member => `
                             <div class="crew-member">
                                 <img src="${member.image}" alt="${member.name}" class="crew-photo">
-                                <div>${member.name}</div>
+                                <div>${member.name}<br><span style="color: red; text-align: center">${member.role}</span></div>
                             </div>
                         `).join('')}
                     </div>

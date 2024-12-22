@@ -190,7 +190,10 @@ h1 {
 .description{
     margin-top: 5%;
 }
+.movie-description{
+    margin-top: 10%;
 
+}
 /* cast container */
 
 .cast-container{

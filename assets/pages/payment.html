@@ -6,8 +6,6 @@
     <title>Payment Page</title>
     <link rel="stylesheet" href="../css/payment.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- Google Pay API -->
-    <link rel="manifest" href="../data/manifest.json">
 </head>
 <body>
     <!-- Header -->
@@ -29,24 +27,11 @@
                     <label for="mobile">Mobile Number:</label>
                     <input type="tel" id="mobile" placeholder="Enter your 10-digit mobile number" maxlength="10" required>
                 </div>
-                <button type="button" id="continueButton" class="continue-btn" disabled>Continue</button>
+                <button type="button" id="continueButton" class="continue-btn" >Continue</button>
             </form>
         </section>
-
-        <!-- Google Pay Section -->
-        <section id="googlePaySection" style="display: none;">
-            <div class="form-group">
-                <p style="font-size: large; text-align: center;">Pay with Google Pay</p>
-                <button type="button" id="googlePayButton" class="google-pay-button" disabled>Pay with Google Pay</button>
-            </div>
-        </section>
-
-        <div id="loading" class="loading-spinner" style="display: none;"></div>
     </main>
     
     <script async src="../scripts/payment.js"></script>
-    <script async src="https://pay.google.com/gp/p/js/pay.js"></script>
-   
-
 </body>
 </html>

@@ -123,8 +123,9 @@ document.querySelector('.signup-form').addEventListener('submit', async (e) => {
             // Open the login modal
             const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
             loginModal.show(); // Show the login modal
-             
+            // e.preventDefault();
             alert("Sign up successful! Please log in.");
+            
 
         } catch (error) {
             console.error("Error during sign up:", error);
