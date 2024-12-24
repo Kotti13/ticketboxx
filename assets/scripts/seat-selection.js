@@ -9,11 +9,18 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 document.addEventListener('DOMContentLoaded', () => {
     const params = new URLSearchParams(window.location.search);
-    const movieName = params.get('movieName'); // Fetch movie name
-    const theatreName = params.get('theatre'); // Fetch theatre name
+    const movieName = params.get('movieName'); 
+    const theatreName = params.get('theatre'); 
+
+    
 
     // Get movie details from localStorage
     const selectedMovie = JSON.parse(localStorage.getItem('selectedMovie'));
+    
+    console.log(`selectedDate:  ${selectedMovie.selectedDate}`)
+    // console.log(`showtime  ${selectedMovie.showtime}`)
+    console.log(`showtime: ${selectedMovie.selectedShowtime}`)
+   
     const headerTitle = document.querySelector('header h1');
     const headerDetails = document.querySelector('header p');
 
@@ -114,8 +121,6 @@ document.getElementById('confirmBooking').addEventListener('click', (e) => {
         window.location.href = e.target.href;
     }, 2000); 
 });
-// Retrieve the selected movie details from localStorage
-// const selectedMovie = JSON.parse(localStorage.getItem('selectedMovie'));
 
 // Get the showtime value from the stored object
 const selectedShowtime = selectedMovie ? selectedMovie.selectedShowtime : null;
@@ -178,3 +183,4 @@ async function updateSeatGrid() {
         });
     });
 }
+

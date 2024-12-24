@@ -243,6 +243,63 @@
                 <a href="movies.html" class="btn" style="background-color: orange;">Browse Movies</a>
             </div>
         </section>
+        <section class="recommended-movies">
+            <h2>New & Coming Soon</h2>
+            <div class="movie-slider">
+                <div class="movie-card">
+                    <a href="moviesdetails.html?id=10">
+                        <img src="./assets/images/jolly-o-jymkhana.jpg" alt="jolly-o-jymkhana">
+                    </a>
+                    
+                </div>
+                <div class="movie-card">
+                    <a href="moviesdetails.html?id=11">
+                        <img src="./assets/images/Captain_America_Brave_New_World_poster.jpg" alt="Captain_America_Brave_New_World">
+                    </a>
+                   
+                </div>
+        
+                <div class="movie-card">
+                    <a href="moviesdetails.html?id=12">
+                        <img src="./assets/images/good-bad-ugly.jpg" alt="good-bad-ugly">
+                    </a>
+                    
+                </div>
+        
+                <div class="movie-card">
+                    <a href="moviesdetails.html?id=13">
+                        <img src="./assets/images/pushpa-2.jpg" alt="pushpa-2">
+                    </a>
+                    
+                </div>
+        
+                <div class="movie-card">
+                    <a href="moviesdetails.html?id=14">
+                        <img src="./assets/images/miss-you-poster.jpg" alt="miss-you">
+                    </a>
+                   
+                </div>
+        
+                <div class="movie-card">
+                    <a href="moviesdetails.html?id=15">
+                        <img src="./assets/images/Mechanic_Rocky_film_poster.jpg" alt="Mechanic_Rocky">
+                    </a>
+                    
+                </div>
+        
+                <div class="movie-card">
+                    <a href="moviesdetails.html?id=16">
+                        <img src="./assets/images/Zebra.jpg" alt="Zebra">
+                    </a>
+                    
+                </div>
+        
+                
+                
+                
+                
+            </div>
+        </section>
 
         <section class="features">
             <h2>Our Features</h2>
@@ -327,7 +384,7 @@
             });
             
            
-            const protectedLinks = document.querySelectorAll('.nav-link, .hero-content .btn');
+            const protectedLinks = document.querySelectorAll('.nav-link, .hero-content .btn,.recommended-movies');
             
             protectedLinks.forEach(link => {
                 link.addEventListener('click', (event) => {

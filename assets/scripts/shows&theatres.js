@@ -1,3 +1,29 @@
+// Import the Firebase SDKs
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+
+// Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyBcFRNdsErrXYHiiuYlCf6txDjupaNwRno",
+    authDomain: "ticketboxx-c4049.firebaseapp.com",
+    databaseURL: "https://ticketboxx-c4049-default-rtdb.firebaseio.com",
+    projectId: "ticketboxx-c4049",
+    storageBucket: "ticketboxx-c4049.firebasestorage.app",
+    messagingSenderId: "1029974974410",
+    appId: "1:1029974974410:web:a94d9c5fe267f3e51db933",
+    measurementId: "G-F7PEJ1WQRV"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
+
+// Helper function to get movie ID from URL
+function getMovieIdFromUrl() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('id');
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     const params = new URLSearchParams(window.location.search);
     const movieId = params.get("id");
@@ -7,18 +33,13 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    // Fetch movies data
-    fetch('../data/movies.json')
-        .then(response => {
-            if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-            return response.json();
-        })
-        .then(data => {
-            console.log("Fetched Movies Data:", data.movies); // Debugging
-            const movie = data.movies.find(movie => movie.id === movieId);
-
-            if (movie) {
-                console.log("Found Movie:", movie); // Debugging
+    // Fetch movies data from Firebase
+    const movieRef = ref(database, `movies/${movieId}`);
+    get(movieRef)
+        .then((snapshot) => {
+            if (snapshot.exists()) {
+                const movie = snapshot.val();
+                console.log("Fetched Movie Data:", movie); // Debugging
                 displayMovieDetails(movie);
                 populateShowTimes(movie.theatres, movie);
 
@@ -34,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("movie-details").innerHTML = "<p>Movie not found.</p>";
             }
         })
-        .catch(error => {
+        .catch((error) => {
             console.error("Error fetching movie data:", error);
             document.getElementById("movie-details").innerHTML = "<p>Unable to load movie details. Please try again later.</p>";
         });
@@ -117,13 +138,13 @@ function generateDateScroll() {
     }
 
     const currentDate = new Date();
-    const formatDate = (date) => date.toISOString().split('T')[0];
+    const formatDate = (date) => date.toISOString().split('T')[0]; // Format date to YYYY-MM-DD
 
     for (let i = 0; i < 5; i++) {
         const date = new Date();
         date.setDate(currentDate.getDate() + i);
 
-        const dateStr = formatDate(date);
+        const dateStr = formatDate(date); // Format the date as a string
         const dateText = date.toLocaleDateString('en-GB', {
             weekday: 'short',
             day: 'numeric',
@@ -132,7 +153,7 @@ function generateDateScroll() {
 
         const dateElement = document.createElement("div");
         dateElement.classList.add("date-item");
-        dateElement.dataset.date = dateStr;
+        dateElement.dataset.date = dateStr; // Store the raw date in a data attribute
         dateElement.innerText = dateText;
 
         dateElement.addEventListener("click", function () {
@@ -140,15 +161,15 @@ function generateDateScroll() {
             dateElement.classList.add("selected");
 
             const selectedMovie = JSON.parse(localStorage.getItem('selectedMovie')) || {};
-            selectedMovie.selectedDate = dateStr;
-            localStorage.setItem('selectedMovie', JSON.stringify(selectedMovie));
+            selectedMovie.selectedDate = dateStr;  // Store the selected date in the object
+            localStorage.setItem('selectedMovie', JSON.stringify(selectedMovie));  // Update localStorage
         });
 
         dateScrollContainer.appendChild(dateElement);
     }
 }
 
-// Populate Show Times Function
+// Function to populate the showtimes for the movie
 function populateShowTimes(theatres = [], movie) {
     const showTimesContainer = document.getElementById("show-times");
     showTimesContainer.innerHTML = ''; // Clear any existing showtimes
@@ -160,8 +181,8 @@ function populateShowTimes(theatres = [], movie) {
                 <div class="showtimes-container">
                     ${theatre.showtimes.map(showtime => `
                         <div class="showtime-item">
-                            <a href="seat-selection.html?movieName=${encodeURIComponent(movie.title)}&theatre=${encodeURIComponent(theatre.name)}&date=${JSON.parse(localStorage.getItem('selectedMovie'))?.selectedDate}&movieId=${movie.id}&showtime=${encodeURIComponent(showtime.time)}" 
-                               class="showtime-link">
+                            <a href="seat-selection.html?movieName=${encodeURIComponent(movie.title)}&theatre=${encodeURIComponent(theatre.name)}&date=${encodeURIComponent(localStorage.getItem('selectedDate'))}&movieId=${movie.id}&showtime=${encodeURIComponent(showtime.time)}" 
+                               class="showtime-link" data-showtime="${showtime.time}">
                                 ${showtime.time}
                             </a>
                         </div>
@@ -171,9 +192,24 @@ function populateShowTimes(theatres = [], movie) {
         `;
         showTimesContainer.innerHTML += theatreBlock;
     });
+
+    // Add event listeners to all showtime links after populating the showtimes
+    const showtimeLinks = document.querySelectorAll('.showtime-link');
+
+    showtimeLinks.forEach(link => {
+        link.addEventListener('click', function (event) {
+            const selectedShowtime = this.getAttribute('data-showtime');  
+            const selectedMovie = JSON.parse(localStorage.getItem('selectedMovie')) || {};
+            selectedMovie.selectedShowtime = selectedShowtime;
+            localStorage.setItem('selectedMovie', JSON.stringify(selectedMovie));
+        });
+    });
+
+    initializeHoverEffects(); 
 }
 
-// for reviews and once I chnaged dynamic to store reviews in supabase I will change this
+
+// for reviews and once I changed dynamic to store reviews in supabase I will change this
 function fetchReviews(movieId) {
     const reviewsContainer = document.getElementById("reviews");
     reviewsContainer.innerHTML = "<p>Loading reviews...</p>";
@@ -192,7 +228,6 @@ function fetchReviews(movieId) {
 
     reviewsContainer.innerHTML = reviewsHTML;
 }
-
 
 function initializeHoverEffects() {
     const showtimeItems = document.querySelectorAll('.showtime-item');

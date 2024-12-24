@@ -11,7 +11,7 @@
     <!-- Header -->
     <header class="header">
         <button class="back-button" onclick="window.history.back();">←</button>
-        <h1 style="font-size: 20px;color: yellow;">Share your Contact Details</h1>
+        <h1 style="font-size: 20px;color: yellow;">Share your Contact & Payment Details</h1>
     </header>
 
     <!-- Payment Form -->
@@ -27,11 +27,26 @@
                     <label for="mobile">Mobile Number:</label>
                     <input type="tel" id="mobile" placeholder="Enter your 10-digit mobile number" maxlength="10" required>
                 </div>
-                <button type="button" id="continueButton" class="continue-btn" >Continue</button>
+
+                <!-- Card Details Section -->
+                <div class="form-group">
+                    <label for="cardNumber">Card Number:</label>
+                    <input type="text" id="cardNumber" placeholder="Enter your card number" maxlength="16" required>
+                </div>
+                <div class="form-group">
+                    <label for="expiryDate">Expiry Date:</label>
+                    <input type="month" id="expiryDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="cvv">CVV:</label>
+                    <input type="password" id="cvv" maxlength="3" placeholder="Enter CVV" required>
+                </div>
+
+                <button type="button" id="continueButton" class="continue-btn">Continue</button>
             </form>
         </section>
     </main>
-    
+
     <script async src="../scripts/payment.js"></script>
 </body>
 </html>

@@ -170,13 +170,16 @@ function sendTicketEmail(pdfData, customerEmail, customerName, movieName, theatr
 
 async function saveBookingToSupabase(ticketData) {
     try {
+        // Ensure showTime is not null or undefined. If it is, provide a fallback value.
+        const showTime = ticketData.showTime || "N/A";  // Fallback value "N/A"
+
         const { data, error } = await supabase
             .from('bookings')
             .insert([{
                 booking_id: ticketData.bookingId,
                 movie_name: ticketData.movieName,
                 theatre_name: ticketData.theatreName,
-                show_time: ticketData.showTime,
+                show_time: showTime,  
                 booking_date: formatDate(ticketData.date),
                 seats: ticketData.seats,
                 amount: parseFloat(ticketData.amount.replace('₹', '').trim()),
@@ -193,6 +196,7 @@ async function saveBookingToSupabase(ticketData) {
         console.error('Error saving ticket to Supabase:', error);
     }
 }
+
 
 function formatDate(date) {
     const d = new Date(date);
