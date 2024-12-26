@@ -56,7 +56,7 @@ window.addEventListener('load', () => {
         // Push state to prevent navigation
         window.history.pushState(null, null, window.location.href);
 
-        // Handle back navigation
+      
         window.onpopstate = function () {
             window.history.pushState(null, null, window.location.href);
             alert("You cannot go back. Please log in again.");

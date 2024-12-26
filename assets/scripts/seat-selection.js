@@ -95,10 +95,10 @@ document.addEventListener('DOMContentLoaded', () => {
         popup.style.display = selectedSeats.length ? 'flex' : 'none';
 
         if (selectedSeats.length) {
-            confirmLink.href = `payment.html?movieName=${encodeURIComponent(movieName)}&theatre=${encodeURIComponent(theatreName)}&seats=${encodeURIComponent(selectedSeats.join(','))}&price=${totalPrice}`;
+            confirmLink.href = `payments.html?movieName=${encodeURIComponent(movieName)}&theatre=${encodeURIComponent(theatreName)}&seats=${encodeURIComponent(selectedSeats.join(','))}&price=${totalPrice}`;
             confirmLink.classList.remove('disabled');
         } else {
-            confirmLink.href = "payment.html";
+            confirmLink.href = "payments.html";
             confirmLink.classList.add('disabled');
         }
 

@@ -1,4 +1,4 @@
-/* General Page Styles */
+/* Global Styles */
 * {
     margin: 0;
     padding: 0;
@@ -6,142 +6,114 @@
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
     color: #333;
 }
 
 h1 {
     font-size: 24px;
-    font-weight: bold;
     text-align: center;
-    color: yellow;
-    margin-bottom: 20px;
+    color: #f39c12;
+    margin: 20px 0;
 }
 
-/* Header Styles */
+/* Header Styling */
 .header {
-    background-color: #333;
-    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #2c3e50;
+    color: white;
+    padding: 15px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    z-index: 100;
 }
 
-.header h1 {
-    font-size: 18px;
-    color: white;
-    margin: 0;
-}
-
-.back-button {
-    background-color: transparent;
+.header button {
+    background: none;
     border: none;
     color: white;
-    font-size: 18px;
+    font-size: 24px;
     cursor: pointer;
-    padding: 5px;
 }
 
-.back-button:hover {
-    color: #ffcc00;
-}
-
-/* Main Payment Form Container */
+/* Centering Payment Form */
 .payment-container {
-    padding: 20px;
-    max-width: 600px;
-    margin: 30px auto;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding-top: 60px; /* Space for fixed header */
 }
 
 .form-section {
-    margin-bottom: 30px;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-/* Form Elements */
-.form-group {
-    margin-bottom: 15px;
-}
-
-label {
-    font-size: 14px;
-    font-weight: 600;
-    color: #444;
-}
-
-input[type="email"],
-input[type="tel"],
-input[type="text"],
-input[type="month"],
-input[type="password"] {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     width: 100%;
-    padding: 12px;
-    margin-top: 6px;
+    max-width: 400px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
     font-size: 14px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background-color: #f9f9f9;
+    margin-bottom: 5px;
+    display: block;
+    color: #555;
 }
 
-input[type="email"]:focus,
-input[type="tel"]:focus,
-input[type="text"]:focus,
-input[type="month"]:focus,
-input[type="password"]:focus {
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     outline: none;
-    border-color: #ffcc00;
-    background-color: white;
 }
 
-input[type="email"]::placeholder,
-input[type="tel"]::placeholder,
-input[type="text"]::placeholder,
-input[type="password"]::placeholder {
-    color: #aaa;
+.form-group input:focus {
+    border-color: #f39c12;
+    box-shadow: 0 0 5px rgba(243, 156, 18, 0.5);
 }
 
-/* Button Styles */
+/* Continue Button (Anchor Tag) */
 .continue-btn {
-    padding: 14px;
-    background-color: #ffcc00;
-    color: #333;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    padding: 12px 0;
+    background-color: #f39c12;
+    color: white;
     font-size: 16px;
-    font-weight: bold;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
     transition: background-color 0.3s ease;
 }
 
 .continue-btn:hover {
-    background-color: #e6b800;
-}
-
-.continue-btn:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
+    background-color: #e67e22;
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
-    .payment-container {
-        padding: 15px;
-        margin: 20px;
+@media (max-width: 480px) {
+    h1 {
+        font-size: 20px;
     }
 
-    .header h1 {
-        font-size: 16px;
+    .form-section {
+        padding: 20px;
+        max-width: 90%;
     }
 
     .form-group input {
-        font-size: 12px;
+        font-size: 16px;
     }
 }
