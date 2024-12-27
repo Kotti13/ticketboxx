@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shows & Theatres</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div><img src="../images/ticketboxx-logo.png" alt="TicketBoxx" height="40" width="100"></div>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="admin.html">Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1>Available Movies</h1>
+        <div id="movies-list" class="row">
+            <!-- Movie cards will be rendered here -->
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 TicketBoxx. All Rights Reserved.</p>
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+        import { getDatabase, ref, child, get } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBcFRNdsErrXYHiiuYlCf6txDjupaNwRno",
+            authDomain: "ticketboxx-c4049.firebaseapp.com",
+            databaseURL: "https://ticketboxx-c4049-default-rtdb.firebaseio.com",
+            projectId: "ticketboxx-c4049",
+            storageBucket: "ticketboxx-c4049.firebasestorage.app",
+            messagingSenderId: "1029974974410",
+            appId: "1:1029974974410:web:a94d9c5fe267f3e51db933",
+            measurementId: "G-F7PEJ1WQRV"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        // Function to fetch movie data from Firebase
+        function fetchMovies() {
+            const moviesRef = ref(database, 'movies');
+            get(moviesRef).then((snapshot) => {
+                if (snapshot.exists()) {
+                    const moviesData = snapshot.val();
+                    displayMovies(moviesData);
+                } else {
+                    console.log("No data available");
+                }
+            }).catch((error) => {
+                console.error("Error fetching movie data: ", error);
+            });
+        }
+
+        // Function to display movies dynamically
+        function displayMovies(moviesData) {
+            const moviesList = document.getElementById('movies-list');
+            moviesList.innerHTML = ''; // Clear any existing content
+            Object.values(moviesData).forEach(movie => {
+                const movieCard = `
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <img src="${movie.poster}" class="card-img-top" alt="${movie.title}">
+                            <div class="card-body">
+                                <h5 class="card-title">${movie.title}</h5>
+                                <p class="card-text">${movie.description}</p>
+                                <a href="showtimes.html?movieId=${movie.id}" class="btn btn-primary">View Showtimes</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                moviesList.innerHTML += movieCard;
+            });
+        }
+
+        // Call the function to fetch and display movies
+        fetchMovies();
+    </script>
+</body>
+</html>

@@ -169,6 +169,7 @@ function generateDateScroll() {
     }
 }
 
+
 // Function to populate the showtimes for the movie
 function populateShowTimes(theatres = [], movie) {
     const showTimesContainer = document.getElementById("show-times");
@@ -182,7 +183,7 @@ function populateShowTimes(theatres = [], movie) {
                     ${theatre.showtimes.map(showtime => `
                         <div class="showtime-item">
                             <a href="seat-selection.html?movieName=${encodeURIComponent(movie.title)}&theatre=${encodeURIComponent(theatre.name)}&date=${encodeURIComponent(localStorage.getItem('selectedDate'))}&movieId=${movie.id}&showtime=${encodeURIComponent(showtime.time)}" 
-                               class="showtime-link" data-showtime="${showtime.time}">
+                               class="showtime-link" data-showtime="${showtime.time}" data-theatre="${theatre.name}">
                                 ${showtime.time}
                             </a>
                         </div>
@@ -199,14 +200,22 @@ function populateShowTimes(theatres = [], movie) {
     showtimeLinks.forEach(link => {
         link.addEventListener('click', function (event) {
             const selectedShowtime = this.getAttribute('data-showtime');  
+            const selectedTheatre = this.getAttribute('data-theatre'); // Get the selected theatre
             const selectedMovie = JSON.parse(localStorage.getItem('selectedMovie')) || {};
+
+            // Store selected showtime in selectedMovie
             selectedMovie.selectedShowtime = selectedShowtime;
-            localStorage.setItem('selectedMovie', JSON.stringify(selectedMovie));
+            localStorage.setItem('selectedMovie', JSON.stringify(selectedMovie));  // Update selectedMovie in localStorage
+            
+            // Store selected theatre separately
+            localStorage.setItem('selectedTheatre', selectedTheatre);  // Store the selected theatre directly
         });
     });
 
     initializeHoverEffects(); 
 }
+
+
 
 
 // for reviews and once I changed dynamic to store reviews in supabase I will change this

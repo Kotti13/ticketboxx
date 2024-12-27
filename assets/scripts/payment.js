@@ -34,11 +34,11 @@ document.addEventListener('DOMContentLoaded', () => {
         continueLink.style.opacity = isCardValid && isExpiryValid && isCvvValid ? '1' : '0.6';
     };
 
-    // Event listeners for form validation
     cardNumberInput.addEventListener('input', validateInputs);
     expiryDateInput.addEventListener('input', validateInputs);
     cvvInput.addEventListener('input', validateInputs);
 
-    // Validate the form inputs on page load (in case user had pre-filled values)
+    
     validateInputs();
 });
+console.log(localStorage.getItem('clickedSeatsDetails'))

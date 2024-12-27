@@ -1,21 +1,27 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
 import { createClient } from 'https://cdn.skypack.dev/@supabase/supabase-js@2.0.0';
 
 const supabaseUrl = 'https://srjumswibbswcwjntcad.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNyanVtc3dpYmJzd2N3am50Y2FkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjk2Nzk5MzcsImV4cCI6MjA0NTI1NTkzN30.e_ZkFg_EPI8ObvFz70Ejc1W4RGpQurr0SoDlK6IoEXY';
-
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 document.addEventListener("DOMContentLoaded", async () => {
     const selectedMovie = JSON.parse(localStorage.getItem('selectedMovie')) || {};
-    const movieName = sessionStorage.getItem('movieName') || "N/A";
-    const theatreName = sessionStorage.getItem('theatre') || "N/A";
+    const selectedseat=JSON.parse(localStorage.getItem('clickedSeatsDetails'));
+    
+   
+    const movieName = selectedMovie.title || "N/A";
+    const theatreName = (localStorage.getItem('selectedTheatre')) || "N/A";
     const date = selectedMovie.selectedDate || "N/A";
-    const seats = sessionStorage.getItem('seats') || "N/A";
-    const amount = sessionStorage.getItem('price') || "₹0";
+   const seats=selectedseat.map(item => item.seatId);
+
+    const amount = JSON.parse(localStorage.getItem('totalPrice')); "₹0";
     const showTime = selectedMovie ? selectedMovie.selectedShowtime : null;
     const customerEmail = localStorage.getItem("usermail");
     const customerName = "Customer Name";
     const bookingId = generateBookingId();
+    
+    
 
     document.getElementById('movieName').textContent = movieName;
     document.getElementById('theatreName').textContent = theatreName;
@@ -27,11 +33,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     fetchMoviePoster(movieName).then(poster => {
         document.getElementById('moviePoster').src = poster;
-        sendTicketEmail(movieName, theatreName, showTime, date, seats, bookingId, amount, poster, customerEmail, customerName);
+        downloadTicketPDF(movieName, theatreName, showTime, date, seats, bookingId, amount, poster, customerEmail, customerName);
     }).catch(error => {
         console.error('Error fetching movie poster:', error);
         document.getElementById('moviePoster').src = "../images/default-poster.png";
-        sendTicketEmail(movieName, theatreName, showTime, date, seats, bookingId, amount, "../images/default-poster.png", customerEmail, customerName);
+        downloadTicketPDF(movieName, theatreName, showTime, date, seats, bookingId, amount, "../images/default-poster.png", customerEmail, customerName);
     });
 
     sessionStorage.setItem('bookingId', bookingId);
@@ -74,12 +80,9 @@ function generateBookingId() {
 
 async function fetchMoviePoster(movieName) {
     try {
-        if (!movieName) 
-            throw new Error("Movie name is undefined or empty.");
+        if (!movieName) throw new Error("Movie name is undefined or empty.");
         const response = await fetch('../data/movies.json');
-
-        if (!response.ok) 
-            throw new Error('Failed to fetch movie data');
+        if (!response.ok) throw new Error('Failed to fetch movie data');
         const data = await response.json();
         const movie = data.movies.find(movie => movie.title.toLowerCase() === movieName.toLowerCase());
         if (movie) return movie.poster;
@@ -90,9 +93,44 @@ async function fetchMoviePoster(movieName) {
     }
 }
 
+function downloadTicketPDF(movieName, theatreName, showTime, date, seats, bookingId, amount, poster, customerEmail, customerName) {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    doc.setFontSize(16);
+    doc.text('Your Movie Ticket', 20, 20);
+    doc.setFontSize(12);
+    doc.text(`Movie: ${movieName}`, 20, 30);
+    doc.text(`Theatre: ${theatreName}`, 20, 40);
+    doc.text(`Show Time: ${showTime}`, 20, 50);
+    doc.text(`Date: ${date}`, 20, 60);
+    doc.text(`Seats: ${seats}`, 20, 70);
+    doc.text(`Booking ID: ${bookingId}`, 20, 80);
+    doc.text(`Amount: ${amount}`, 20, 90);
+
+    loadImage(poster).then((img) => {
+        doc.addImage(img, 'JPEG', 20, 100, 50, 75);
+        const pdfData = doc.output('datauristring');
+        
+        // Send ticket email and redirect
+        sendTicketEmail(pdfData, customerEmail, customerName, movieName, theatreName, showTime, date, seats, bookingId, amount)
+            .then(() => {
+                console.log('Email sent successfully!');
+                showSuccessMessageAndRedirect();
+            })
+            .catch((err) => {
+                console.error('Error sending email:', err);
+                alert('Failed to send email. Please try again.');
+            });
+    }).catch((err) => {
+        console.error("Failed to load the image:", err);
+        alert('Failed to generate the ticket. Please try again.');
+    });
+}
+
 function showSuccessMessageAndRedirect() {
     const successMessage = document.createElement('div');
-    successMessage.textContent = 'Your ticket has been successfully emailed to you!';
+    successMessage.textContent = 'Your ticket has been successfully generated and emailed to you!';
     successMessage.style.position = 'fixed';
     successMessage.style.top = '50%';
     successMessage.style.left = '50%';
@@ -109,6 +147,7 @@ function showSuccessMessageAndRedirect() {
     }, 5000); // Redirect after 5 seconds
 }
 
+
 function loadImage(src) {
     return new Promise((resolve, reject) => {
         const img = new Image();
@@ -120,9 +159,9 @@ function loadImage(src) {
 
 emailjs.init('ZuZLrLJOaiaonlV8M');
 
-function sendTicketEmail(movieName, theatreName, showTime, date, seats, bookingId, amount, poster, customerEmail, customerName) {
+function sendTicketEmail(pdfData, customerEmail, customerName, movieName, theatreName, showTime, date, seats, bookingId, amount) {
     return emailjs.send('service_jeimr7d', 'template_ow3x08t', {
-        movie_poster: poster,
+        movie_poster: movieName,
         to_name: customerName,
         to_email: customerEmail,
         movie_name: movieName,
@@ -132,29 +171,18 @@ function sendTicketEmail(movieName, theatreName, showTime, date, seats, bookingI
         seats: seats,
         booking_id: bookingId,
         amount: amount,
-    })
-    .then(() => {
-        console.log('Email sent successfully!');
-        showSuccessMessageAndRedirect();
-    })
-    .catch((err) => {
-        console.error('Error sending email:', err);
-        alert('Failed to send email. Please try again.');
     });
 }
 
 async function saveBookingToSupabase(ticketData) {
     try {
-        // Ensure showTime is not null or undefined. If it is, provide a fallback value.
-        const showTime = ticketData.showTime || "N/A";  // Fallback value "N/A"
-
         const { data, error } = await supabase
             .from('bookings')
             .insert([{
                 booking_id: ticketData.bookingId,
                 movie_name: ticketData.movieName,
                 theatre_name: ticketData.theatreName,
-                show_time: showTime,  
+                show_time: ticketData.showTime,
                 booking_date: formatDate(ticketData.date),
                 seats: ticketData.seats,
                 amount: parseFloat(ticketData.amount.replace('₹', '').trim()),
@@ -179,3 +207,15 @@ function formatDate(date) {
     const day = String(d.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
 }
+// const selectedseat=localStorage.getItem('clickedSeatsDetails');
+// for(let seat of selectedseat){
+
+//   console.log(`${seat.seatId}`)
+// }
+// const selectedseat = localStorage.getItem('clickedSeatsDetails');
+
+// console.log(selectedMovie)
+    console.log(amount)
+    console.log(movieName)
+    console.log(theatreName)
+    console.log(selectedseat)

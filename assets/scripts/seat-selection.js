@@ -12,14 +12,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const movieName = params.get('movieName'); 
     const theatreName = params.get('theatre'); 
 
-    
-
     // Get movie details from localStorage
     const selectedMovie = JSON.parse(localStorage.getItem('selectedMovie'));
-    
-    console.log(`selectedDate:  ${selectedMovie.selectedDate}`)
-    // console.log(`showtime  ${selectedMovie.showtime}`)
-    console.log(`showtime: ${selectedMovie.selectedShowtime}`)
+    console.log(`selectedDate:  ${selectedMovie.selectedDate}`);
+    console.log(`showtime: ${selectedMovie.selectedShowtime}`);
    
     const headerTitle = document.querySelector('header h1');
     const headerDetails = document.querySelector('header p');
@@ -38,10 +34,11 @@ document.addEventListener('DOMContentLoaded', () => {
         rs60: { rows: ['P', 'Q', "R"], totalSeats: 30 },
     };
 
-    const unavailableSeats = ['B7', 'C15', 'D19', 'L4', 'M10']; // Example unavailable
-    const bestsellerSeats = ['B12', 'C7', 'L20']; // Example bestseller
+    const unavailableSeats = []; 
+    const bestsellerSeats = []; 
 
     const selectedSeats = [];
+    const clickedSeatsDetails = [];  // New variable to store clicked seat details
     let totalPrice = 0;
 
     // Generate seat grid
@@ -69,10 +66,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     seat.classList.toggle('selected');
                     if (seat.classList.contains('selected')) {
                         selectedSeats.push(seatId);
+                        clickedSeatsDetails.push({ seatId, section, row });  // Store seat details
                         totalPrice += section === 'rs190' ? 190 : 60;
                     } else {
                         const index = selectedSeats.indexOf(seatId);
                         selectedSeats.splice(index, 1);
+                        const seatIndex = clickedSeatsDetails.findIndex(seat => seat.seatId === seatId);
+                        clickedSeatsDetails.splice(seatIndex, 1);  // Remove seat from clicked details
                         totalPrice -= section === 'rs190' ? 190 : 60;
                     }
                     updatePopup();
@@ -94,6 +94,9 @@ document.addEventListener('DOMContentLoaded', () => {
         priceDisplay.textContent = `Total Price: ₹${totalPrice}`;
         popup.style.display = selectedSeats.length ? 'flex' : 'none';
 
+        // Store the total price in localStorage
+        localStorage.setItem('totalPrice', totalPrice);
+
         if (selectedSeats.length) {
             confirmLink.href = `payments.html?movieName=${encodeURIComponent(movieName)}&theatre=${encodeURIComponent(theatreName)}&seats=${encodeURIComponent(selectedSeats.join(','))}&price=${totalPrice}`;
             confirmLink.classList.remove('disabled');
@@ -103,13 +106,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         document.getElementById('ticketSummary').textContent = `${selectedSeats.length} Tickets`;
+        
+        // Optionally, store clicked seat details in localStorage for later use
+        localStorage.setItem('clickedSeatsDetails', JSON.stringify(clickedSeatsDetails));
     };
 });
 
-const selectedMovie = JSON.parse(localStorage.getItem('selectedMovie'));
-console.log(selectedMovie)
-
-
+// When confirming booking, ensure the clicked seats are in localStorage if needed
 document.getElementById('confirmBooking').addEventListener('click', (e) => {
     e.preventDefault();
 
@@ -117,9 +120,8 @@ document.getElementById('confirmBooking').addEventListener('click', (e) => {
     loadingSpinner.style.display = 'block';
 
     setTimeout(() => {
-       
         window.location.href = e.target.href;
-    }, 2000); 
+    }, 2000);
 });
 
 // Get the showtime value from the stored object
@@ -183,4 +185,3 @@ async function updateSeatGrid() {
         });
     });
 }
-

@@ -2,7 +2,7 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    background-color:fff;
+    background-color: #fff;
     color: #333;
 }
 
@@ -15,7 +15,6 @@ body {
     background: white;
     color: black;
     box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
-
 }
 
 .back-button {
@@ -28,11 +27,11 @@ body {
 
 .seat-section {
     padding: 20px;
-    /* max-width: 800px; */
     width: 1200px;
     margin: 0 auto;
 }
-.ticket-count{
+
+.ticket-count {
     margin-left: 70%;
 }
 
@@ -54,13 +53,13 @@ body {
 .seat {
     width: 25px;
     height: 25px;
-    border: 0.5px solid red;
+    border: 0.5px solid #f5a623;
     border-radius: 2px;
     cursor: pointer;
     text-align: center;
     line-height: 25px;
     font-size: 0.8rem;
-    background-color:#fafafa;
+    background-color: #fafafa;
 }
 
 .seat.bestseller {
@@ -86,10 +85,12 @@ body {
     margin: 20px auto;
     text-align: center;
     font-size: 1rem;
-    /* background: #ddd; */
     padding: 5px;
     width: 90%;
     border-radius: 5px;
+    background-color: #ddd;
+    color: #444;
+    font-weight: bold;
 }
 
 /* Legends */
@@ -98,6 +99,22 @@ body {
     justify-content: center;
     gap: 15px;
     margin: 20px auto;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.legend-item span {
+    font-size: 14px;
+}
+
+.legend-item .seat {
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
 }
 
 /* Popup */
@@ -115,21 +132,28 @@ body {
     border-top: 2px solid #42a5f5;
 }
 
-
-/* confirm ticket */
-
-.confirm-ticket{
-    display: block; 
-    text-align: center; 
-    width: 200px; 
-    height: 50px; 
-    line-height: 50px; 
-    background-color: #007BFF; 
-    color: white;
-    text-decoration: none; 
-    border-radius: 5px;
+.popup .ticket-summary {
+    font-size: 16px;
+    font-weight: bold;
 }
 
+.popup .total-price {
+    font-size: 16px;
+    color: #42a5f5;
+}
+
+.popup .confirm-ticket {
+    display: block;
+    text-align: center;
+    width: 200px;
+    height: 50px;
+    line-height: 50px;
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-left: auto;
+}
 
 /* Basic styles for the anchor tag */
 .button {
@@ -171,4 +195,36 @@ body {
     100% {
         transform: translate(-50%, -50%) rotate(360deg);
     }
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+    .seat-section {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .seats {
+        grid-template-columns: repeat(8, 1fr); /* Less seats per row on smaller screens */
+    }
+
+    .ticket-count {
+        margin-left: 50%;
+    }
+
+    .popup .confirm-ticket {
+        width: 150px;
+    }
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    font-size: 14px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
 }
