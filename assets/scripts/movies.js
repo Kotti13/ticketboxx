@@ -176,3 +176,4 @@ function showUsernamePopup(username) {
         popup.classList.remove('show');
     }, 3000);
 }
+console.log(localStorage.getItem('username'));

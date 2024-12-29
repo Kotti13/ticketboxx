@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.log(seats)
     const amount = JSON.parse(localStorage.getItem('totalPrice')) || "₹0";
     const customerEmail = localStorage.getItem("usermail") || "";
-    const customerName = "Customer Name";  // Replace this with actual user data if available
+    const customerName = localStorage.getItem('username');  // Replace this with actual user data if available
     const bookingId = generateBookingId();
 
     // Update UI with booking information

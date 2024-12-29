@@ -247,9 +247,11 @@ document.querySelector('.google-login').addEventListener('click', async () => {
         alert(`Welcome ${user.displayName}!`);
         window.location.href = "./assets/pages/home.html";
         localStorage.setItem('usermail', user.email);
+        localStorage.setItem('username',user.displayName)
     } catch (error) {
         console.error("Google Sign-In Error:", error.message);
         alert("Google Sign-In failed. Please try again.");
     }
 });
 
+ 
