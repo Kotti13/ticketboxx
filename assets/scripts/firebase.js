@@ -2,6 +2,9 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
 import { createClient } from 'https://cdn.skypack.dev/@supabase/supabase-js@2.0.0';
+import { GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
+const googleProvider = new GoogleAuthProvider();
+
 
 // Firebase Configuration
 const firebaseConfig = {
@@ -217,3 +220,29 @@ window.onload = async () => {
         console.error('GitHub login error:', error);
     }
 };
+
+
+
+
+
+document.querySelector('.google-login').addEventListener('click', async () => {
+    try {
+        // Use Google Sign-In
+        const result = await signInWithPopup(auth, googleProvider);
+
+        // User information
+        const user = result.user;
+        console.log("Google Sign-In user info:", user);
+
+        // Save user to Supabase
+        await saveUserToSupabase(user, user.displayName);
+
+        // Redirect or handle post-login actions
+        alert(`Welcome ${user.displayName}!`);
+        window.location.href = "./assets/pages/home.html";
+    } catch (error) {
+        console.error("Google Sign-In Error:", error.message);
+        alert("Google Sign-In failed. Please try again.");
+    }
+});
+
