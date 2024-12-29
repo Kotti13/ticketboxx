@@ -1,7 +1,20 @@
 // Import Firebase modules (single version)
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
-import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
-import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
+import { 
+    initializeApp 
+} from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+import { 
+    getAuth, 
+    signOut, 
+    setPersistence, 
+    browserLocalPersistence, 
+    onIdTokenChanged, 
+    onAuthStateChanged 
+} from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
+import { 
+    getDatabase, 
+    ref, 
+    get 
+} from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
 
 // Firebase Configuration
 const firebaseConfig = {
@@ -20,50 +33,72 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const database = getDatabase(app);
 
+// Set session persistence to local
+setPersistence(auth, browserLocalPersistence)
+    .then(() => {
+        console.log("Session persistence set to local.");
+    })
+    .catch((error) => {
+        console.error("Error setting session persistence:", error);
+    });
+
+// Monitor user session
+onIdTokenChanged(auth, (user) => {
+    if (user) {
+        console.log("User is signed in:", user);
+        // Refresh user token automatically
+        user.getIdToken(true).catch((error) => {
+            console.error("Error refreshing token:", error);
+        });
+    } else {
+        console.log("User logged out or token expired.");
+        sessionStorage.setItem("loggedOut", "true");
+        window.location.href = "../../index.html";
+    }
+});
+
 // Logout functionality
 document.getElementById('logoutButton').addEventListener('click', async (e) => {
     e.preventDefault();
     try {
-        await signOut(auth);
-        localStorage.removeItem('usermail'); // Clear session data
-        alert("Logged out successfully!");
+        const confirmLogout = confirm("Are you sure you want to log out?");
+        if (!confirmLogout) return;
 
-       
-        sessionStorage.setItem("loggedOut", "true"); 
-        window.history.pushState(null, null, "../../index.html");
-        window.location.href = "../../index.html"; // Redirect to the login page
+        await signOut(auth);
+
+        // Clear session and local storage
+        localStorage.clear();
+        sessionStorage.clear();
+
+        alert("Logged out successfully!");
+        window.location.href = "../../index.html";
     } catch (error) {
-        console.error("Error during logout:", error);
+        console.error("Error during logout:", error.message);
         alert("Failed to log out. Please try again.");
     }
 });
 
 // Redirect to login if user is not authenticated
 function redirectIfLoggedOut() {
-    const usermail = localStorage.getItem("usermail"); // Check login status
-    if (!usermail) {
-        sessionStorage.setItem("loggedOut", "true");
-        window.location.href = "../../index.html";
-    }
+    onAuthStateChanged(auth, (user) => {
+        if (!user) {
+            sessionStorage.setItem("loggedOut", "true");
+            window.location.href = "../../index.html";
+        }
+    });
 }
-
-// Call this function on protected pages
 redirectIfLoggedOut();
 
 // Prevent back navigation after logout
 window.addEventListener('load', () => {
     if (sessionStorage.getItem("loggedOut") === "true") {
-        // Push state to prevent navigation
         window.history.pushState(null, null, window.location.href);
-
-      
         window.onpopstate = function () {
             window.history.pushState(null, null, window.location.href);
             alert("You cannot go back. Please log in again.");
         };
     }
 });
-
 
 function preventBackNavigation() {
     window.history.pushState(null, null, window.location.href);
@@ -72,7 +107,6 @@ function preventBackNavigation() {
     };
 }
 preventBackNavigation();
-
 
 // Handle search form submission
 document.getElementById("searchForm").addEventListener("submit", function (e) {

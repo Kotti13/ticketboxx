@@ -61,9 +61,10 @@ const saveUserToSupabase = async (user, username) => {
 
 
 
+
 // Sign-up handler
 document.querySelector('.signup-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevent default form submission
 
     // Clear previous error messages
     document.getElementById('usernameError').textContent = "";
@@ -118,17 +119,19 @@ document.querySelector('.signup-form').addEventListener('submit', async (e) => {
 
             // Save user to Supabase, including the username
             await saveUserToSupabase(user, username);
-      
+
+            // Clear form fields after successful signup
+            document.querySelector('.signup-form').reset();
+
             // Close the sign-up modal
             const signupModal = new bootstrap.Modal(document.getElementById('signupModal'));
-            signupModal.hide(); 
+            signupModal.hide();
 
             // Open the login modal
             const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
             loginModal.show(); // Show the login modal
-            // e.preventDefault();
+
             alert("Sign up successful! Please log in.");
-            
 
         } catch (error) {
             console.error("Error during sign up:", error);
@@ -136,6 +139,7 @@ document.querySelector('.signup-form').addEventListener('submit', async (e) => {
         }
     }
 });
+
 
 // Login handler
 document.querySelector('.login-form').addEventListener('submit', async (e) => {
@@ -236,10 +240,13 @@ document.querySelector('.google-login').addEventListener('click', async () => {
 
         // Save user to Supabase
         await saveUserToSupabase(user, user.displayName);
+        
+
 
         // Redirect or handle post-login actions
         alert(`Welcome ${user.displayName}!`);
         window.location.href = "./assets/pages/home.html";
+        localStorage.setItem('usermail', user.email);
     } catch (error) {
         console.error("Google Sign-In Error:", error.message);
         alert("Google Sign-In failed. Please try again.");

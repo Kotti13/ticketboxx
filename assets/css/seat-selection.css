@@ -89,8 +89,8 @@ body {
     padding: 5px;
     width: 90%;
     border-radius: 5px;
-    background-color: #ddd;
-    color: #444;
+    /* background-color: #ddd; */
+    /* color: #444; */
     font-weight: bold;
 }
 
@@ -293,7 +293,7 @@ footer {
     margin: 5px;
     text-align: center;
     line-height: 40px;
-    background-color: #ddd;
+    /* background-color: #ddd; */
     color: white;
     cursor: pointer;
 }
