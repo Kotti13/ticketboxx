@@ -4,6 +4,7 @@ body {
     margin: 0;
     background-color: #fff;
     color: #333;
+    overflow-x:hidden;
 }
 
 .header {
@@ -227,4 +228,94 @@ footer {
     position: fixed;
     width: 100%;
     bottom: 0;
+}
+
+/* Popup Container */
+#popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    width: 300px;
+    text-align: center;
+}
+
+#selectedSeats, #totalPrice {
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+#confirmBooking {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #1ea83c;
+    color: white;
+    font-size: 16px;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#confirmBooking.disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+#confirmBooking:hover:not(.disabled) {
+    background-color: #169e2c;
+}
+
+/* Row starting alphabet (seats) */
+.row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.row .row-alphabet {
+    font-weight: bold;
+    margin-right: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+/* Seat element */
+.seat {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    text-align: center;
+    line-height: 40px;
+    background-color: #ddd;
+    color: white;
+    cursor: pointer;
+}
+
+.seat.sold {
+    background-color: #eeeeee;
+    cursor: not-allowed;
+}
+
+.seat.available {
+    background-color: #d7d0db;
+}
+
+.seat.selected {
+    background-color: #1ea83c;
+}
+
+.seat.empty {
+    background-color: transparent;
+    border: none;
+}
+
+.seat:hover:not(.sold):not(.empty) {
+    background-color: #2b8a3e;
 }

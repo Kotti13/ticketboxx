@@ -1,90 +1,113 @@
-import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.0/+esm';
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+import { getDatabase, ref, get } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-database.js';
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js';
 
-// Initialize Supabase client
+// Supabase configuration
 const supabaseUrl = 'https://srjumswibbswcwjntcad.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNyanVtc3dpYmJzd2N3am50Y2FkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjk2Nzk5MzcsImV4cCI6MjA0NTI1NTkzN30.e_ZkFg_EPI8ObvFz70Ejc1W4RGpQurr0SoDlK6IoEXY';
+
 const supabase = createClient(supabaseUrl, supabaseKey);
 
+// Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyBcFRNdsErrXYHiiuYlCf6txDjupaNwRno",
+    authDomain: "ticketboxx-c4049.firebaseapp.com",
+    projectId: "ticketboxx-c4049",
+    storageBucket: "ticketboxx-c4049.appspot.com",
+    messagingSenderId: "1029974974410",
+    appId: "1:1029974974410:web:a94d9c5fe267f3e51db933",
+    measurementId: "G-F7PEJ1WQRV"
+};
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
 
-
-document.addEventListener('DOMContentLoaded', () => {
-    const params = new URLSearchParams(window.location.search);
-    const movieName = params.get('movieName'); 
-    const theatreName = params.get('theatre'); 
-
-    // Get movie details from localStorage
+document.addEventListener('DOMContentLoaded', async () => {
     const selectedMovie = JSON.parse(localStorage.getItem('selectedMovie'));
-    console.log(`selectedDate:  ${selectedMovie.selectedDate}`);
-    console.log(`showtime: ${selectedMovie.selectedShowtime}`);
-   
-    const headerTitle = document.querySelector('header h1');
-    const headerDetails = document.querySelector('header p');
-
-    if (movieName && theatreName) {
-        headerTitle.textContent = movieName;
-        headerDetails.textContent = theatreName;
-    } else {
-        headerTitle.textContent = "Movie not found";
-        headerDetails.textContent = "";
+    console.log(selectedMovie.selectedDate)
+    if (!selectedMovie) {
+        alert("Movie details not found. Redirecting...");
+        window.location.href = "../pages/home.html"; 
+        return;
     }
 
-    // Seat data and initialization
-    const seatData = {
-        rs190: { rows: ['A', 'B', 'C', 'D', 'E', 'F',"G","H","I","J","K","L","M","N","O"], totalSeats: 30 },
-        rs60: { rows: ['P', 'Q', "R"], totalSeats: 30 },
-    };
+    const { title: movieName, selectedTheatre: theatreName, selectedDate, selectedShowtime } = selectedMovie;
+    const headerTitle = document.querySelector('header h1');
+    const headerDetails = document.querySelector('header p');
+    headerTitle.textContent = movieName || "Movie not found";
+    headerDetails.textContent = `${theatreName || "Unknown Theatre"} | ${selectedDate || "Unknown Date"} | ${selectedShowtime || "Unknown Showtime"}`;
 
-    const unavailableSeats = []; 
-    const bestsellerSeats = []; 
+    const seatLayout = await fetchSeatLayoutFromFirebase(theatreName);
+    const unavailableSeats = await fetchUnavailableSeats(movieName, theatreName, selectedDate, selectedShowtime);
 
-    const selectedSeats = [];
-    const clickedSeatsDetails = [];  // New variable to store clicked seat details
+    let selectedSeats = [];
     let totalPrice = 0;
 
-    // Generate seat grid
-    Object.keys(seatData).forEach((section) => {
-        const seatContainer = document.getElementById(section);
-        seatData[section].rows.forEach((row) => {
-            for (let i = 1; i <= 18; i++) {
-                const seatId = `${row}${i}`;
-                const seat = document.createElement('div');
+    // Render Seat Layout
+    renderSeatLayout(seatLayout, unavailableSeats);
 
-                seat.classList.add('seat');
-                seat.textContent = i;
+    // Function to render the seat layout
+    function renderSeatLayout(seatLayout, unavailableSeats) {
+        const seatContainer = document.querySelector('.seats');
+        if (!seatContainer) {
+            console.error("Seat container not found in the HTML.");
+            return;
+        }
 
-                if (unavailableSeats.includes(seatId)) {
-                    seat.classList.add('sold');
-                } else if (bestsellerSeats.includes(seatId)) {
-                    seat.classList.add('bestseller', 'available');
+        seatContainer.innerHTML = ''; // Clear previous content
+
+        // Ensure seatLayout is valid
+        if (!seatLayout || seatLayout.length === 0) {
+            seatContainer.textContent = 'No seat layout available.';
+            return;
+        }
+
+        // Render each row of seats
+        seatLayout.forEach((row, rowIndex) => {
+            const rowContainer = document.createElement('div');
+            rowContainer.classList.add('row');
+
+            // Split the row string into individual seats and render them
+            row.trim().split(/\s+/).forEach((seat, seatIndex) => {
+                const seatId = `${String.fromCharCode(65 + rowIndex)}${seat}`;
+                const seatElement = document.createElement('div');
+                seatElement.classList.add('seat');
+                seatElement.dataset.seatId = seatId;
+
+                if (seat === '_' ) {
+                    seatElement.classList.add('empty'); // Empty space
+                } else if (unavailableSeats.includes(seatId)) {
+                    seatElement.classList.add('sold'); // Sold seat
+                    seatElement.title = `${seatId} (Sold)`;
                 } else {
-                    seat.classList.add('available');
+                    seatElement.classList.add('available'); // Available seat
+                    seatElement.title = `${seatId} (Available)`;
+
+                    seatElement.addEventListener('click', () => toggleSeatSelection(seatElement, seatId));
                 }
 
-                seat.addEventListener('click', () => {
-                    if (seat.classList.contains('sold')) return;
+                seatElement.textContent = seat; // Display seat number
+                rowContainer.appendChild(seatElement);
+            });
 
-                    seat.classList.toggle('selected');
-                    if (seat.classList.contains('selected')) {
-                        selectedSeats.push(seatId);
-                        clickedSeatsDetails.push({ seatId, section, row });  // Store seat details
-                        totalPrice += section === 'rs190' ? 190 : 60;
-                    } else {
-                        const index = selectedSeats.indexOf(seatId);
-                        selectedSeats.splice(index, 1);
-                        const seatIndex = clickedSeatsDetails.findIndex(seat => seat.seatId === seatId);
-                        clickedSeatsDetails.splice(seatIndex, 1);  // Remove seat from clicked details
-                        totalPrice -= section === 'rs190' ? 190 : 60;
-                    }
-                    updatePopup();
-                });
-
-                seatContainer.appendChild(seat);
-            }
+            seatContainer.appendChild(rowContainer);
         });
-    });
+    }
 
-    // Update Popup
-    const updatePopup = () => {
+    function toggleSeatSelection(seatElement, seatId) {
+        if (seatElement.classList.contains('selected')) {
+            seatElement.classList.remove('selected');
+            selectedSeats = selectedSeats.filter(seat => seat !== seatId);
+            totalPrice -= 190;
+        } else {
+            seatElement.classList.add('selected');
+            selectedSeats.push(seatId);
+            totalPrice += 190;
+        }
+        updatePopup();
+    }
+
+    // Update Popup with selected seat details and total price
+    function updatePopup() {
         const popup = document.getElementById('popup');
         const seatDisplay = document.getElementById('selectedSeats');
         const priceDisplay = document.getElementById('totalPrice');
@@ -94,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
         priceDisplay.textContent = `Total Price: ₹${totalPrice}`;
         popup.style.display = selectedSeats.length ? 'flex' : 'none';
 
-        // Store the total price in localStorage
+        // Store total price and seat details in localStorage
         localStorage.setItem('totalPrice', totalPrice);
 
         if (selectedSeats.length) {
@@ -105,83 +128,56 @@ document.addEventListener('DOMContentLoaded', () => {
             confirmLink.classList.add('disabled');
         }
 
-        document.getElementById('ticketSummary').textContent = `${selectedSeats.length} Tickets`;
-        
-        // Optionally, store clicked seat details in localStorage for later use
-        localStorage.setItem('clickedSeatsDetails', JSON.stringify(clickedSeatsDetails));
-    };
+        // Store selected seats in localStorage as an array
+        localStorage.setItem('clickedSeatsDetails', JSON.stringify(selectedSeats));  // Store selected seat object
+
+
+    document.getElementById('ticketSummary').textContent = `${selectedSeats.length} Tickets`;
+
+    // Prepare the confirmation link with the selected seats and other details
+    }
 });
 
-// When confirming booking, ensure the clicked seats are in localStorage if needed
-document.getElementById('confirmBooking').addEventListener('click', (e) => {
-    e.preventDefault();
+// Fetch seat layout from Firebase
+async function fetchSeatLayoutFromFirebase(theatre) {
+    try {
+        const seatLayoutRef = ref(db, `theatres/${theatre}/seats`);
+        const snapshot = await get(seatLayoutRef);
 
-    const loadingSpinner = document.getElementById('loading');
-    loadingSpinner.style.display = 'block';
-
-    setTimeout(() => {
-        window.location.href = e.target.href;
-    }, 2000);
-});
-
-// Get the showtime value from the stored object
-const selectedShowtime = selectedMovie ? selectedMovie.selectedShowtime : null;
-
-// Print the selected showtime to the console
-console.log(selectedShowtime);
-// Fetch booked seats from Supabase
-async function fetchBookedSeats() {
-    const { data, error } = await supabase
-        .from('bookings')
-        .select('seats')
-        .match({ movie_name: movieName, theatre_name: theatreName, show_time: showTime });
-
-    if (error) {
-        console.error("Error fetching booked seats", error);
+        if (snapshot.exists()) {
+            const seatLayout = snapshot.val();
+            console.log('Fetched Seat Layout from Firebase:', seatLayout);
+            return seatLayout;
+        } else {
+            console.error('No seat layout found for this theatre.');
+            return [];
+        }
+    } catch (err) {
+        console.error("Error fetching seat layout from Firebase:", err);
         return [];
     }
-
-    // Flatten the array of booked seats if needed
-    return data.map(booking => booking.seats).flat();
 }
 
-// Update seat grid based on fetched booked seats
-async function updateSeatGrid() {
-    const bookedSeats = await fetchBookedSeats();
-    Object.keys(seatData).forEach((section) => {
-        const seatContainer = document.getElementById(section);
-        seatData[section].rows.forEach((row) => {
-            for (let i = 1; i <= 18; i++) {
-                const seatId = `${row}${i}`;
-                const seat = document.createElement('div');
-                seat.classList.add('seat');
-                seat.textContent = i;
+// Fetch unavailable seats from Supabase
+async function fetchUnavailableSeats(movieName, theatreName, bookingDate, showTime) {
+    try {
+        const { data, error } = await supabase
+            .from('bookings')
+            .select('seats')
+            .eq('movie_name', movieName)
+            .eq('theatre_name', theatreName)
+            .eq('booking_date', bookingDate)
+            .eq('show_time', showTime);
 
-                if (unavailableSeats.includes(seatId) || bookedSeats.includes(seatId)) {
-                    seat.classList.add('sold');
-                } else if (bestsellerSeats.includes(seatId)) {
-                    seat.classList.add('bestseller', 'available');
-                } else {
-                    seat.classList.add('available');
-                }
+        if (error) {
+            console.error("Error fetching unavailable seats:", error);
+            return [];
+        }
 
-                seat.addEventListener('click', () => {
-                    if (seat.classList.contains('sold')) return;
-
-                    seat.classList.toggle('selected');
-                    if (seat.classList.contains('selected')) {
-                        selectedSeats.push(seatId);
-                        totalPrice += section === 'rs190' ? 190 : 60;
-                    } else {
-                        const index = selectedSeats.indexOf(seatId);
-                        selectedSeats.splice(index, 1);
-                        totalPrice -= section === 'rs190' ? 190 : 60;
-                    }
-                    updatePopup();
-                });
-
-                seatContainer.appendChild(seat);
-            }
-        });
-    });
+        const unavailableSeats = data.flatMap(booking => booking.seats.split(',').map(seat => seat.trim()));
+        return unavailableSeats;
+    } catch (err) {
+        console.error("Error fetching unavailable seats from Supabase:", err);
+        return [];
+    }
 }

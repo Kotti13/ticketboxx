@@ -1,5 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log("Document loaded and ready!");
+    const selectedMovie = JSON.parse(localStorage.getItem('selectedMovie'));
+    const { title: movieName, selectedTheatre: theatreName, selectedDate, selectedShowtime } = selectedMovie;
+    console.log(selectedDate)
+
+    const selectedseat = JSON.parse(localStorage.getItem('clickedSeatsDetails')) || []; 
+    // const seat = selectedseat.map(item => item.seats);
+    console.log(selectedseat.join(", "))
+    
+
+    // console.log(seat[0])
+    // const seatsfordebug=seat[0];
+    // console.log("fordebug :  "+seatsfordebug)
+
+
 
     // Selecting form inputs
     const cardNumberInput = document.getElementById('cardNumber');
@@ -10,12 +24,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Fetch URL parameters (if any)
     const params = new URLSearchParams(window.location.search);
     const totalPrice = params.get('price') || '0';
-    const movieName = params.get('movieName');
+    // const movieName = params.get('movieName');
     const theatre = params.get('theatre');
     const showTime = params.get('showTime');
     const seats = params.get('seats');
 
-    console.log('Initial Parameters:', { totalPrice, movieName, theatre, showTime, seats });
+    console.log('Initial Parameters:', { totalPrice, movieName, theatre, selectedShowtime, seats });
 
     // Validate inputs before enabling the continue link
     const validateInputs = () => {
@@ -41,4 +55,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
     validateInputs();
 });
-console.log(localStorage.getItem('clickedSeatsDetails'))
+// console.log(localStorage.getItem('clickedSeatsDetails'))
+// const a=JSON.parse(localStorage.getItem('clickedSeatsDetails'))
+// console.log(a)
+// for(let i=0;i<a.length;i++){
+//     console.log(a[i])
+// }
+

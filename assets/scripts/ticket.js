@@ -1,4 +1,3 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
 import { createClient } from 'https://cdn.skypack.dev/@supabase/supabase-js@2.0.0';
 
 const supabaseUrl = 'https://srjumswibbswcwjntcad.supabase.co';
@@ -6,23 +5,28 @@ const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 document.addEventListener("DOMContentLoaded", async () => {
+    // Retrieve data from localStorage
     const selectedMovie = JSON.parse(localStorage.getItem('selectedMovie')) || {};
-    const selectedseat=JSON.parse(localStorage.getItem('clickedSeatsDetails'));
+    const selectedSeats = JSON.parse(localStorage.getItem('clickedSeatsDetails')) || [];
+    console.log(selectedMovie)
     
-   
+    // const { title: movieName, selectedTheatre: theatreName, date, showTime } = selectedMovie;
+    console.log(`selected movie${selectedMovie.selectedDate}`)
+    console.log(`${selectedMovie.selectedShowtime}`)
     const movieName = selectedMovie.title || "N/A";
-    const theatreName = (localStorage.getItem('selectedTheatre')) || "N/A";
+    const theatreName = selectedMovie.selectedTheatre || "N/A";
     const date = selectedMovie.selectedDate || "N/A";
-   const seats=selectedseat.map(item => item.seatId);
-
-    const amount = JSON.parse(localStorage.getItem('totalPrice')); "₹0";
-    const showTime = selectedMovie ? selectedMovie.selectedShowtime : null;
-    const customerEmail = localStorage.getItem("usermail");
-    const customerName = "Customer Name";
+    const showTime = selectedMovie.selectedShowtime || "N/A";
+    
+    // Use the selectedSeats array to display the seats on the page
+    const seats = selectedSeats.join(", ");  
+    console.log(seats)
+    const amount = JSON.parse(localStorage.getItem('totalPrice')) || "₹0";
+    const customerEmail = localStorage.getItem("usermail") || "";
+    const customerName = "Customer Name";  // Replace this with actual user data if available
     const bookingId = generateBookingId();
-    
-    
 
+    // Update UI with booking information
     document.getElementById('movieName').textContent = movieName;
     document.getElementById('theatreName').textContent = theatreName;
     document.getElementById('showTime').textContent = showTime;
@@ -31,6 +35,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById('bookingId').textContent = bookingId;
     document.getElementById('amount').textContent = amount;
 
+    // Fetch movie poster and generate ticket
     fetchMoviePoster(movieName).then(poster => {
         document.getElementById('moviePoster').src = poster;
         downloadTicketPDF(movieName, theatreName, showTime, date, seats, bookingId, amount, poster, customerEmail, customerName);
@@ -40,35 +45,35 @@ document.addEventListener("DOMContentLoaded", async () => {
         downloadTicketPDF(movieName, theatreName, showTime, date, seats, bookingId, amount, "../images/default-poster.png", customerEmail, customerName);
     });
 
+    // Store bookingId in sessionStorage
     sessionStorage.setItem('bookingId', bookingId);
 
-    const qrData = {
-        movieName,
-        theatreName,
-        showTime,
-        date,
-        seats,
-        bookingId,
-    };
+    // Generate QR Code with booking details
+    const qrData = { movieName, theatreName, showTime, date, seats, bookingId };
     new QRCode(document.getElementById("qrcode"), {
         text: JSON.stringify(qrData),
         width: 128,
         height: 128,
     });
 
-    await saveBookingToSupabase({
-        bookingId,
-        movieName,
-        theatreName,
-        showTime,
-        date,
-        seats,
-        amount,
-        customerEmail,
-        customerName
-    });
+    // Save booking to Supabase
+    // Save booking to Supabase
+await saveBookingToSupabase({
+    bookingId,
+    movieName,
+    theatreName,
+    showTime,
+    date,
+    seats,
+    amount,
+    customerEmail,
+    customerName,
+    selectedDate: selectedMovie.selectedDate || date, // Pass selectedDate explicitly
 });
 
+});
+
+// Generate a random booking ID
 function generateBookingId() {
     const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     let id = "";
@@ -78,6 +83,7 @@ function generateBookingId() {
     return id;
 }
 
+// Fetch movie poster from local data source
 async function fetchMoviePoster(movieName) {
     try {
         if (!movieName) throw new Error("Movie name is undefined or empty.");
@@ -93,6 +99,7 @@ async function fetchMoviePoster(movieName) {
     }
 }
 
+// Download ticket as PDF
 function downloadTicketPDF(movieName, theatreName, showTime, date, seats, bookingId, amount, poster, customerEmail, customerName) {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
@@ -111,7 +118,7 @@ function downloadTicketPDF(movieName, theatreName, showTime, date, seats, bookin
     loadImage(poster).then((img) => {
         doc.addImage(img, 'JPEG', 20, 100, 50, 75);
         const pdfData = doc.output('datauristring');
-        
+
         // Send ticket email and redirect
         sendTicketEmail(pdfData, customerEmail, customerName, movieName, theatreName, showTime, date, seats, bookingId, amount)
             .then(() => {
@@ -128,6 +135,7 @@ function downloadTicketPDF(movieName, theatreName, showTime, date, seats, bookin
     });
 }
 
+// Show success message and redirect after ticket is generated
 function showSuccessMessageAndRedirect() {
     const successMessage = document.createElement('div');
     successMessage.textContent = 'Your ticket has been successfully generated and emailed to you!';
@@ -142,12 +150,24 @@ function showSuccessMessageAndRedirect() {
     successMessage.style.zIndex = '1000';
     document.body.appendChild(successMessage);
 
+    // Clear local storage data after success message
+    clearLocalStorageData();
+
     setTimeout(() => {
         window.location.href = "../pages/home.html";
-    }, 5000); // Redirect after 5 seconds
+    }, 500000);  // Redirect after 5 seconds
 }
 
+// Function to clear local storage items after booking is completed
+function clearLocalStorageData() {
+    // localStorage.removeItem('selectedMovie');
+    // localStorage.removeItem('clickedSeatsDetails');
+    // localStorage.removeItem('totalPrice');
+    // sessionStorage.removeItem('bookingId');  // Optional: if you want to clear session storage as well
+    // console.log("Local storage cleared.");
+}
 
+// Load an image asynchronously
 function loadImage(src) {
     return new Promise((resolve, reject) => {
         const img = new Image();
@@ -157,8 +177,10 @@ function loadImage(src) {
     });
 }
 
+// Initialize EmailJS
 emailjs.init('ZuZLrLJOaiaonlV8M');
 
+// Send ticket email using EmailJS
 function sendTicketEmail(pdfData, customerEmail, customerName, movieName, theatreName, showTime, date, seats, bookingId, amount) {
     return emailjs.send('service_jeimr7d', 'template_ow3x08t', {
         movie_poster: movieName,
@@ -174,8 +196,14 @@ function sendTicketEmail(pdfData, customerEmail, customerName, movieName, theatr
     });
 }
 
+// Save booking data to Supabase
 async function saveBookingToSupabase(ticketData) {
     try {
+        const bookingDate = formatDate(ticketData.selectedDate);
+        if (!bookingDate) {
+            throw new Error('Invalid booking date');
+        }
+
         const { data, error } = await supabase
             .from('bookings')
             .insert([{
@@ -183,9 +211,9 @@ async function saveBookingToSupabase(ticketData) {
                 movie_name: ticketData.movieName,
                 theatre_name: ticketData.theatreName,
                 show_time: ticketData.showTime,
-                booking_date: formatDate(ticketData.date),
+                booking_date: bookingDate,
                 seats: ticketData.seats,
-                amount: parseFloat(ticketData.amount.replace('₹', '').trim()),
+                amount: Math.round(ticketData.amount), // Ensure amount is a valid integer
                 customer_email: ticketData.customerEmail,
                 customer_name: ticketData.customerName || '',
             }]);
@@ -200,6 +228,10 @@ async function saveBookingToSupabase(ticketData) {
     }
 }
 
+
+
+
+// Format date as YYYY-MM-DD
 function formatDate(date) {
     const d = new Date(date);
     const year = d.getFullYear();
@@ -207,15 +239,4 @@ function formatDate(date) {
     const day = String(d.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
 }
-// const selectedseat=localStorage.getItem('clickedSeatsDetails');
-// for(let seat of selectedseat){
-
-//   console.log(`${seat.seatId}`)
-// }
-// const selectedseat = localStorage.getItem('clickedSeatsDetails');
-
-// console.log(selectedMovie)
-    console.log(amount)
-    console.log(movieName)
-    console.log(theatreName)
-    console.log(selectedseat)
+console.log(seats)

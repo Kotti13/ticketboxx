@@ -7,6 +7,40 @@
     <link rel="stylesheet" href="../css/seat-selection.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+<style>
+    .seats {
+    display: flex;
+    flex-direction: column;
+}
+.row {
+    display: flex;
+}
+.seat {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    text-align: center;
+    line-height: 40px;
+    background-color: #ddd;
+    color: white;
+    cursor: pointer;
+}
+.seat.sold {
+    background-color: #eeeeee;
+    cursor: not-allowed;
+}
+.seat.available {
+    background-color: #d7d0db;
+}
+.seat.selected {
+    background-color: #1ea83c;
+}
+.seat.empty {
+    background-color: transparent;
+  border: none;
+}
+
+</style>
 <body>
    
     <header class="header">
@@ -20,20 +54,17 @@
 
    
     <main>
-        <div class="seat-section">
-           
-            <div class="seat-row">
-                <div class="row-title">Rs. 190</div>
-                <div class="seats" id="rs190"></div>
-            </div>
-
-     
-            <div class="seat-row">
-                <div class="row-title">Rs. 60</div>
-                <div class="seats" id="rs60"></div>
-            </div>
+        <div class="seats">
+            <!-- Seat layout will be dynamically added here -->
         </div>
-
+        <div id="popup" style="display: none;">
+            <div id="selectedSeats"></div>
+            <div id="totalPrice"></div>
+            <a id="confirmBooking" href="#" class="disabled">Confirm Booking</a>
+        </div>
+        
+                
+        
       
         <div class="screen"><p>All eyes this way please!</p><img src="../images/screen-icon.8dd7f126.jpg" alt="" width="600px"></div>
         
