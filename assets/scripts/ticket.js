@@ -155,7 +155,7 @@ function showSuccessMessageAndRedirect() {
 
     setTimeout(() => {
         window.location.href = "../pages/home.html";
-    }, 500000);  // Redirect after 5 seconds
+    }, 5000);  // Redirect after 5 seconds
 }
 
 // Function to clear local storage items after booking is completed
