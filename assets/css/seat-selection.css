@@ -46,21 +46,29 @@ body {
 }
 
 .seats {
+    margin-top: 6%;
     display: grid;
     grid-template-columns: repeat(18, 1fr);
-    gap: 5px;
+    /* gap: 5px; */
+}
+.seats:first-child{
+    gap: 20px;
 }
 
+
 .seat {
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
     border: 0.5px solid #f5a623;
     border-radius: 2px;
     cursor: pointer;
     text-align: center;
     line-height: 25px;
     font-size: 0.8rem;
+    color: white;
     background-color: #fafafa;
+    gap: 10px;
+    margin-left: 10px;
 }
 
 .seat.bestseller {
@@ -284,38 +292,4 @@ footer {
     margin-right: 10px;
     font-size: 18px;
     color: #333;
-}
-
-/* Seat element */
-.seat {
-    width: 40px;
-    height: 40px;
-    margin: 5px;
-    text-align: center;
-    line-height: 40px;
-    /* background-color: #ddd; */
-    color: white;
-    cursor: pointer;
-}
-
-.seat.sold {
-    background-color: #eeeeee;
-    cursor: not-allowed;
-}
-
-.seat.available {
-    background-color: #d7d0db;
-}
-
-.seat.selected {
-    background-color: #1ea83c;
-}
-
-.seat.empty {
-    background-color: transparent;
-    border: none;
-}
-
-.seat:hover:not(.sold):not(.empty) {
-    background-color: #2b8a3e;
 }

@@ -49,7 +49,7 @@ function displayBookings(bookings) {
             <p><strong>Show Time:</strong> ${booking.show_time}</p>
             <p><strong>Booking Date:</strong> ${new Date(booking.booking_date).toLocaleDateString()}</p>
             <p><strong>Seats:</strong> ${booking.seats}</p>
-            <p><strong>Amount:₹</strong> ₹${booking.amount.toFixed(2)}</p>
+            <p><strong>Amount:</strong> ₹${booking.amount.toFixed(2)}</p>
         `;
 
         bookingsContainer.appendChild(bookingDiv);

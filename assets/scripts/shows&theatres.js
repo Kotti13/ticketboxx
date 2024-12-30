@@ -180,19 +180,24 @@ function generateDateScroll() {
 
 // Function to populate the showtimes for the movie
 function populateShowTimes(theatres = [], movie) {
+    
     const showTimesContainer = document.getElementById("show-times");
     showTimesContainer.innerHTML = '';
+    
 
     theatres.forEach(theatre => {
+        
         const theatreBlock = `
             <div class="theatre-section">
                 <h3>${theatre.name}</h3>
                 <div class="showtimes-container">
+                
                     ${theatre.showtimes.map(showtime => `
                         <div class="showtime-item">
+                        
                             <a href="../pages/seat-selection.html"
-                               class="showtime-link" data-showtime="${showtime.time}" data-theatre="${theatre.name}">
-                                ${showtime.time}
+                               class="showtime-link" data-showtime="${showtime.time}" data-theatre="${theatre.name}">${'\n'}
+                               ${showtime.time}
                             </a>
                         </div>
                     `).join('')}

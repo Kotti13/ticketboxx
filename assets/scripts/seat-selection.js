@@ -53,9 +53,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             return;
         }
 
-        seatContainer.innerHTML = ''; // Clear previous content
-
-        // Ensure seatLayout is valid
+        seatContainer.innerHTML = '';  
+        
         if (!seatLayout || seatLayout.length === 0) {
             seatContainer.textContent = 'No seat layout available.';
             return;
@@ -73,7 +72,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 seatElement.classList.add('seat');
                 seatElement.dataset.seatId = seatId;
 
-                if (seat === '_' ) {
+                if (seat === '_') {
                     seatElement.classList.add('empty'); // Empty space
                 } else if (unavailableSeats.includes(seatId)) {
                     seatElement.classList.add('sold'); // Sold seat
@@ -82,7 +81,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     seatElement.classList.add('available'); // Available seat
                     seatElement.title = `${seatId} (Available)`;
 
-                    seatElement.addEventListener('click', () => toggleSeatSelection(seatElement, seatId));
+                    seatElement.addEventListener('click', () => toggleSeatSelection(seatElement, seatId, rowIndex));
                 }
 
                 seatElement.textContent = seat; // Display seat number
@@ -93,16 +92,38 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
-    function toggleSeatSelection(seatElement, seatId) {
+    function toggleSeatSelection(seatElement, seatId, rowIndex) {
+        // Determine the price of the seat
+        let seatPrice = 190; // Default price for regular seats
+
+        // Check if the showtime is IMAX
+        const isImax = selectedShowtime.toLowerCase().includes("imax");
+
+        // If it's an IMAX showtime, set all seat prices to 400
+        if (isImax) {
+            seatPrice = 400;
+        } 
+        // If the seat is in the first two rows, apply +60
+        else if (rowIndex === seatLayout.length-1 || rowIndex === seatLayout.length-2) {
+            seatPrice = 60; 
+        }
+        else if(rowIndex===0||rowIndex==1){
+            seatPrice=250;
+
+        }
+
+
+        // Handle seat selection
         if (seatElement.classList.contains('selected')) {
             seatElement.classList.remove('selected');
             selectedSeats = selectedSeats.filter(seat => seat !== seatId);
-            totalPrice -= 190;
+            totalPrice -= seatPrice;
         } else {
             seatElement.classList.add('selected');
             selectedSeats.push(seatId);
-            totalPrice += 190;
+            totalPrice += seatPrice;
         }
+
         updatePopup();
     }
 
@@ -131,10 +152,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Store selected seats in localStorage as an array
         localStorage.setItem('clickedSeatsDetails', JSON.stringify(selectedSeats));  // Store selected seat object
 
+        document.getElementById('ticketSummary').textContent = `${selectedSeats.length} Tickets`;
 
-    document.getElementById('ticketSummary').textContent = `${selectedSeats.length} Tickets`;
-
-    // Prepare the confirmation link with the selected seats and other details
+        // Prepare the confirmation link with the selected seats and other details
     }
 });
 
@@ -181,3 +201,4 @@ async function fetchUnavailableSeats(movieName, theatreName, bookingDate, showTi
         return [];
     }
 }
+
