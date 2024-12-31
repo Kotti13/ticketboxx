@@ -1,4 +1,3 @@
-
 // Import the Firebase SDKs
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
 import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
@@ -19,7 +18,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
-// Helper function to get movie ID from URL
 function getMovieIdFromUrl() {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get('id');
@@ -50,7 +48,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     poster: movie.poster || "default-poster.jpg",
                     duration: movie.duration || "N/A",
                     genre: movie.genre || "N/A",
-                    language: movie.language || "N/A"
+                    language: movie.language || "N/A",
+                    theatres: movie.theatres || []
                 }));
             } else {
                 document.getElementById("movie-details").innerHTML = "<p>Movie not found.</p>";
@@ -89,17 +88,15 @@ function displayMovieDetails(movie) {
             <div class="location-dropdown">
                 <span class="location-icon">📍</span>
                 <select class="location-select">
-                    <option>Chennai</option>
-                    <option>Hyderabad</option>
-                    <option>Bangalore</option>
-                    <option>Mumbai</option>
+                    <option>Chennai (Only)</option>
+                    
                 </select>
             </div>
             <div class="date-selection">
                 <label for="date-picker">Select Date:</label>
                 <div id="date-scroll-container" class="date-scroll-container"></div>
             </div>
-            <div id="show-times" class="show-times-container"></div>
+            <div id="show-times" class="show-times-container" style="display: none;"></div>
             <div id="reviews" class="reviews-container" style="display: none;"></div>
         </div>
     `;
@@ -131,9 +128,9 @@ function displayMovieDetails(movie) {
 }
 
 // Generate Date Scroll Function
-// Generate Date Scroll Function
 function generateDateScroll() {
     const dateScrollContainer = document.getElementById("date-scroll-container");
+    const showTimesContainer = document.getElementById("show-times");
 
     if (!dateScrollContainer) {
         console.error("Error: #date-scroll-container not found in DOM");
@@ -150,53 +147,50 @@ function generateDateScroll() {
         const date = new Date();
         date.setDate(currentDate.getDate() + i);
 
-        // Format the date to 'Day, Date Month' (e.g., Thu, 28 Dec)
-        const dateText = date.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
+        // Format the date to 'Day, Date Month' 
+        const dateText = date.toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short' });
 
         const dateElement = document.createElement("div");
         dateElement.classList.add("date-item");
         dateElement.innerText = dateText;
 
+        // Add event listener to handle selection of date
         dateElement.addEventListener("click", function () {
-            // Highlight the clicked date
-            document.querySelectorAll(".date-item").forEach(item => item.classList.remove("selected"));
-            dateElement.classList.add("selected");
+            document.querySelectorAll(".date-item").forEach(item => item.classList.remove("selected")); // Remove selection from all dates
+            dateElement.classList.add("selected"); // Highlight the clicked date
 
-            // Store the selected date correctly in localStorage
-            const selectedMovie = JSON.parse(localStorage.getItem('selectedMovie')) || {};
-            
-            // Convert the date to 'YYYY-MM-DD' format
-            selectedMovie.selectedDate = date.toISOString().split('T')[0];
+            const selectedMovie = JSON.parse(localStorage.getItem('selectedMovie')) || {};  // Get selected movie to store date 
+            selectedMovie.selectedDate = date.toISOString().split('T')[0];  // Store the selected date in ISO format
+            localStorage.setItem('selectedMovie', JSON.stringify(selectedMovie)); // Save updated date to localStorage
 
-            // Save the updated data in localStorage
-            localStorage.setItem('selectedMovie', JSON.stringify(selectedMovie));
+            // Show showtimes after date selection
+            populateShowTimes(selectedMovie.theatres, selectedMovie);
+            showTimesContainer.style.display = "block";  // Show the showtimes section
         });
 
         dateScrollContainer.appendChild(dateElement);
     }
 }
 
-
-
 // Function to populate the showtimes for the movie
 function populateShowTimes(theatres = [], movie) {
-    
     const showTimesContainer = document.getElementById("show-times");
-    showTimesContainer.innerHTML = '';
-    
+    showTimesContainer.innerHTML = ''; // Clear previous showtimes
+
+    if (!theatres || theatres.length === 0) {
+        showTimesContainer.innerHTML = "<p>No showtimes available.</p>";
+        return;
+    }
 
     theatres.forEach(theatre => {
-        
         const theatreBlock = `
             <div class="theatre-section">
                 <h3>${theatre.name}</h3>
                 <div class="showtimes-container">
-                
                     ${theatre.showtimes.map(showtime => `
                         <div class="showtime-item">
-                        
                             <a href="../pages/seat-selection.html"
-                               class="showtime-link" data-showtime="${showtime.time}" data-theatre="${theatre.name}">${'\n'}
+                               class="showtime-link" data-showtime="${showtime.time}" data-theatre="${theatre.name}">
                                ${showtime.time}
                             </a>
                         </div>
@@ -207,6 +201,7 @@ function populateShowTimes(theatres = [], movie) {
         showTimesContainer.innerHTML += theatreBlock;
     });
 
+    // Add event listeners to each showtime link
     const showtimeLinks = document.querySelectorAll('.showtime-link');
     showtimeLinks.forEach(link => {
         link.addEventListener('click', function () {
@@ -237,3 +232,5 @@ function fetchReviews(movieId) {
 
     reviewsContainer.innerHTML = reviewsHTML;
 }
+
+console.log(localStorage.getItem('selectedMovie'));

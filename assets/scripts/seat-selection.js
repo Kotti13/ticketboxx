@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     const { title: movieName, selectedTheatre: theatreName, selectedDate, selectedShowtime } = selectedMovie;
+    const six=document.getElementById('six');
     const headerTitle = document.querySelector('header h1');
     const headerDetails = document.querySelector('header p');
     headerTitle.textContent = movieName || "Movie not found";
@@ -94,18 +95,22 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     function toggleSeatSelection(seatElement, seatId, rowIndex) {
         // Determine the price of the seat
-        let seatPrice = 190; // Default price for regular seats
+       
+        let seatPrice = 190; // deafault price
+        
 
-        // Check if the showtime is IMAX
+        // Check imax screen
         const isImax = selectedShowtime.toLowerCase().includes("imax");
 
-        // If it's an IMAX showtime, set all seat prices to 400
+        // If imax screen rs400 seat will appear
         if (isImax) {
             seatPrice = 400;
         } 
         // If the seat is in the first two rows, apply +60
         else if (rowIndex === seatLayout.length-1 || rowIndex === seatLayout.length-2) {
+            
             seatPrice = 60; 
+            
         }
         else if(rowIndex===0||rowIndex==1){
             seatPrice=250;
@@ -201,4 +206,8 @@ async function fetchUnavailableSeats(movieName, theatreName, bookingDate, showTi
         return [];
     }
 }
-
+const selectedMovie=JSON.parse(localStorage.getItem('selectedMovie'))
+const { title, poster, selectedDate, selectedShowtime, selectedTheatre } = selectedMovie;
+// console.log(a)
+console.log(a.selectedDate)
+console.log(selectedMovie)

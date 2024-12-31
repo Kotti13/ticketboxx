@@ -4,7 +4,7 @@ body {
     margin: 0;
     background-color: #fff;
     color: #333;
-    overflow-x:hidden;
+    /* overflow-x:hidden; */
 }
 
 .header {
@@ -262,7 +262,7 @@ footer {
 #confirmBooking {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #1ea83c;
+    background-color: skyblue;
     color: white;
     font-size: 16px;
     text-decoration: none;
@@ -277,7 +277,7 @@ footer {
 }
 
 #confirmBooking:hover:not(.disabled) {
-    background-color: #169e2c;
+    background-color: skyblue;
 }
 
 /* Row starting alphabet (seats) */

@@ -29,19 +29,32 @@
     cursor: pointer;
     border-radius: 5px;
 } */
+ 
 .seat.sold {
-    background-color: #eeeeee;
+    background-color: red;
     cursor: not-allowed;
+    
 }
 .seat.available {
-    background-color: #d7d0db;
+    background-color: white;
+    color: red;
+}
+.seat.available:hover{
+    background-color: blue;
+    color: white;
 }
 .seat.selected {
     background-color: #1ea83c;
+    color: white;
 }
 .seat.empty {
     background-color: transparent;
   border: none;
+}
+.Availablity{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
 }
 
 </style>
@@ -64,13 +77,19 @@
         <div id="popup" style="display: none;">
             <div id="selectedSeats"></div>
             <div id="totalPrice"></div>
-            <a id="confirmBooking" href="#" class="disabled">Confirm Booking</a>
+            <a id="confirmBooking" href="#" class="disabled">Confirm</a>
         </div>
         
                 
         
       
         <div class="screen"><p>All eyes this way please!</p><img src="../images/screen-icon.8dd7f126.jpg" alt="" width="600px"></div>
+        <div class="Availablity">
+            <p style="width: 30px;height: 30px;background-color: white;border-radius: 5px;border-style: solid;"></p>
+           <p>Available</p>
+           <p style="width: 30px;height: 30px;background-color: #ff0000;border-radius: 5px;"></p>
+           <p>Sold</p>
+        </div>
         
       
         <!-- <div class="legend">
