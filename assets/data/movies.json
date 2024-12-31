@@ -9,13 +9,13 @@
             "language": "Tamil",
             "genre": "Action, Thriller",
             "description": "An epic action-thriller that keeps you on the edge of your seat.",
-            "poster": "https://assets.gadgets360cdn.com/pricee/assets/product/202306/Pushpa-2_1687776659.jpg",
+            "poster": "https://i.ibb.co/MVjWBvz/pushpa-2.jpg",
             "about": "A violent storm and unsettling forces unravel their marriage. Vasanth must uncover the truth behind these supernatural occurrences before everything falls apart.A young couple move into a serene row house, eager for peace and privacy. A violent storm and unsettling forces unravel their marriage.",
             "cast": [
                 {"name": "Allu Arjun", "role": "Actor", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/allu-arjun-125-03-10-2016-01-55-06.jpg"},
                 {"name": "Fahadh Fazil", "role": "Actor", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/fahadh-faasil-37756-1661702033.jpg"},
                 {"name": "Rashmika Mandanna", "role": "Actress", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/rashmika-mandanna-1076783-28-12-2016-12-20-39.jpg"},
-                {"name": "Rao Aamesh", "role": "Actor", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/rao-ramesh-8665-04-03-2021-03-32-52.jpg"},
+                {"name": "Rao Ramesh", "role": "Actor", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/rao-ramesh-8665-04-03-2021-03-32-52.jpg"},
                 {"name": "Sunil", "role": "Actor", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/sunil-2292-24-03-2017-18-02-16.jpg"}
             ],
             "crew": [
@@ -30,8 +30,7 @@
         "name": "AGS Cinemas: Maduravoyal",
         "showtimes": [
             { "time": "12:45 PM", "premiumPrice": 300, "normalPrice": 200, "link": "../pages/seat-selection.html" },
-            { "time": "04:10 PM", "premiumPrice": 350, "normalPrice": 250, "link": "../pages/seat-selection.html" },
-            { "time": "10:20 PM", "premiumPrice": 350, "normalPrice": 250, "link": "../pages/seat-selection.html" }
+            { "time": "04:10 PM", "premiumPrice": 350, "normalPrice": 250, "link": "../pages/seat-selection.html" }
         ],
         "seats": []
     },
@@ -61,41 +60,42 @@
             "language": "English",
             "genre": "Action, Thriller",
             "description": "An epic action-thriller that keeps you on the edge of your seat.",
-            "poster": "https://m.media-amazon.com/images/M/MV5BOGM5N2FkNGMtNmYzMS00MGRiLWI5ZDItOTRmNThiYWNlNDZhXkEyXkFqcGc@._V1_.jpg",
+            "poster": "https://i.ibb.co/tcCJJzS/black.jpg",
             "about": "A violent storm and unsettling forces unravel their marriage. Vasanth must uncover the truth behind these supernatural occurrences before everything falls apart.A young couple move into a serene row house, eager for peace and privacy. A violent storm and unsettling forces unravel their marriage.",
             "cast": [
-                {"name": "Jiiva", "role": "Actor", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/jiiva-960-16-09-2017-05-56-23.jpg"},
-                {"name": "Priya Bhavani Shankar", "role": "Actress", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/priya-bhavani-shankar-1086843-1723440361.jpg"}
+                {"name": "Jiiva", "role": "Actor", "image": "https://i.ibb.co/GsXd6zK/jiiva-960-16-09-2017-05-56-23.jpg"},
+                {"name": "Priya Bhavani Shankar", "role": "Actress", "image": "https://i.ibb.co/vv8KTj5/priya-bhavani-shankar-1086843-1723440361.jpg"}
             ],
             "crew": [
-                {"name": "KG Balasubramani", "role": "Director", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/kg-balasubramani-2040988-1728023440.jpg"},
-                {"name": "Madhan karky", "role": "lyrichist", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/madhan-karky-40067-24-04-2018-12-20-42.jpg"}
+                {"name": "KG Balasubramani", "role": "Director", "image": "https://i.ibb.co/QXJ03hx/kg-balasubramani-2040988-1728023440.jpg"},
+                {"name": "Madhan karky", "role": "lyrichist", "image": "https://i.ibb.co/51zfPGY/madhan-karky-40067-24-04-2018-12-20-42.jpg"}
             ],
             "trailerLink": "https://youtu.be/By-VTqrdqFI?feature=shared",
-          "theatres": [
-    {
-        "name": "AGS Cinemas: Maduravoyal",
-        "showtimes": [
-            { "time": "12:45 PM", "premiumPrice": 300, "normalPrice": 200, "link": "../pages/seat-selection.html" },
-            { "time": "04:10 PM", "premiumPrice": 350, "normalPrice": 250, "link": "../pages/seat-selection.html" }
-        ]
-    },
-    {
-        "name": "The Vijay Park Multiplex",
-        "showtimes": [
-            { "time": "01:35 PM", "premiumPrice": 400, "normalPrice": 300, "link": "#" },
-            { "time": "05:00 PM", "premiumPrice": 450, "normalPrice": 350, "link": "#" }
-        ]
-    },
-    {
-        "name":"Kamala Cinemas , Vadapalani, Chennai",
-        "showtimes": [
-            { "time": "07:30 PM", "premiumPrice": 400, "normalPrice": 300, "link": "#" },
-            { "time": "10:55 PM", "premiumPrice": 450, "normalPrice": 350, "link": "#" }
-        ]
-
-    }
-]
+            "theatres": [
+                {
+                    "name": "AGS Cinemas: Maduravoyal",
+                    "showtimes": [
+                        { "time": "12:45 PM", "premiumPrice": 300, "normalPrice": 200, "link": "../pages/seat-selection.html" },
+                        { "time": "04:10 PM", "premiumPrice": 350, "normalPrice": 250, "link": "../pages/seat-selection.html" }
+                    ],
+                    "seats": []
+                },
+                {
+                    "name": "The Vijay Park Multiplex",
+                    "showtimes": [
+                        { "time": "01:35 PM", "premiumPrice": 400, "normalPrice": 300, "link": "#" },
+                        { "time": "05:00 PM", "premiumPrice": 450, "normalPrice": 350, "link": "#" }
+                    ]
+                },
+                {
+                    "name":"Kamala Cinemas , Vadapalani, Chennai",
+                    "showtimes": [
+                        { "time": "07:30 PM", "premiumPrice": 400, "normalPrice": 300, "link": "#" },
+                        { "time": "10:55 PM", "premiumPrice": 450, "normalPrice": 350, "link": "#" }
+                    ]
+            
+                }
+            ]    
 
         },
         {
@@ -107,15 +107,15 @@
             "language": "Tamil",
             "genre": "Drama, Comedy",
             "description": "An engaging and heartwarming comedy-drama that delves into themes of brotherhood, family bonds, and friendship.",
-            "poster": "https://static.toiimg.com/photo/114813595.cms?imgsize=283590",
+            "poster": "https://i.ibb.co/tzg9S4g/114813595.webp",
             "about":"Brother is a 2024 Indian Tamil-language comedy drama film written and directed by M. Rajesh, and produced by Sundar Arumugam under the banner of Screen Scene Media Entertainment Pvt. Ltd. The film stars Jayam Ravi and Priyanka Mohan in the lead roles.",
             "cast": [
-                {"name": "Jeyam Ravi", "role": "Actor", "image": "./assets/images/jeyam-ravi.jpg"},
-                {"name": "Priyanka Mohan", "role": "Actress", "image": "./assets/images/priyanka-mohan.jpg"}
+                {"name": "Jeyam Ravi", "role": "Actor", "image": "https://i.ibb.co/ftCvvcY/jayam-ravi-5828-16-09-2017-03-41-40.jpg"},
+                {"name": "Priyanka Mohan", "role": "Actress", "image": "https://i.ibb.co/88HSpzJ/priyanka-arul-mohan-1095858-30-10-2018-10-24-47.jpg"}
             ],
             "crew": [
-                {"name": "M. Rajesh", "role": "Director", "image": "./assets/images/m-rajesh.jpg"},
-                {"name": "Sundar Arumugam", "role": "Producer", "image": "./assets/images/sundar-arumugam.jpg"}
+                {"name": "M. Rajesh", "role": "Director", "image": "https://i.ibb.co/Czwcw0P/rajesh-muthukumarasamy-19261-1729330387.jpg"},
+                {"name": "Harris Jeyaraj", "role": "Music Director", "image": "https://i.ibb.co/GFkg2xk/harris-jayaraj-797-24-03-2017-12-40-09.jpg"}
             ],
             "trailerLink": "https://youtu.be/rmonLZ1kElw?feature=shared",
            "theatres": [
@@ -184,7 +184,7 @@
             "language": "Tamil",
             "genre": "Thriller, Drama",
             "description": "A gripping thriller that follows the journey of a man who becomes a reluctant hero, fighting against corruption and injustice in his community.",
-            "poster": "./assets/images/bloody-begger.jpg",
+            "poster": "https://i.ibb.co/5hFZNM1/bloody-begger.jpg",
             "about":"Bloody Beggar is a 2024 Indian Tamil-language black comedy drama film written and directed by Sivabalan Muthukumar. It is produced by Nelson Dilipkumar under Filament Pictures. The film stars Kavin in the lead role, alongside Redin Kingsley, Maruthi Prakashraj, Sunil Sukhada, T. M. Karthik. It is the directorial debut of Muthukumar and the debut production of Filament Pictures. The film follows a beggar who finds himself in trouble when a misadventure turns his life upside down.",
             "cast": [
                 {"name": "Kavin", "role": "Actor", "image": "https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/kavin-raj-1083416-1674121518.jpg"},
@@ -363,6 +363,55 @@
     }
     
 ]
+        },
+        {
+            "id": "9",
+            "title": "Mufasa: The Lion King",
+            "rating": "★★★★☆",
+            "releaseDate": "20 Dec, 2024",
+            "duration": "2h 15m",
+            "language": "English",
+            "genre": " Adventure/Musical",
+            "description": "*Mufasa: The Lion King* (2024) is a photorealistic musical drama prequel-sequel to the 2019 remake, directed by Barry Jenkins, featuring returning voices like Donald Glover and Beyoncé, alongside new cast members such as Aaron Pierre and Mads Mikkelsen.",
+            "poster": "https://i.ibb.co/hRYcJGL/mufasa-the-lion-king-et00396541-1734081980.jpg",
+            "about": "Mufasa: The Lion King enlists Rafiki to relay the legend of the unlikely rise of the beloved king of the Pride Lands, introducing an orphaned cub called Mufasa, a sympathetic lion named Taka - the heir to a royal bloodline - and their expansive journey alongside an extraordinary group of misfits.",
+            "cast": [
+                {"name": "Aaron Pierre", "role": "As Mufasa(English)", "image": "https://i.ibb.co/PG6j13K/aaron-pierre-2036704-1714454376.jpg"},
+                {"name": "Shah Rukh Khan", "role": "As Mufasa(Hindi)", "image": "https://i.ibb.co/mRyFc2Z/shah-rukh-khan-2092-12-09-2017-02-10-43.jpg"},
+                {"name": "Mahesh Babu", "role": "As Mufasa(Telugu)", "image": "https://i.ibb.co/2q7RCCr/mahesh-babu-36982-20-12-2017-04-21-05.jpg"}
+                
+            ],
+            "crew": [
+                {"name": "Barry Jenkins", "role": "Director", "image": "https://i.ibb.co/fFZ2LmT/barry-jenkins-1073260-24-03-2017-13-17-41.jpg"},
+                {"name": "Hans Zimmer", "role": "lyrichist", "image": "https://i.ibb.co/J2Jmt2Y/hans-zimmer-786-24-03-2017-12-32-04.jpg"}
+            ],
+            "trailerLink": "https://www.youtube.com/watch?v=o17MF9vnabg",
+            "theatres": [
+                {
+                    "name": "AGS Cinemas: Maduravoyal",
+                    "showtimes": [
+                        { "time": "12:45 PM", "premiumPrice": 300, "normalPrice": 200, "link": "../pages/seat-selection.html" },
+                        { "time": "04:10 PM", "premiumPrice": 350, "normalPrice": 250, "link": "../pages/seat-selection.html" }
+                    ],
+                    "seats": []
+                },
+                {
+                    "name": "PVR: Palazzo,The Nexus Vijaya Mall",
+                    "showtimes": [
+                        {"time": "Imax 2:45 PM", "premiumPrice": 400, "normalPrice": 300, "link": "#" },
+                        { "time": "Screen 1 05:00 PM", "premiumPrice": 450, "normalPrice": 350, "link": "#" }
+                    ]
+                },
+                {
+                    "name":"Kamala Cinemas , Vadapalani, Chennai",
+                    "showtimes": [
+                        { "time": "07:30 PM", "premiumPrice": 400, "normalPrice": 300, "link": "#" },
+                        { "time": "10:55 PM", "premiumPrice": 450, "normalPrice": 350, "link": "#" }
+                    ]
+            
+                }
+            ]    
+
         }
       
     ]
