@@ -1,7 +1,28 @@
 import { createClient } from 'https://cdn.skypack.dev/@supabase/supabase-js@2.0.0';
+// Import the Firebase SDKs
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
 
 const supabaseUrl = 'https://srjumswibbswcwjntcad.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNyanVtc3dpYmJzd2N3am50Y2FkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjk2Nzk5MzcsImV4cCI6MjA0NTI1NTkzN30.e_ZkFg_EPI8ObvFz70Ejc1W4RGpQurr0SoDlK6IoEXY';
+
+//  const movieRef = ref(database, 'movies/' + movieId);
+
+// Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyBcFRNdsErrXYHiiuYlCf6txDjupaNwRno",
+  authDomain: "ticketboxx-c4049.firebaseapp.com",
+  databaseURL: "https://ticketboxx-c4049-default-rtdb.firebaseio.com",
+  projectId: "ticketboxx-c4049",
+  storageBucket: "ticketboxx-c4049.firebasestorage.app",
+  messagingSenderId: "1029974974410",
+  appId: "1:1029974974410:web:a94d9c5fe267f3e51db933",
+  measurementId: "G-F7PEJ1WQRV"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -82,22 +103,19 @@ function generateBookingId() {
     }
     return id;
 }
+const selected=JSON.parse(localStorage.getItem('selectedMovie'))
+console.log(selected)
+const poster =selected.poster;
 
 // Fetch movie poster from local data source
-async function fetchMoviePoster(movieName) {
-    try {
-        if (!movieName) throw new Error("Movie name is undefined or empty.");
-        const response = await fetch('../data/movies.json');
-        if (!response.ok) throw new Error('Failed to fetch movie data');
-        const data = await response.json();
-        const movie = data.movies.find(movie => movie.title.toLowerCase() === movieName.toLowerCase());
-        if (movie) return movie.poster;
-        throw new Error('Movie not found');
-    } catch (error) {
-        console.error('Error fetching movie poster:', error);
-        return "../images/default-poster.png";
-    }
+async function fetchMoviePoster() {
+    const selected=JSON.parse(localStorage.getItem('selectedMovie'))
+console.log(selected)
+const poster =selected.poster;
+console.log(poster)
+   return poster
 }
+
 
 // Download ticket as PDF
 function downloadTicketPDF(movieName, theatreName, showTime, date, seats, bookingId, amount, poster, customerEmail, customerName) {
