@@ -4,7 +4,7 @@ body {
     margin: 0;
     background-color: #fff;
     color: #333;
-    /* overflow-x:hidden; */
+    overflow-x:hidden;
 }
 
 .header {
@@ -57,14 +57,14 @@ body {
 
 
 .seat {
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
     border: 0.5px solid #f5a623;
     border-radius: 2px;
     cursor: pointer;
     text-align: center;
     line-height: 25px;
-    font-size: 0.8rem;
+    font-size: 0.6rem;
     color: white;
     background-color: #fafafa;
     gap: 10px;
