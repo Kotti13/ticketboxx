@@ -189,6 +189,12 @@ footer {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+
+    .advertisement a img{
+        height: 50px;
+        /* width: 100%; */
+        display: none;
+    }
     nav ul {
         flex-direction: column;
         align-items: center;
@@ -202,9 +208,11 @@ footer {
     .features {
         flex-direction: column;
     }
+    .recommended-movies{
+        width: 100%;
+    }
+    .movie-slider{
+        width: 100%;
+    }
 }
 
-/* .search-bar:focus{
-    padding-bottom: 400px;
-
-} */

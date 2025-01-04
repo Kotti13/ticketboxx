@@ -2,6 +2,7 @@ body {
   font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
+  
 }
 
 
@@ -411,7 +412,10 @@ form {
   justify-content: center;
   gap: 0.5rem;
 }
-
+.hero-content a{
+  background-color: red;
+  color: white;
+}
 .heart-icon {
   font-size: 20px;
   color: red;
@@ -629,5 +633,17 @@ footer a::after {
   
     font-size: medium;
   }
+  .carousel{
+    width: auto;
+    height: auto;
+  }
+  .carousel-item img{
+    height: 150px;
+  }
+  .movie-slider{
+    width: 100%;
+  }
+  
+  
   
 }

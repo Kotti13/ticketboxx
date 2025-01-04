@@ -517,3 +517,45 @@ footer {
 .comment-item p {
     margin: 5px 0;
 }
+
+
+/* mediaqueries */
+@media (max-width:768px) {
+    header{
+        display: flex;
+        flex-direction: column;
+        font-size: small;
+    }
+
+    .movie-details-container h1{
+        text-align: center;
+       
+
+    }
+    .img-fluid{
+        height: 100px;
+        width: 150px;
+    }
+    
+    .tabs{
+        height: 40px;
+        font-size: 15px;
+        
+    }
+    .date-scroll-container{
+        height: 60px;
+        text-align: center;
+        
+    }
+    .date-item{
+        font-size: 12px;
+    }
+    #submit-comment{
+        background-color:#b8a779;
+    }
+
+    
+
+
+    
+}

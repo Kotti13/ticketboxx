@@ -9,21 +9,13 @@ body {
 
 .header {
     display: flex;
-    align-items: center;
-    gap: 5px;
-    height: 100px;
-    padding: 5px 10px;
-    background: white;
-    color: black;
     box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+    /* margin: 10px; */
+    width: 100%;
 }
-
-.back-button {
-    font-size: 1.5rem;
-    background: none;
-    border: none;
-    color: #fff;
-    cursor: pointer;
+.ticket{
+    position: absolute;
+    margin-left: 80%;
 }
 
 .seat-section {
@@ -32,9 +24,7 @@ body {
     margin: 0 auto;
 }
 
-.ticket-count {
-    margin-left: 70%;
-}
+
 
 .seat-row {
     margin-bottom: 20px;
@@ -298,6 +288,10 @@ footer {
 
 
 @media (max-width: 768px) {
+   .movieTitle{
+    text-align: center;
+    color: red;
+   }
 
     .Availablity{
         display: flex;
@@ -307,30 +301,30 @@ footer {
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
-        overflow-x: auto; /* Enable horizontal scrolling */
-        overflow-y: hidden; /* Hide vertical scrolling */
-        white-space: nowrap; /* Prevent wrapping of rows */
+        overflow-x: scroll; 
+        overflow-y: hidden; 
+        white-space: nowrap; 
         padding: 10px;
-        max-width: 100%; /* Ensure container doesn't exceed viewport width */
+        width: 100%; 
     }
 
     .row {
-        display: inline-flex; /* Keeps rows in a single line for horizontal scrolling */
+        display: inline-flex; 
         flex-wrap: nowrap;
-        width: max-content; /* Ensures row width adjusts to its content */
+        width: max-content; 
     }
 
     .seat {
-        flex-shrink: 0; /* Prevents seats from shrinking */
-        margin: 5px; /* Adds spacing between seats */
+        flex-shrink: 0; 
+        margin: 5px; 
     }
 
     .seat.empty {
-        display: inline-block; /* Ensure empty spaces are displayed */
+        display: inline-block; 
     }
 
     .screen img {
-        max-width: 100%; /* Ensures the screen image scales appropriately */
+        max-width: 100%; 
     }
 
     

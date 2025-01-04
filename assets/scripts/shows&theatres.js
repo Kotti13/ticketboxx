@@ -86,7 +86,7 @@ function displayMovieDetails(movie) {
                     </a>
                     <div class="tabs">
                         <button class="tab active" id="showlisting-tab">Showlisting</button>
-                        <button class="tab" id="reviews-tab">Reviews & More</button>
+                        <button class="tab" id="reviews-tab">Reviews</button>
                     </div>
                 </div>
                 <div class="movie-poster">
@@ -123,6 +123,7 @@ function displayMovieDetails(movie) {
     // Existing Tab Event Listeners
     const showlistingTab = document.getElementById("showlisting-tab");
     const reviewsTab = document.getElementById("reviews-tab");
+    // const showlistingTab=document.querySelector('.date-item')
 
     showlistingTab.addEventListener("click", () => {
         showlistingTab.classList.add("active");
@@ -237,7 +238,7 @@ function generateDateScroll() {
     // Clear any previous date selections
     dateScrollContainer.innerHTML = '';
 
-    // Loop to generate the next 5 dates
+    //for next five days loop
     for (let i = 0; i < 5; i++) {
         const date = new Date();
         date.setDate(currentDate.getDate() + i);
