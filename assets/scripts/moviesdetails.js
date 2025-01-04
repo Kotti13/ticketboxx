@@ -58,7 +58,10 @@ function displayMovieDetails(movieId) {
                             <p><strong>Duration:</strong> ${movie.duration}</p>
                             <p><strong>Language:</strong> ${movie.language}</p>
                             <p><strong>Genre:</strong> ${movie.genre}</p>
-                            <a href="shows&theatres.html?id=${movie.id}" class="btn btn-success">Book Tickets</a>
+                            <a href="shows&theatres.html?id=${movie.id}" class="btn btn-success">Book Tickets</a><br><br>
+                            <a href="${movie.trailerLink}" target="_blank" class="btn btn-primary">
+                        <img src="../images/play-button.png" height="40" width="40"> Watch Trailer
+                    </a>
                         </div>
                     </div>
                     <p class="movie-description"><strong>Description:</strong> ${movie.description}</p>
@@ -84,11 +87,9 @@ function displayMovieDetails(movieId) {
                         `).join('')}
                     </div>
 
-                    <h2>Trailer</h2>
-                    <a href="${movie.trailerLink}" target="_blank" class="btn btn-primary">
-                        <img src="../images/play-button.png" height="40" width="40"> Watch Trailer
-                    </a>
-                    <br><br>
+                    
+                    
+                    
                 </div>
             `;
 

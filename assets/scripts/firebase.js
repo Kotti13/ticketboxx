@@ -26,10 +26,9 @@ const auth = getAuth(app);
 const supabaseUrl = 'https://srjumswibbswcwjntcad.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNyanVtc3dpYmJzd2N3am50Y2FkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjk2Nzk5MzcsImV4cCI6MjA0NTI1NTkzN30.e_ZkFg_EPI8ObvFz70Ejc1W4RGpQurr0SoDlK6IoEXY';
 
-// // Initialize Firebase & Supabase
-// const app = initializeApp(firebaseConfig);
-// const auth = getAuth(app);
-// Initialize Supabase client
+
+
+
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 // Example of a query

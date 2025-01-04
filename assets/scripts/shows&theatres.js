@@ -1,6 +1,7 @@
 // Import the Firebase SDKs
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
 import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+import { createClient } from 'https://cdn.skypack.dev/@supabase/supabase-js@2.0.0';
 
 // Firebase configuration
 const firebaseConfig = {
@@ -17,6 +18,13 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
+
+// supabase key
+const supabaseUrl = 'https://srjumswibbswcwjntcad.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNyanVtc3dpYmJzd2N3am50Y2FkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjk2Nzk5MzcsImV4cCI6MjA0NTI1NTkzN30.e_ZkFg_EPI8ObvFz70Ejc1W4RGpQurr0SoDlK6IoEXY';
+
+
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 function getMovieIdFromUrl() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -88,8 +96,7 @@ function displayMovieDetails(movie) {
             <div class="location-dropdown">
                 <span class="location-icon">📍</span>
                 <select class="location-select">
-                    <option>Chennai (Only)</option>
-                    
+                    <option>Chennai (only)</option>
                 </select>
             </div>
             <div class="date-selection">
@@ -98,11 +105,22 @@ function displayMovieDetails(movie) {
             </div>
             <div id="show-times" class="show-times-container" style="display: none;"></div>
             <div id="reviews" class="reviews-container" style="display: none;"></div>
+            
+            <!-- Add Comment Section -->
+            <div id="comment-section">
+                <h3>Leave a Comment</h3>
+                <textarea id="comment-box" placeholder="Write your comment here..."></textarea>
+                <button id="submit-comment" class="btn">Submit Comment</button>
+                <div id="comment-list">
+                    <h4>Comments:</h4>
+                    <!-- Comments will be dynamically injected here -->
+                </div>
+            </div>
         </div>
     `;
     movieDetailsContainer.innerHTML = html;
 
-    // Add tab event listeners
+    // Existing Tab Event Listeners
     const showlistingTab = document.getElementById("showlisting-tab");
     const reviewsTab = document.getElementById("reviews-tab");
 
@@ -118,14 +136,91 @@ function displayMovieDetails(movie) {
         showlistingTab.classList.remove("active");
         document.getElementById("show-times").style.display = "none";
         document.getElementById("reviews").style.display = "block";
-
-        // Fetch and display reviews
         fetchReviews(movie.id);
     });
 
-    // Generate date scroll
+    // Generate Date Scroll
     generateDateScroll();
+
+    // Fetch existing comments from Supabase
+    fetchComments(movie.id);
+
+    // Submit comment
+    const submitCommentButton = document.getElementById("submit-comment");
+    submitCommentButton.addEventListener("click", function () {
+        const commentBox = document.getElementById("comment-box");
+        const commentText = commentBox.value.trim();
+
+        if (!commentText) {
+            alert("Please write a comment before submitting.");
+            return;
+        }
+
+        const username = localStorage.getItem('username') || 'Guest';  // Get username from localStorage
+
+        // Add comment to Supabase
+        addComment(movie.id, username, commentText);
+
+        // Clear the comment box
+        commentBox.value = '';
+    });
 }
+
+// fetch comments from supabase 
+async function fetchComments(movieId) {
+    const { data, error } = await supabase
+        .from('comments')
+        .select('username, comment, timestamp')
+        .eq('movie_id', movieId)
+         
+
+    if (error) {
+        console.error("Error fetching comments:", error);
+        return;
+    }
+
+    const commentList = document.getElementById("comment-list");
+
+    // Clear any existing comments
+    commentList.innerHTML = '';
+
+    if (data.length === 0) {
+        commentList.innerHTML = "<p>No comments yet.</p>";
+        return;
+    }
+
+    data.forEach((comment) => {
+        const commentItem = `
+            <div class="comment-item">
+                <p><strong>${comment.username}</strong> - ${new Date(comment.timestamp).toLocaleString()}</p>
+                <p>${comment.comment}</p>
+            </div>
+        `;
+        commentList.innerHTML += commentItem;
+    });
+}
+
+// Add a comment to Supabase
+async function addComment(movieId, username, commentText) {
+    const { data, error } = await supabase
+        .from('comments')
+        .insert([
+            {
+                movie_id: movieId,
+                username: username,
+                comment: commentText
+            }
+        ]);
+
+    if (error) {
+        console.error("Error adding comment:", error);
+        return;
+    }
+
+    // After successfully insert comment into supabase this function will call and fetch comment
+    fetchComments(movieId);
+}
+
 
 // Generate Date Scroll Function
 function generateDateScroll() {
@@ -213,24 +308,9 @@ function populateShowTimes(theatres = [], movie) {
     });
 }
 
-// Fetch reviews (placeholder logic)
-function fetchReviews(movieId) {
-    const reviewsContainer = document.getElementById("reviews");
-    reviewsContainer.innerHTML = "<p>Loading reviews...</p>";
 
-    const reviews = [
-        { username: "sheriff", review: "Nice movie!", rating: 4 },
-        { username: "santhosh", review: "One-time watch.", rating: 3 }
-    ];
-
-    const reviewsHTML = reviews.map(review => `
-        <div class="review-item">
-            <p><strong>${review.username}</strong> - ⭐ ${review.rating} / 5</p>
-            <p>${review.review}</p>
-        </div>
-    `).join('');
-
-    reviewsContainer.innerHTML = reviewsHTML;
-}
 
 console.log(localStorage.getItem('selectedMovie'));
+
+
+

@@ -9,42 +9,77 @@
     <title>TicketBoxx</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-    <!-- Firebase App (the core Firebase SDK) -->
-    <!-- <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-analytics.js"></script> -->
-
-    <!-- <script type="module" src="./assets/scripts/firebase.js"></script> -->
+    
 </head>
 <body>
     <header class="d-flex justify-content-between align-items-center p-3">
-        <div><img src="./assets/images/ticketboxx -logo.png" alt="Logo" height="40" width="100"></div>
         <div>
-            <form action="./movies.html" method="GET" class="d-flex">
-                <input type="search" class="search-bar form-control me-2" name="q" placeholder="Search For Movies, Sports, Activities" aria-label="Search">
-                <button type="submit" class="btn btn-outline-secondary">Search</button>
+            <a href="home.html">
+                <img src="./assets/images/ticketboxx -logo.png" alt="TicketBoxx Logo" height="40" width="100" />
+            </a>
+        </div>
+    
+        <!-- Search Bar -->
+        <div class="flex-grow-1 mx-3">
+            <form id="searchForm">
+                <input type="text" id="searchQuery" class="search-bar form-control" placeholder="Search For Movies, Sports, Activities">
+                <button type="submit" class="search-icon">Search</button>
             </form>
+            
+            
         </div>
-        <nav>
-            <ul class="nav">
-                <li class="nav-item"><a class="nav-link" style="color: #333;" href="index.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="." style="color: #333;">Movies</a></li>
-             
-                <li class="nav-item"><a class="nav-link" href="bookings.html" style="color: #333;">My Bookings</a></li>
-                <li class="nav-item"><a class="nav-link" href="contact.html" style="color: #333;">Contact Us</a></li>
-            </ul>
-        </nav>
-        <div class="dropdown" id="authButtons">
-            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                Login/Signup
+    </header>
+    
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light position-relative w-100">
+            <!-- Hamburger button -->
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
             </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a></li>
-                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#signupModal">Sign Up</a></li>
-            </ul>
-        </div>
+            <!-- Navbar links -->
+            <div
+                class="collapse navbar-collapse w-100"
+                id="navbarNav"
+            >
+                <ul class="navbar-nav ms-auto d-flex flex-row">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Movies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Theaters</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="dropdown" id="authButtons">
+                <button class="btn btn-primary dropdown-toggle login-btn" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    Login/Signup
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a></li>
+                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#signupModal">Sign Up</a></li>
+                </ul>
+            </div>
+        </nav>
+       
         <button id="logoutButton" class="btn btn-danger d-none">Logout</button>
     </header>
+    
+    
+    
     
 
    <!-- Signup Modal -->
@@ -152,90 +187,75 @@
             <div class="movie-slider">
                 <div class="movie-card">
                     <a href="moviesdetails.html?id=9">
-                        <img src="./assets/images/kanguva.jpg" alt="Black">
+                        <img src="https://i.ibb.co/hRYcJGL/mufasa-the-lion-king-et00396541-1734081980.jpg" alt="mufasa-the-lion-king">
                     </a>
-                    <div class="movie-info">
-                        <h4>Kanguva</h4>
-                        <p>Rating: ★★★★☆</p>
-                    </div>
+                    
+                </div>
+                <div class="movie-card">
+                    <a href="moviesdetails.html?id=0">
+                        <img src="https://m.media-amazon.com/images/M/MV5BNWU1ZWFhNGQtZDhlZC00ZWFlLTlmNmEtN2VmYmZiN2Y5ZmQ2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Pushpa-2 The rule">
+                    </a>
+                    
                 </div>
                 <div class="movie-card">
                     <a href="moviesdetails.html?id=1">
-                        <img src="./assets/images/black.jpg" alt="Black">
+                        <img src="https://m.media-amazon.com/images/M/MV5BOGM5N2FkNGMtNmYzMS00MGRiLWI5ZDItOTRmNThiYWNlNDZhXkEyXkFqcGc@._V1_.jpg" alt="Black">
                     </a>
-                    <div class="movie-info">
-                        <h4>Black</h4>
-                        <p>Rating: ★★★★☆</p>
-                    </div>
+                   
                 </div>
         
                 <div class="movie-card">
                     <a href="moviesdetails.html?id=2">
-                        <img src="./assets/images/brother.jpg" alt="Brother">
+                        <img src="https://static.toiimg.com/photo/114813595.cms?imgsize=283590" alt="Brother">
                     </a>
-                    <div class="movie-info">
-                        <h4>Brother</h4>
-                        <p>Rating: ★★★★☆</p>
-                    </div>
+                    
                 </div>
         
                 <div class="movie-card">
                     <a href="moviesdetails.html?id=3">
-                        <img src="./assets/images/lucky-baskar.jpg" alt="Lucky Basker">
+                        <img src="https://m.media-amazon.com/images/M/MV5BNjc2NTkxNzQtZDcxNS00MzczLTkzOGYtMjAwYzJjMzFjNWJhXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Lucky Basker">
                     </a>
-                    <div class="movie-info">
-                        <h4>Lucky Basker</h4>
-                        <p>Rating: ★★★★☆</p>
-                    </div>
+                    
                 </div>
         
                 <div class="movie-card">
                     <a href="moviesdetails.html?id=4">
-                        <img src="./assets/images/bloody-begger.jpg" alt="Bloody Begger">
+                        <img src="https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/bloody-beggar-et00412521-1726727688.jpg" alt="Bloody Begger">
                     </a>
-                    <div class="movie-info">
-                        <h4>Bloody Begger</h4>
-                        <p>Rating: ★★★★☆</p>
-                    </div>
+                   
                 </div>
         
                 <div class="movie-card">
                     <a href="moviesdetails.html?id=5">
-                        <img src="./assets/images/amaran.jpg" alt="Amaran">
+                        <img src="https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/amaran-et00417203-1729696593.jpg" alt="Amaran">
                     </a>
-                    <div class="movie-info">
-                        <h4>Amaran</h4>
-                        <p>Rating: ★★★★☆</p>
-                    </div>
+                    
                 </div>
         
                 <div class="movie-card">
                     <a href="moviesdetails.html?id=6">
-                        <img src="./assets/images/venom.jpg" alt="Venom: The Last Dance">
+                        <img src="https://m.media-amazon.com/images/M/MV5BZDMyYWU4NzItZDY0MC00ODE2LTkyYTMtMzNkNDdmYmFhZDg0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Venom: The Last Dance">
                     </a>
-                    <div class="movie-info">
-                        <h4>Venom: The Last Dance</h4>
-                        <p>Rating: ★★★★☆</p>
-                    </div>
+                    
                 </div>
         
                 <div class="movie-card">
                     <a href="moviesdetails.html?id=7">
-                        <img src="./assets/images/Lubber_Pandhu (1).jpg" alt="Lubber Pandhu">
+                        <img src="https://m.media-amazon.com/images/M/MV5BNDk0NzM3ZGQtNjk5Mi00Y2I4LWIwYzUtYjA2NzJiNmQyNDdlXkEyXkFqcGc@._V1_.jpg" alt="Lubber Pandhu">
                     </a>
-                    <div class="movie-info">
-                        <h4>Lubber Pandhu</h4>
-                        <p>Rating: ★★★★☆</p>
-                    </div>
+                    
                 </div>
                 <div class="movie-card">
                     <a href="moviesdetails.html?id=8">
-                        <img src="./assets/images/vettaiyan-recommended-movies.jpg" alt="Vettaiyan">
+                        <img src="https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/vettaiyan-et00379391-1727938465.jpg" alt="Vettaiyan">
                     </a>
-                    <div class="movie-info">
-                        <h4>Vettaiyan</h4>
-                        <p>Rating: ★★★★☆</p>
-                    </div>
+                    
+                </div>
+                <div class="movie-card">
+                    <a href="moviesdetails.html?id=10">
+                        <img src="https://assets-in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:w-400.0,h-660.0,cm-pad_resize,bg-000000,fo-top:l-image,i-discovery-catalog@@icons@@star-icon-202203010609.png,lx-24,ly-615,w-29,l-end:l-text,ie-OC8xMCAgMksgVm90ZXM%3D,fs-29,co-FFFFFF,ly-612,lx-70,pa-8_0_0_0,l-end/et00420051-jpqvjrpsba-portrait.jpg" alt="Sorgavaasal">
+                    </a>
+                    
                 </div>
                 
                 
@@ -388,7 +408,7 @@
             });
             
            
-            const protectedLinks = document.querySelectorAll('.nav-link, .hero-content .btn,.recommended-movies');
+            const protectedLinks = document.querySelectorAll('.nav-link, .hero-content .btn,.recommended-movies ,#searchForm');
             
             protectedLinks.forEach(link => {
                 link.addEventListener('click', (event) => {

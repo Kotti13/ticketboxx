@@ -133,7 +133,7 @@ document.getElementById("searchForm").addEventListener("submit", function (e) {
 
             searchResultsContainer.innerHTML = matchedMovies.map(([id, movie]) => `
                 <div class="movie-result">
-                    <img src="${movie.poster}" alt="${movie.title}" class="movie-poster img-thumbnail" height="200" width="350">
+                    <img src="${movie.poster}" alt="${movie.title}" class="movie-poster img-thumbnail" >
                     <div class="balance-details">
                         <h5>${movie.title}</h5>
                         <p><strong>Release Date:</strong> ${movie.releaseDate}</p>

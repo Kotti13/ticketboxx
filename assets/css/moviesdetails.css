@@ -286,3 +286,79 @@ h1 {
 .lang-btn:hover {
     background-color: #ddd;
 }
+
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #222;
+    color: #ddd;
+    box-shadow: 0px -5px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+@media (max-width: 768px) {
+    /* Adjust header */
+   
+
+    /* Movie details container adjustments */
+    .movie-details-container {
+        padding: 15px;
+    }
+    .movie-title {
+        font-size: 1.5rem;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    .overall-movie-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .movie-poster img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 15px;
+    }
+    .book-ticket-container {
+        text-align: center;
+    }
+    .book-ticket-container p {
+        margin: 5px 0;
+    }
+    .book-ticket-container .btn {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    /* Movie description and details */
+    .movie-description, .movie-details-container > p {
+        font-size: 1rem;
+        text-align: justify;
+    }
+
+    /* Cast and crew section adjustments */
+    .cast-container, .crew-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+
+    }
+    .cast-member, .crew-member {
+        flex: 1 1 120px;
+        text-align: center;
+        max-width: 150px;
+    }
+    .cast-photo, .crew-photo {
+        width: 100%;
+        /* height: auto; */
+        height: 45%;
+        border-radius: 50%;
+
+    }
+    .cast-member div, .crew-member div {
+        font-size: 0.9rem;
+        margin-top: 5px;
+    }
+}

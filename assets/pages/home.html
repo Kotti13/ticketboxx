@@ -12,64 +12,77 @@
   
 </head>
 <body >
-  <header class="d-flex justify-content-between align-items-center p-3 bg-light shadow-sm">
-    <!-- Logo -->
-    <div>
-        <a href="home.html">
-            <img src="../images/ticketboxx -logo.png" alt="TicketBoxx Logo" height="40" width="100" />
-        </a>
-    </div>
-
-    <!-- Search Bar -->
-    <div class="flex-grow-1 mx-3">
-        <form id="searchForm">
-            <input type="text" id="searchQuery" class="search-bar form-control" placeholder="Search For Movies, Sports, Activities">
-            <button type="submit" class="search-icon">Search</button>
-        </form>
-        
-        
-        
-        </form>
-    </div>
-
-    <!-- Navigation Links -->
-    <nav>
-        <ul class="nav">
-            <li class="nav-item">
-                <a class="nav-link text-dark fw-bold" href="home.html">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark fw-bold" href="movies.html">Movies</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark fw-bold" href="my_booking.html">My Bookings</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark fw-bold" href="contact.html">Contact Us</a>
-            </li>
-        </ul>
-    </nav>
-
-    <div class="dropdown">
-        <button class="btn btn-light dropdown-toggle d-flex align-items-center" type="button" id="userProfileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="../images/user-icon.jpg" alt="User Profile" class="rounded-circle me-2" width="40" height="30">
-            
-        </button>
-        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userProfileDropdown">
-            <li>
-                <h6 class="dropdown-header">Signed in as <span id="usernameDropdown">User</span></h6>
-            </li>
-            <li><a class="dropdown-item" href="profile.html">View Profile</a></li>
-            <li><a class="dropdown-item" href="account_settings.html">Account Settings</a></li>
-            <li><a class="dropdown-item" href="support_community.html">Support Community</a></li>
-            <li>
-                <hr class="dropdown-divider">
-            </li>
-            <li><a class="dropdown-item text-danger"  id="logoutButton">Logout</a></li>
-        </ul>
-    </div>
+    <header class="d-flex justify-content-between align-items-center p-3">
+        <div>
+            <a href="home.html">
+                <img src="../images/ticketboxx -logo.png" alt="TicketBoxx Logo" height="40" width="100" />
+            </a>
+        </div>
     
-</header>
+        <div class="flex-grow-1 mx-3">
+            <form id="searchForm">
+                <input type="text" id="searchQuery" class="search-bar form-control" placeholder="Search For Movies, Sports, Activities">
+                <button type="submit" class="search-icon">Search</button>
+            </form>
+            
+        </div>
+    </header>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light position-relative w-100">
+            <!-- Hamburger button -->
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Navbar links -->
+            <div
+                class="collapse navbar-collapse w-100"
+                id="navbarNav"
+            >
+                <ul class="navbar-nav ms-auto d-flex flex-row">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-bold" href="home.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-bold" href="movies.html">Movies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-bold" href="my_booking.html">My Bookings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-bold" href="contact.html">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="dropdown">
+                
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userProfileDropdown">
+                    <li>
+                        <h6 class="dropdown-header">Signed in as <span id="usernameDropdown">User</span></h6>
+                    </li>
+                  
+                    <li><a class="dropdown-item" href="account_settings.html">Account Settings</a></li>
+                    <li><a class="dropdown-item" href="support_community.html">Support Community</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item text-danger"  id="logoutButton">Logout</a></li>
+                </ul>
+               
+                <button class="btn btn-light dropdown-toggle d-flex align-items-center" type="button" id="userProfileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="../images/user-icon.jpg" alt="User Profile" class="rounded-circle me-2" width="40" height="30">
+                    
+                </button>
+            </div>
+    </header>
+  
 
 
 
@@ -220,51 +233,41 @@
           <div class="movie-slider">
               <div class="movie-card">
                   <a href="moviesdetails.html?id=10">
-                      <img src="../images/jolly-o-jymkhana.jpg" alt="jolly-o-jymkhana">
+                      <img src="https://i.ibb.co/9YHZF3n/Jolly-O-Gymkhana-6baf0b40-a3fa-11ef-b945-57c02e367648.jpg" alt="jolly-o-jymkhana">
                   </a>
                   
               </div>
               <div class="movie-card">
                   <a href="moviesdetails.html?id=11">
-                      <img src="../images/Captain_America_Brave_New_World_poster.jpg" alt="Captain_America_Brave_New_World">
+                      <img src="https://i.ibb.co/6wdJThF/Captain-America-Brave-New-World-poster.jpg" alt="Captain_America_Brave_New_World">
                   </a>
                  
               </div>
       
               <div class="movie-card">
                   <a href="moviesdetails.html?id=12">
-                      <img src="../images/good-bad-ugly.jpg" alt="good-bad-ugly">
+                      <img src="https://i.ibb.co/TMNt88G/108522661.jpg" alt="good-bad-ugly">
                   </a>
                   
               </div>
       
               <div class="movie-card">
                   <a href="moviesdetails.html?id=13">
-                      <img src="../images/pushpa-2.jpg" alt="pushpa-2">
+                      <img src="https://m.media-amazon.com/images/M/MV5BNWU1ZWFhNGQtZDhlZC00ZWFlLTlmNmEtN2VmYmZiN2Y5ZmQ2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="pushpa-2">
                   </a>
                   
               </div>
       
               <div class="movie-card">
                   <a href="moviesdetails.html?id=14">
-                      <img src="../images/miss-you-poster.jpg" alt="miss-you">
+                      <img src="https://i.ibb.co/VBNDvCM/MV5-BZj-Fl-OTg1-MDUt-YTMw-OS00-MDBl-LWE4-Zj-At-Zj-Az-ZWJj-Yz-Ey-ZWNj-Xk-Ey-Xk-Fqc-Gc-V1.jpg" alt="miss-you">
                   </a>
                  
               </div>
       
-              <div class="movie-card">
-                  <a href="moviesdetails.html?id=15">
-                      <img src="../images\/Mechanic_Rocky_film_poster.jpg" alt="Mechanic_Rocky">
-                  </a>
-                  
-              </div>
+              
       
-              <div class="movie-card">
-                  <a href="moviesdetails.html?id=16">
-                      <img src="../images/Zebra.jpg" alt="Zebra">
-                  </a>
-                  
-              </div>
+              
       
               
               

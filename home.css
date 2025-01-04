@@ -15,63 +15,9 @@ header {
     border-bottom: 1px solid #ddd;
 }
 
-/* dropdown for user icon */
 
 
-/* Dropdown base styles */
-.movie-header .dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    width: 100%;
-    z-index: 1000;
-}
 
-/* Show dropdown on hover */
-.movie-header .dropdown:hover .dropdown-menu {
-    display: block;
-}
-
-/* Dropdown Menu Styling */
-.recommended-movies-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 15%;
-    width: 70%;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    padding: 20px;
-}
-
-.nav-item.dropdown:hover .recommended-movies-menu {
-    display: block;
-}
-
-/* Dropdown Menu */
-.movies-dropdown {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 15%;
-    width: 70%;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    padding: 20px;
-}
-
-.nav-item.dropdown:hover .movies-dropdown {
-    display: block;
-}
 
 /* Recommended Movies Section */
 .recommended-movies h5 {
@@ -80,31 +26,6 @@ header {
     margin-bottom: 15px;
     text-transform: uppercase;
     color: #333;
-}
-
-/* Movie Cards */
-.movie-card {
-    text-align: center;
-    /* padding: 10px; */
-    transition: transform 0.3s ease;
-}
-
-.movie-card img {
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.movie-card:hover {
-    transform: scale(1.05);
-}
-
-.movie-title {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #333;
-    margin-top: 10px;
 }
 
 /* for search deatails */
@@ -119,6 +40,7 @@ header {
 }
 .movie-result img{
     border-radius: 20px;
+    height: 400px;
 }
 .balance-deatils{
     margin-top: 20%;
@@ -194,6 +116,7 @@ main {
 .movie-slider {
     display: flex;
     gap: 20px;
+   
     overflow-x: scroll; /* Enable horizontal scrolling */
     overflow-y: hidden; /* Hide vertical scrollbar */
     padding: 10px 0;

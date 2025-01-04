@@ -293,3 +293,54 @@ footer {
     font-size: 18px;
     color: #333;
 }
+
+
+
+
+@media (max-width: 768px) {
+
+    .Availablity{
+        display: flex;
+    }
+    .seats {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        overflow-x: auto; /* Enable horizontal scrolling */
+        overflow-y: hidden; /* Hide vertical scrolling */
+        white-space: nowrap; /* Prevent wrapping of rows */
+        padding: 10px;
+        max-width: 100%; /* Ensure container doesn't exceed viewport width */
+    }
+
+    .row {
+        display: inline-flex; /* Keeps rows in a single line for horizontal scrolling */
+        flex-wrap: nowrap;
+        width: max-content; /* Ensures row width adjusts to its content */
+    }
+
+    .seat {
+        flex-shrink: 0; /* Prevents seats from shrinking */
+        margin: 5px; /* Adds spacing between seats */
+    }
+
+    .seat.empty {
+        display: inline-block; /* Ensure empty spaces are displayed */
+    }
+
+    .screen img {
+        max-width: 100%; /* Ensures the screen image scales appropriately */
+    }
+
+    
+
+    #popup {
+        padding: 10px;
+        font-size: 14px; /* Adjust font size for better fit */
+    }
+
+    header h1, header p, #ticketSummary {
+        font-size: 14px; /* Adjust header font sizes */
+    }
+}

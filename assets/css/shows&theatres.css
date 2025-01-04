@@ -364,7 +364,13 @@ nav a:hover {
     display: block;
     opacity: 1;
 }
-
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #222;
+    color: #ddd;
+    box-shadow: 0px -5px 15px rgba(0, 0, 0, 0.2);
+}
 
 /* loading */
 /* Loading Spinner Style */
@@ -434,5 +440,80 @@ nav a:hover {
     text-align: center;
   }
   
-  
-  
+  /* for date selection */
+  .date-selection {
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+}
+
+#date-scroll-container {
+    display: flex;
+    overflow-x: scroll;
+    padding: 10px 0;
+    gap: 10px;
+    border-bottom: 2px solid #ccc;
+}
+
+.date-item {
+    padding: 10px 20px;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    min-width: 100px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.date-item:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.selected {
+    background-color: #007bff;
+    color: white;
+}
+/* comment box */
+#comment-section {
+    margin-top: 30px;
+}
+
+#comment-box {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#submit-comment {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#submit-comment:hover {
+    background-color: #218838;
+}
+
+#comment-list {
+    margin-top: 20px;
+}
+
+.comment-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #f0f0f0;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+.comment-item p {
+    margin: 5px 0;
+}
