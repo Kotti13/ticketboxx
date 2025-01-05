@@ -36,13 +36,17 @@ body {
 }
 
 .seats {
-    margin-top: 6%;
-    display: grid;
-    grid-template-columns: repeat(18, 1fr);
-    /* gap: 5px; */
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   margin-top: 7%;
 }
 .seats:first-child{
     gap: 20px;
+}
+.screen img{
+    max-width: 700px;
 }
 
 
@@ -196,25 +200,7 @@ body {
     }
 }
 
-/* Responsive Layout */
-@media (max-width: 768px) {
-    .seat-section {
-        width: 100%;
-        padding: 10px;
-    }
 
-    .seats {
-        grid-template-columns: repeat(8, 1fr); /* Less seats per row on smaller screens */
-    }
-
-    .ticket-count {
-        margin-left: 50%;
-    }
-
-    .popup .confirm-ticket {
-        width: 150px;
-    }
-}
 
 /* Footer Styles */
 footer {
@@ -288,6 +274,23 @@ footer {
 
 
 @media (max-width: 768px) {
+    .seat{height: 6px;
+        width: 6px;
+        font-size: 1px;
+    
+    }
+    .header{
+      margin: auto;
+      /* margin-left: 10%; */
+      padding: 50px;
+      margin: auto;
+       
+    }
+    .moviename-theatre{
+       display: flex;
+       flex-direction: column;
+    }
+
    .movieTitle{
     text-align: center;
     color: red;
@@ -297,34 +300,23 @@ footer {
         display: flex;
     }
     .seats {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-        overflow-x: scroll; 
-        overflow-y: hidden; 
-        white-space: nowrap; 
-        padding: 10px;
-        width: 100%; 
+        margin-left: 18%;
+       margin-top: 10%;
+       
     }
 
-    .row {
-        display: inline-flex; 
-        flex-wrap: nowrap;
-        width: max-content; 
-    }
-
-    .seat {
-        flex-shrink: 0; 
-        margin: 5px; 
-    }
+    
+   
 
     .seat.empty {
         display: inline-block; 
     }
-
+   .screen-container{
+    margin-left: 20%;
+   }
     .screen img {
-        max-width: 100%; 
+        margin-left: -40px;
+        width: 400px;
     }
 
     
@@ -337,4 +329,6 @@ footer {
     header h1, header p, #ticketSummary {
         font-size: 14px; /* Adjust header font sizes */
     }
+    
 }
+

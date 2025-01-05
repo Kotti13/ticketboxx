@@ -33,14 +33,15 @@ header {
     margin: auto;
     width: 50%;
     display: flex;
-    margin-left: 400px;
+    max-width: 400px;
+    max-height: 400px;
     justify-content: space-around;
     
 
 }
 .movie-result img{
     border-radius: 20px;
-    height: 400px;
+    
 }
 .balance-deatils{
     margin-top: 20%;
@@ -187,8 +188,22 @@ footer {
     font-size: 14px;
 }
 
+@media (min-width:468px)and(max-width:600px) {
+    #searchResults{
+       justify-content: center;
+
+    }
+    
+}
 /* Responsive Design */
 @media (max-width: 768px) {
+
+    .movie-result{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
 
     .advertisement a img{
         height: 50px;
