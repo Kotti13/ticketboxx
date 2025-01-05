@@ -276,10 +276,7 @@ function parseShowtime(showtime) {
     if (showtime.includes('Imax')) {
         screenType = 'Imax';
         time = showtime.replace('Imax', '').trim();
-    } else if (showtime.includes('Screen')) {
-        screenType = showtime.split(' ')[0];
-        time = showtime.replace(screenType, '').trim();
-    }
+    } 
     return [screenType, time];
 }
 
