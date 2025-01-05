@@ -96,7 +96,7 @@ function displayMovieDetails(movieId) {
             // Insert the HTML into the movie details container
             movieDetailsContainer.innerHTML = html;
         } else {
-            movieDetailsContainer.innerHTML = '<p>Movie not found.</p>';
+            movieDetailsContainer.innerHTML = '<p>There are no shows available for this movie.</p>';
         }
     }).catch((error) => {
         console.error("Error fetching data: ", error);

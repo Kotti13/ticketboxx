@@ -206,6 +206,8 @@ async function fetchUnavailableSeats(movieName, theatreName, bookingDate, showTi
         return [];
     }
 }
+
+
 const selectedMovie=JSON.parse(localStorage.getItem('selectedMovie'))
 const { title, poster, selectedDate, selectedShowtime, selectedTheatre } = selectedMovie;
 // console.log(a)

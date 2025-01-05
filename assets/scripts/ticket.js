@@ -34,6 +34,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     // const { title: movieName, selectedTheatre: theatreName, date, showTime } = selectedMovie;
     console.log(`selected movie${selectedMovie.selectedDate}`)
     console.log(`${selectedMovie.selectedShowtime}`)
+
+
     const movieName = selectedMovie.title || "N/A";
     const theatreName = selectedMovie.selectedTheatre || "N/A";
     const date = selectedMovie.selectedDate || "N/A";

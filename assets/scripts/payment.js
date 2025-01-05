@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const selectedseat = JSON.parse(localStorage.getItem('clickedSeatsDetails')) || []; 
     // const seat = selectedseat.map(item => item.seats);
+    // console.log(seat)
     console.log(selectedseat.join(", "))
     
 
@@ -55,10 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     validateInputs();
 });
-// console.log(localStorage.getItem('clickedSeatsDetails'))
-// const a=JSON.parse(localStorage.getItem('clickedSeatsDetails'))
-// console.log(a)
-// for(let i=0;i<a.length;i++){
-//     console.log(a[i])
-// }
+console.log(localStorage.getItem('clickedSeatsDetails'))
+const a=JSON.parse(localStorage.getItem('clickedSeatsDetails'))
+console.log(`selected seats:  ${a}`)
+
 

@@ -1,6 +1,6 @@
 // Form Validation
 function validateForm(event) {
-    // Prevent form submission if there are validation errors
+    
     event.preventDefault();
 
     // Get form elements
@@ -8,10 +8,10 @@ function validateForm(event) {
     var email = document.getElementById("email").value.trim();
     var message = document.getElementById("message").value.trim();
 
-    // Regular expression for email validation
+   
     var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    // Regular expression for name validation (only letters and spaces)
+   
     var nameRegex = /^[a-zA-Z\s]{3,50}$/;  // Name should be 3-50 characters, only letters and spaces
 
     // Validation messages
