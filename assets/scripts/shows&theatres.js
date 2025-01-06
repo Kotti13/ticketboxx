@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (snapshot.exists()) {
                 const movie = snapshot.val();
                 displayMovieDetails(movie);
-                // Removed: populateShowTimes() from here
+                //populateshowtimesremoved
                 localStorage.setItem('selectedMovie', JSON.stringify(movie));
             } else {
                 document.getElementById("movie-details").innerHTML = "<p>Movie not found.</p>";
@@ -141,8 +141,8 @@ async function fetchComments(movieId) {
 }
 
 // Add new comment to Supabase
-async function addComment(movieId, username, commentText) {
-    const { error } = await supabase
+ async function addComment(movieId, username, commentText) {
+    const { error } =await  supabase
         .from('comments')
         .insert([{ movie_id: movieId, username, comment: commentText }]);
 

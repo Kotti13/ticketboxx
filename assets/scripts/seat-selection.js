@@ -33,7 +33,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     const { title: movieName, selectedTheatre: theatreName, selectedDate, selectedShowtime } = selectedMovie;
     const six=document.getElementById('six');
     const headerTitle = document.querySelector('header h1');
+
     const headerDetails = document.querySelector('header p');
+    
     headerTitle.textContent = movieName || "Movie not found";
     headerDetails.textContent = `${theatreName || "Unknown Theatre"} | ${selectedDate || "Unknown Date"} | ${selectedShowtime || "Unknown Showtime"}`;
 
@@ -74,7 +76,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 seatElement.dataset.seatId = seatId;
 
                 if (seat === '_') {
-                    seatElement.classList.add('empty'); // Empty space
+                    seatElement.classList.add('empty');   // Empty space div
                 } else if (unavailableSeats.includes(seatId)) {
                     seatElement.classList.add('sold'); // Sold seat
                     seatElement.title = `${seatId} (Sold)`;
@@ -85,7 +87,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     seatElement.addEventListener('click', () => toggleSeatSelection(seatElement, seatId, rowIndex));
                 }
 
-                seatElement.textContent = seat; // Display seat number
+                seatElement.textContent = seat;   // Display seat number
                 rowContainer.appendChild(seatElement);
             });
 
