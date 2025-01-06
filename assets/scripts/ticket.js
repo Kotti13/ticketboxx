@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         height: 128,
     });
 
-    // Save booking to Supabase
+   
     // Save booking to Supabase
 await saveBookingToSupabase({
     bookingId,

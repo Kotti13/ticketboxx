@@ -30,21 +30,23 @@ header {
 
 /* for search deatails */
 .movie-result{
-    margin: auto;
-    width: 50%;
-    display: flex;
-    max-width: 400px;
-    max-height: 400px;
-    justify-content: space-around;
-    
+   
+   display: flex;
+   /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
 
 }
 .movie-result img{
+    max-height: 400px;
+    max-width: 350px;
     border-radius: 20px;
+    justify-content: center;
     
 }
 .balance-deatils{
     margin-top: 20%;
+    
 }
 /* Main Content */
 
