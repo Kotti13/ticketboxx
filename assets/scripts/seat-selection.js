@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const six=document.getElementById('six');
     const headerTitle = document.querySelector('header h1');
     const headerDetails = document.querySelector('header p');
+    
     headerTitle.textContent = movieName || "Movie not found";
     headerDetails.textContent = `${theatreName || "Unknown Theatre"} | ${selectedDate || "Unknown Date"} | ${selectedShowtime || "Unknown Showtime"}`;
 
@@ -211,5 +212,6 @@ async function fetchUnavailableSeats(movieName, theatreName, bookingDate, showTi
 const selectedMovie=JSON.parse(localStorage.getItem('selectedMovie'))
 const { title, poster, selectedDate, selectedShowtime, selectedTheatre } = selectedMovie;
 // console.log(a)
-
+console.log(selectedDate)
+console.log(selectedShowtime)
 console.log(selectedMovie)
