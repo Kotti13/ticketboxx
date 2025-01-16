@@ -63,7 +63,7 @@ main {
 
 .hero {
     background: url('path-to-your-image.jpg') center center/cover no-repeat;
-    height: 60vh;
+    height: 20vh;
     display: flex;
     justify-content: center;
     align-items: center;
