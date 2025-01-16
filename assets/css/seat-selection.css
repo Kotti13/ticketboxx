@@ -121,19 +121,7 @@ body {
 }
 
 /* Popup */
-.popup {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: #fff;
-    padding: 10px 20px;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-    display: none;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 2px solid #42a5f5;
-}
+
 
 .popup .ticket-summary {
     font-size: 16px;
@@ -218,7 +206,7 @@ footer {
 #popup {
     display: none;
     position: fixed;
-    top: 50%;
+    top: 90%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: white;
@@ -226,8 +214,9 @@ footer {
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     z-index: 1000;
-    width: 300px;
+    width: 100%;
     text-align: center;
+    justify-content: center;
 }
 
 #selectedSeats, #totalPrice {
@@ -245,6 +234,7 @@ footer {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-left: 5%;
 }
 
 #confirmBooking.disabled {
@@ -253,6 +243,7 @@ footer {
 }
 
 #confirmBooking:hover:not(.disabled) {
+
     background-color: skyblue;
 }
 

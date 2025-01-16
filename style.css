@@ -609,20 +609,6 @@ footer {
   line-height: 1.5;
 }
 
-#contactUsLink:hover::after {
-  content: 'Contact Us - Last updated on 08-12-2024 21:49:08\nYou may contact us using the information below:\n\nMerchant Legal entity name: KOTTAI SAMY.K\nRegistered Address: 7/12, Navalar street,saligramam, Chennai, Tamil Nadu, PIN: 600093\nTelephone No: 8610239012\nE-Mail ID: skottai85@gmail.com';
-  display: block; /* Show tooltip */
-}
-
-#termsLink:hover::after {
-  content: 'Terms & Conditions - Last updated on 08-12-2024 21:49:30\nThese Terms and Conditions, along with privacy policy or other terms (“Terms”) constitute a binding agreement by and between KOTTAI SAMY.K, (“Website Owner”) and you (“you” or “your”) and relate to your use of our website, goods or services.\nBy using our website, you agree that you have read and accepted these Terms.';
-  display: block; /* Show tooltip */
-}
-
-#refundPolicyLink:hover::after {
-  content: 'Cancellation & Refund Policy - Last updated on 08-12-2024 21:49:55\nKOTTAI SAMY.K has a liberal cancellation policy. Cancellations will only be considered if the request is made immediately after placing the order.';
-  display: block; /* Show tooltip */
-}
 
 /* Hide Tooltip by Default */
 footer a::after {
