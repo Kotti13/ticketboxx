@@ -26,26 +26,29 @@ function getMovieRatingFromAPI(movieTitle) {
     const encodedTitle = encodeURIComponent(movieTitle);
     
     // Construct the OMDB API URL
-    const apiUrl = `http://www.omdbapi.com/?t=${encodedTitle}&apikey=${omdbApiKey}`;
+    const apiUrl = `https://www.omdbapi.com/?t=${encodedTitle}&apikey=${omdbApiKey}`;
+
 
     // Fetch the data from OMDB API
     return fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-            console.log("OMDB API Response:", data); // Log the full response for debugging
-            
-            // Check if the movie was found in OMDB
-            if (data.Response === "True") {
-                return data.imdbRating;  // Return the IMDb rating
-            } else {
-                // Handle case where the movie is not found
-                throw new Error("Movie not found in OMDB API");
-            }
-        })
-        .catch(error => {
-            console.error("Error fetching movie rating:", error);
-            return "N/A";  // Default rating when error occurs
-        });
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.Response === "True") {
+            return data.imdbRating || "N/A"; // Default to "N/A" if no rating
+        } else {
+            throw new Error("Movie not found in OMDB API");
+        }
+    })
+    .catch(error => {
+        console.error("Error fetching movie rating:", error);
+        return "N/A"; // Default rating on error
+    });
+
 }
 
 
