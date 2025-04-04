@@ -113,7 +113,7 @@ document.getElementById("searchForm").addEventListener("submit", function (e) {
     e.preventDefault();
 
     const queryText = document.getElementById("searchQuery").value.trim().toLowerCase();
-    if (!queryText) return;
+    if (!queryText ) return;
 
     const moviesRef = ref(database, 'movies');
     const searchResultsContainer = document.getElementById("searchResults");

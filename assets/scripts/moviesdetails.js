@@ -20,16 +20,16 @@ const database = getDatabase(app);
 // OMDB API key
 const omdbApiKey = "308bb24e"; 
 
-// omdb function for imdb rating 
+
 function getMovieRatingFromAPI(movieTitle) {
    
     const encodedTitle = encodeURIComponent(movieTitle);
     
-    // Construct the OMDB API URL
+    //  OMDB API URL
     const apiUrl = `https://www.omdbapi.com/?t=${encodedTitle}&apikey=${omdbApiKey}`;
 
 
-    // Fetch the data from OMDB API
+    //  OMDB API
     return fetch(apiUrl)
     .then(response => {
         if (!response.ok) {
@@ -39,14 +39,14 @@ function getMovieRatingFromAPI(movieTitle) {
     })
     .then(data => {
         if (data.Response === "True") {
-            return data.imdbRating || "N/A"; // Default to "N/A" if no rating
+            return data.imdbRating || "N/A"; //  "N/A" 
         } else {
             throw new Error("Movie not found in OMDB API");
         }
     })
     .catch(error => {
         console.error("Error fetching movie rating:", error);
-        return "N/A"; // Default rating on error
+        return "N/A"; 
     });
 
 }

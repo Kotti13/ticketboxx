@@ -31,12 +31,10 @@ const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-// Example of a query
 const saveUserToSupabase = async (user, username) => {
     const { email, uid } = user;
 
     try {
-        // inserting and upadte user data into Supabase
         const { data, error } = await supabase
             .from('users')
             .upsert({
@@ -63,7 +61,7 @@ const saveUserToSupabase = async (user, username) => {
 
 // Sign-up handler
 document.querySelector('.signup-form').addEventListener('submit', async (e) => {
-    e.preventDefault(); // Prevent default form submission
+    e.preventDefault(); 
 
     // Clear previous error messages
     document.getElementById('usernameError').textContent = "";
@@ -230,23 +228,21 @@ window.onload = async () => {
 
 document.querySelector('.google-login').addEventListener('click', async () => {
     try {
-        // Use Google Sign-In
+        
         const result = await signInWithPopup(auth, googleProvider);
 
-        // User information
         const user = result.user;
         console.log("Google Sign-In user info:", user);
 
         // Save user to Supabase
         await saveUserToSupabase(user, user.displayName);
-        
-
-
+ 
         // Redirect or handle post-login actions
         alert(`Welcome ${user.displayName}!`);
         window.location.href = "./assets/pages/home.html";
         localStorage.setItem('usermail', user.email);
         localStorage.setItem('username',user.displayName)
+        console.log(localStorage.getItem('usermail'))
     } catch (error) {
         console.error("Google Sign-In Error:", error.message);
         alert("Google Sign-In failed. Please try again.");

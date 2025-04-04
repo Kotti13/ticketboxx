@@ -171,7 +171,7 @@ function showSuccessMessageAndRedirect() {
     document.body.appendChild(successMessage);
 
     // Clear local storage data after success message
-    clearLocalStorageData();
+    // clearLocalStorageData();
 
     setTimeout(() => {
         window.location.href = "../pages/home.html";

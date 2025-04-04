@@ -103,11 +103,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Check imax screen
         const isImax = selectedShowtime.toLowerCase().includes("imax");
 
-        // If imax screen rs400 seat will appear
+        // for imax screen
         if (isImax) {
             seatPrice = 400;
         } 
-        // If the seat is in the first two rows, apply +60
+        // If the seat is in the first two rows add price +60
         else if (rowIndex === seatLayout.length-1 || rowIndex === seatLayout.length-2) {
             
             seatPrice = 60; 
@@ -118,13 +118,21 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         }
 
+        if (selectedSeats.length >= 10 && !seatElement.classList.contains('selected')) {
+            showNotAllowedPopup(); // Show popup if trying to select more than 10 seats
+            return; // Prevent further seat selection
+        }
+
 
         // Handle seat selection
         if (seatElement.classList.contains('selected')) {
             seatElement.classList.remove('selected');
             selectedSeats = selectedSeats.filter(seat => seat !== seatId);
             totalPrice -= seatPrice;
-        } else {
+        } 
+        
+        
+        else {
             seatElement.classList.add('selected');
             selectedSeats.push(seatId);
             totalPrice += seatPrice;
@@ -215,3 +223,7 @@ const { title, poster, selectedDate, selectedShowtime, selectedTheatre } = selec
 console.log(selectedDate)
 console.log(selectedShowtime)
 console.log(selectedMovie)
+
+function showNotAllowedPopup(){
+    alert('not allowd')
+}

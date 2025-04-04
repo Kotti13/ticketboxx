@@ -59,5 +59,5 @@ document.addEventListener('DOMContentLoaded', () => {
 console.log(localStorage.getItem('clickedSeatsDetails'))
 const a=JSON.parse(localStorage.getItem('clickedSeatsDetails'))
 console.log(`selected seats:  ${a}`)
-
+// console.log(localStorage.getItem('usermail'+"hi"))
 

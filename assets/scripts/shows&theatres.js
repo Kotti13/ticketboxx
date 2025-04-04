@@ -171,7 +171,8 @@ function generateDateScroll() {
         dateElement.innerText = dateObj.dateText;
 
         dateElement.addEventListener("click", () => {
-            // Clear previous selections
+
+            
             document.querySelectorAll(".date-item").forEach(item => item.classList.remove("selected"));
             dateElement.classList.add("selected");
 
@@ -195,7 +196,7 @@ function generateDateScroll() {
 
 
 
-// Populate the showtimes for the selected movie
+//showtimes for the selected movie
 function populateShowTimes(theatres = [], movie, isCurrentDate = false) {
     const showTimesContainer = document.getElementById("show-times");
 
@@ -220,7 +221,7 @@ function populateShowTimes(theatres = [], movie, isCurrentDate = false) {
                         const [hours, minutes] = convertTo24HourFormat(time).split(":").map(Number);
                         const showtimeInMinutes = hours * 60 + minutes;
 
-                        // Validate based on selected date
+                        //  selected date
                         if (isCurrentDate) {
                             return showtimeInMinutes >= currentTime;
                         }
@@ -238,7 +239,7 @@ function populateShowTimes(theatres = [], movie, isCurrentDate = false) {
         showTimesContainer.innerHTML += theatreBlock;
     });
 
-    // Add event listeners to showtime links
+ 
     document.querySelectorAll('.showtime-link').forEach(link => {
         link.addEventListener('click', function () {
             const selectedMovie = JSON.parse(localStorage.getItem('selectedMovie')) || {};
@@ -256,7 +257,7 @@ function populateShowTimes(theatres = [], movie, isCurrentDate = false) {
 
 
 
-// Convert time to 24-hour format
+//  24-hour format
 function convertTo24HourFormat(time) {
     const [hours, minutes, suffix] = time.split(/[:\s]/);
     let newHours = parseInt(hours);
@@ -269,7 +270,7 @@ function convertTo24HourFormat(time) {
     return `${newHours.toString().padStart(2, '0')}:${minutes.padStart(2, '0')}`;
 }
 
-// Parse showtime for screen type and time
+//  screen type and time
 function parseShowtime(showtime) {
     let screenType = '';
     let time = showtime;
