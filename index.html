@@ -1,358 +1,540 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    
-    <link rel="icon" type="image/x-icon" href="./assets/images/ticketboxx-logo.png">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="./assets/images/ticketboxx-logo.png"
+    />
     <title>TicketBoxx</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
-    
-</head>
-<body>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
     <header class="d-flex justify-content-between align-items-center p-3">
-        <div>
-            <a href="home.html">
-                <img src="./assets/images/ticketboxx -logo.png" alt="TicketBoxx Logo" height="40" width="100" />
-            </a>
-        </div>
-    
-        <!-- Search Bar -->
-        <div class="flex-grow-1 mx-3">
-            <form id="searchForm">
-                <input type="text" id="searchQuery" class="search-bar form-control" placeholder="Search For Movies, Sports, Activities">
-                <button type="submit" class="search-icon">Search</button>
-            </form>
-            
-            
-        </div>
+      <div>
+        <a href="home.html">
+          <img
+            src="./assets/images/ticketboxx -logo.png"
+            alt="TicketBoxx Logo"
+            height="40"
+            width="100"
+          />
+        </a>
+      </div>
+
+      <!-- Search Bar -->
+      <div class="flex-grow-1 mx-3">
+        <form id="searchForm">
+          <input
+            type="text"
+            id="searchQuery"
+            class="search-bar form-control"
+            placeholder="Search For Movies, Sports, Activities"
+          />
+          <button type="submit" class="search-icon">Search</button>
+        </form>
+      </div>
     </header>
-    
+
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light position-relative w-100">
-            <!-- Hamburger button -->
-            <button
-                class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarNav"
-                aria-controls="navbarNav"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-            >
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <!-- Navbar links -->
-            <div
-                class="collapse navbar-collapse w-100"
-                id="navbarNav"
-            >
+      <nav
+        class="navbar navbar-expand-lg navbar-light bg-light position-relative w-100"
+      >
+        <!-- Hamburger button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse w-100" id="navbarNav">
+          <div
+            style="
+              background-color: bisque;
+              width: 250px;
+              height: 110px;
+              border-radius: 10%;
+              text-align: center;
+            "
+          >
+            <p>For Demo Purpose</p>
+            <p><strong>Email Id:</strong>Demo@gmail.com</p>
+            <p><strong>Password:</strong>Demo123</p>
+          </div>
+          <ul class="navbar-nav ms-auto d-flex flex-row">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Movies</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Theaters</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+          </ul>
+        </div>
+        <div class="dropdown" id="authButtons">
+          <button
+            class="btn btn-primary dropdown-toggle login-btn"
+            type="button"
+            id="dropdownMenuButton"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Login/Signup
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <li>
+              <a
+                class="dropdown-item"
+                href="#"
+                data-bs-toggle="modal"
+                data-bs-target="#loginModal"
+                >Login</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                href="#"
+                data-bs-toggle="modal"
+                data-bs-target="#signupModal"
+                >Sign Up</a
+              >
+            </li>
+          </ul>
+        </div>
+      </nav>
 
-            <div style="background-color: bisque; width: 250px; height: 110px;border-radius: 10%; text-align: center;"> <p>For Demo Purpose</p><p> <strong>Email Id:</strong>Demo@gmail.com</p><p><strong>Password:</strong>Demo123</p></div>
-                <ul class="navbar-nav ms-auto d-flex flex-row">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Movies</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Theaters</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="dropdown" id="authButtons">
-                <button class="btn btn-primary dropdown-toggle login-btn" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                    Login/Signup
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a></li>
-                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#signupModal">Sign Up</a></li>
-                </ul>
-            </div>
-        </nav>
-       
-        <button id="logoutButton" class="btn btn-danger d-none">Logout</button>
+      <button id="logoutButton" class="btn btn-danger d-none">Logout</button>
     </header>
-    
-    
-    
-    
 
-   <!-- Signup Modal -->
-<!-- Signup Modal -->
-<div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <!-- Signup Modal -->
+    <!-- Signup Modal -->
+    <div
+      class="modal fade"
+      id="signupModal"
+      tabindex="-1"
+      aria-labelledby="signupModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title " id="signupModalLabel" >Sign Up</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form class="signup-form text-center" novalidate>
-                    <div class="mb-3">
-                       
-                        <input type="text" placeholder="Username" id="username" class="form-control"  required>
-                        <span class="error-message" id="usernameError" style="color: red;"></span>
-                    </div>
-                    <div class="mb-3">
-                      
-                        <input type="email" placeholder="Email" id="signupEmail" class="form-control mx-auto"  required>
-                        <span class="error-message" id="emailError" style="color: red;"></span>
-                    </div>
-                    <div class="mb-3">
-                        
-                        <input type="password" placeholder="Password" id="signupPassword" class="form-control mx-auto"  required>
-                        <span class="error-message" id="passwordError" style="color: red;"></span>
-                    </div>
-                    <div class="mb-3">
-                       
-                        <input type="password" placeholder="confirmPassword" id="confirmPassword" class="form-control mx-auto"  required>
-                        <span class="error-message" id="confirmPasswordError" style="color: red;"></span>
-                    </div>
-                    <button type="submit" class="btn btn-secondary w-100">Sign Up</button>
-                </form>
-            </div>
+          <div class="modal-header">
+            <h5 class="modal-title" id="signupModalLabel">Sign Up</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form class="signup-form text-center" novalidate>
+              <div class="mb-3">
+                <input
+                  type="text"
+                  placeholder="Username"
+                  id="username"
+                  class="form-control"
+                  required
+                />
+                <span
+                  class="error-message"
+                  id="usernameError"
+                  style="color: red"
+                ></span>
+              </div>
+              <div class="mb-3">
+                <input
+                  type="email"
+                  placeholder="Email"
+                  id="signupEmail"
+                  class="form-control mx-auto"
+                  required
+                />
+                <span
+                  class="error-message"
+                  id="emailError"
+                  style="color: red"
+                ></span>
+              </div>
+              <div class="mb-3">
+                <input
+                  type="password"
+                  placeholder="Password"
+                  id="signupPassword"
+                  class="form-control mx-auto"
+                  required
+                />
+                <span
+                  class="error-message"
+                  id="passwordError"
+                  style="color: red"
+                ></span>
+              </div>
+              <div class="mb-3">
+                <input
+                  type="password"
+                  placeholder="confirmPassword"
+                  id="confirmPassword"
+                  class="form-control mx-auto"
+                  required
+                />
+                <span
+                  class="error-message"
+                  id="confirmPasswordError"
+                  style="color: red"
+                ></span>
+              </div>
+              <button type="submit" class="btn btn-secondary w-100">
+                Sign Up
+              </button>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
-</div>
 
-<!-- Login Modal -->
-<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <!-- Login Modal -->
+    <div
+      class="modal fade"
+      id="loginModal"
+      tabindex="-1"
+      aria-labelledby="loginModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
         <div class="modal-content">
-            <div style="width:100%;height:120px;padding-bottom:100%;position:relative;"><iframe src="https://giphy.com/embed/0Ix0Q0mZrliHea82vk" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div>
-            <div class="modal-header">
-                <h5 class="modal-title" id="loginModalLabel">Login</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <div
+            style="
+              width: 100%;
+              height: 120px;
+              padding-bottom: 100%;
+              position: relative;
+            "
+          >
+            <iframe
+              src="https://giphy.com/embed/0Ix0Q0mZrliHea82vk"
+              width="100%"
+              height="100%"
+              style="position: absolute"
+              frameborder="0"
+              class="giphy-embed"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <div class="modal-header">
+            <h5 class="modal-title" id="loginModalLabel">Login</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form class="login-form text-center" novalidate>
+              <div class="mb-3">
+                <input
+                  type="email"
+                  placeholder="Email"
+                  id="email"
+                  class="form-control mx-auto"
+                  required
+                />
+                <span
+                  class="error-message"
+                  id="loginEmailError"
+                  style="color: red"
+                ></span>
+              </div>
+              <div class="mb-4">
+                <input
+                  type="password"
+                  placeholder="Password"
+                  id="password"
+                  class="form-control mx-auto"
+                  required
+                />
+                <span
+                  class="error-message"
+                  id="loginPasswordError"
+                  style="color: red"
+                ></span>
+              </div>
+              <button type="submit" class="btn btn-primary w-90">Login</button>
+            </form>
+            <div class="login-social-container">
+              <p style="color: red; text-align: center">
+                Login With Social Accounts
+              </p>
+              <div class="social-img-container">
+                <a href="javascript:void(0)" class="google-login">
+                  <img
+                    src="./assets/images/google.png"
+                    alt="Google Login"
+                    height="40px"
+                  />
+                </a>
+              </div>
             </div>
-            <div class="modal-body">
-                <form class="login-form text-center" novalidate>
-                    <div class="mb-3">
-                        
-                        <input type="email" placeholder="Email" id="email" class="form-control mx-auto"  required>
-                        <span class="error-message" id="loginEmailError" style="color: red;"></span>
-                    </div>
-                    <div class="mb-4">
-                        
-                        <input type="password" placeholder="Password" id="password" class="form-control mx-auto"  required>
-                        <span class="error-message" id="loginPasswordError" style="color: red;"></span>
-                    </div>
-                    <button type="submit" class="btn btn-primary w-90">Login</button>
-                </form>
-                <div class="login-social-container">
-                    <p style="color: red; text-align: center;" >Login With Social Accounts</p>
-                    <div class="social-img-container">
-                        <a href="javascript:void(0)" class="google-login">
-                            <img src="./assets/images/google.png" alt="Google Login" height="40px">
-                        </a>
-                    </div>
-                    
-
-                    
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-
 
     <main>
-        <div id="carouselExample" class="carousel slide">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="./assets/images/bloody-begger-slider.jpg" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="./assets/images/amaran-slider.jpg" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="./assets/images/kanguva-slider.jpg" class="d-block w-100" alt="...">
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+      <div id="carouselExample" class="carousel slide">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img
+              src="./assets/images/bloody-begger-slider.jpg"
+              class="d-block w-100"
+              alt="..."
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="./assets/images/amaran-slider.jpg"
+              class="d-block w-100"
+              alt="..."
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="./assets/images/kanguva-slider.jpg"
+              class="d-block w-100"
+              alt="..."
+            />
+          </div>
         </div>
-        <section class="recommended-movies">
-            <h2>Recommended Movies</h2>
-            <div class="movie-slider">
-                <div class="movie-card">
-                    <a href="moviesdetails.html?id=9">
-                        <img src="https://i.ibb.co/hRYcJGL/mufasa-the-lion-king-et00396541-1734081980.jpg" alt="mufasa-the-lion-king">
-                    </a>
-                    
-                </div>
-                <div class="movie-card">
-                    <a href="moviesdetails.html?id=0">
-                        <img src="https://m.media-amazon.com/images/M/MV5BNWU1ZWFhNGQtZDhlZC00ZWFlLTlmNmEtN2VmYmZiN2Y5ZmQ2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Pushpa-2 The rule">
-                    </a>
-                    
-                </div>
-                <div class="movie-card">
-                    <a href="moviesdetails.html?id=1">
-                        <img src="https://m.media-amazon.com/images/M/MV5BOGM5N2FkNGMtNmYzMS00MGRiLWI5ZDItOTRmNThiYWNlNDZhXkEyXkFqcGc@._V1_.jpg" alt="Black">
-                    </a>
-                   
-                </div>
-        
-                <div class="movie-card">
-                    <a href="moviesdetails.html?id=2">
-                        <img src="https://static.toiimg.com/photo/114813595.cms?imgsize=283590" alt="Brother">
-                    </a>
-                    
-                </div>
-        
-                <div class="movie-card">
-                    <a href="moviesdetails.html?id=3">
-                        <img src="https://m.media-amazon.com/images/M/MV5BNjc2NTkxNzQtZDcxNS00MzczLTkzOGYtMjAwYzJjMzFjNWJhXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Lucky Basker">
-                    </a>
-                    
-                </div>
-        
-                <div class="movie-card">
-                    <a href="moviesdetails.html?id=4">
-                        <img src="https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/bloody-beggar-et00412521-1726727688.jpg" alt="Bloody Begger">
-                    </a>
-                   
-                </div>
-        
-                <div class="movie-card">
-                    <a href="moviesdetails.html?id=5">
-                        <img src="https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/amaran-et00417203-1729696593.jpg" alt="Amaran">
-                    </a>
-                    
-                </div>
-        
-                <div class="movie-card">
-                    <a href="moviesdetails.html?id=6">
-                        <img src="https://m.media-amazon.com/images/M/MV5BZDMyYWU4NzItZDY0MC00ODE2LTkyYTMtMzNkNDdmYmFhZDg0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Venom: The Last Dance">
-                    </a>
-                    
-                </div>
-        
-                <div class="movie-card">
-                    <a href="moviesdetails.html?id=7">
-                        <img src="https://m.media-amazon.com/images/M/MV5BNDk0NzM3ZGQtNjk5Mi00Y2I4LWIwYzUtYjA2NzJiNmQyNDdlXkEyXkFqcGc@._V1_.jpg" alt="Lubber Pandhu">
-                    </a>
-                    
-                </div>
-                <div class="movie-card">
-                    <a href="moviesdetails.html?id=8">
-                        <img src="https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/vettaiyan-et00379391-1727938465.jpg" alt="Vettaiyan">
-                    </a>
-                    
-                </div>
-                <div class="movie-card">
-                    <a href="moviesdetails.html?id=10">
-                        <img src="https://assets-in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:w-400.0,h-660.0,cm-pad_resize,bg-000000,fo-top:l-image,i-discovery-catalog@@icons@@star-icon-202203010609.png,lx-24,ly-615,w-29,l-end:l-text,ie-OC8xMCAgMksgVm90ZXM%3D,fs-29,co-FFFFFF,ly-612,lx-70,pa-8_0_0_0,l-end/et00420051-jpqvjrpsba-portrait.jpg" alt="Sorgavaasal">
-                    </a>
-                    
-                </div>
-                
-                
-            </div>
-        </section>
-        
-        <section class="hero">
-            <div class="hero-content">
-                <a href="movies.html" class="btn" >Browse Movies</a>
-            </div>
-        </section>
-        <section class="recommended-movies">
-            <h2>New & Coming Soon</h2>
-            <div class="movie-slider">
-                <div class="movie-card">
-                    <a href="moviesdetails.html?id=10">
-                        <img src="./assets/images/jolly-o-jymkhana.jpg" alt="jolly-o-jymkhana">
-                    </a>
-                    
-                </div>
-                <div class="movie-card">
-                    <a href="moviesdetails.html?id=11">
-                        <img src="./assets/images/Captain_America_Brave_New_World_poster.jpg" alt="Captain_America_Brave_New_World">
-                    </a>
-                   
-                </div>
-        
-                <div class="movie-card">
-                    <a href="moviesdetails.html?id=12">
-                        <img src="./assets/images/good-bad-ugly.jpg" alt="good-bad-ugly">
-                    </a>
-                    
-                </div>
-        
-                <div class="movie-card">
-                    <a href="moviesdetails.html?id=13">
-                        <img src="./assets/images/pushpa-2.jpg" alt="pushpa-2">
-                    </a>
-                    
-                </div>
-        
-                <div class="movie-card">
-                    <a href="moviesdetails.html?id=14">
-                        <img src="./assets/images/miss-you-poster.jpg" alt="miss-you">
-                    </a>
-                   
-                </div>
-        
-                <div class="movie-card">
-                    <a href="moviesdetails.html?id=15">
-                        <img src="./assets/images/Mechanic_Rocky_film_poster.jpg" alt="Mechanic_Rocky">
-                    </a>
-                    
-                </div>
-        
-                <div class="movie-card">
-                    <a href="moviesdetails.html?id=16">
-                        <img src="./assets/images/Zebra.jpg" alt="Zebra">
-                    </a>
-                    
-                </div>
-        
-                
-                
-                
-                
-            </div>
-        </section>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExample"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExample"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      <section class="recommended-movies">
+        <h2>Recommended Movies</h2>
+        <div class="movie-slider">
+          <div class="movie-card">
+            <a href="moviesdetails.html?id=9">
+              <img
+                src="https://i.ibb.co/hRYcJGL/mufasa-the-lion-king-et00396541-1734081980.jpg"
+                alt="mufasa-the-lion-king"
+              />
+            </a>
+          </div>
+          <div class="movie-card">
+            <a href="moviesdetails.html?id=0">
+              <img
+                src="https://m.media-amazon.com/images/M/MV5BNWU1ZWFhNGQtZDhlZC00ZWFlLTlmNmEtN2VmYmZiN2Y5ZmQ2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+                alt="Pushpa-2 The rule"
+              />
+            </a>
+          </div>
+          <div class="movie-card">
+            <a href="moviesdetails.html?id=1">
+              <img
+                src="https://m.media-amazon.com/images/M/MV5BOGM5N2FkNGMtNmYzMS00MGRiLWI5ZDItOTRmNThiYWNlNDZhXkEyXkFqcGc@._V1_.jpg"
+                alt="Black"
+              />
+            </a>
+          </div>
 
-        <section class="features">
-            <h2>Our Features</h2>
-            <div class="feature-card">
-                <h3>Latest Releases</h3>
-            </div>
-            <div class="feature-card">
-                <h3>Exclusive Offers</h3>
-            </div>
-            <div class="feature-card">
-                <h3>3D Experience</h3>
-            </div>
-        </section>
+          <div class="movie-card">
+            <a href="moviesdetails.html?id=2">
+              <img
+                src="https://static.toiimg.com/photo/114813595.cms?imgsize=283590"
+                alt="Brother"
+              />
+            </a>
+          </div>
+
+          <div class="movie-card">
+            <a href="moviesdetails.html?id=3">
+              <img
+                src="https://m.media-amazon.com/images/M/MV5BNjc2NTkxNzQtZDcxNS00MzczLTkzOGYtMjAwYzJjMzFjNWJhXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+                alt="Lucky Basker"
+              />
+            </a>
+          </div>
+
+          <div class="movie-card">
+            <a href="moviesdetails.html?id=4">
+              <img
+                src="https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/bloody-beggar-et00412521-1726727688.jpg"
+                alt="Bloody Begger"
+              />
+            </a>
+          </div>
+
+          <div class="movie-card">
+            <a href="moviesdetails.html?id=5">
+              <img
+                src="https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/amaran-et00417203-1729696593.jpg"
+                alt="Amaran"
+              />
+            </a>
+          </div>
+
+          <div class="movie-card">
+            <a href="moviesdetails.html?id=6">
+              <img
+                src="https://m.media-amazon.com/images/M/MV5BZDMyYWU4NzItZDY0MC00ODE2LTkyYTMtMzNkNDdmYmFhZDg0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+                alt="Venom: The Last Dance"
+              />
+            </a>
+          </div>
+
+          <div class="movie-card">
+            <a href="moviesdetails.html?id=7">
+              <img
+                src="https://m.media-amazon.com/images/M/MV5BNDk0NzM3ZGQtNjk5Mi00Y2I4LWIwYzUtYjA2NzJiNmQyNDdlXkEyXkFqcGc@._V1_.jpg"
+                alt="Lubber Pandhu"
+              />
+            </a>
+          </div>
+          <div class="movie-card">
+            <a href="moviesdetails.html?id=8">
+              <img
+                src="https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/vettaiyan-et00379391-1727938465.jpg"
+                alt="Vettaiyan"
+              />
+            </a>
+          </div>
+          <div class="movie-card">
+            <a href="moviesdetails.html?id=10">
+              <img
+                src="https://assets-in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:w-400.0,h-660.0,cm-pad_resize,bg-000000,fo-top:l-image,i-discovery-catalog@@icons@@star-icon-202203010609.png,lx-24,ly-615,w-29,l-end:l-text,ie-OC8xMCAgMksgVm90ZXM%3D,fs-29,co-FFFFFF,ly-612,lx-70,pa-8_0_0_0,l-end/et00420051-jpqvjrpsba-portrait.jpg"
+                alt="Sorgavaasal"
+              />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="hero">
+        <div class="hero-content">
+          <a href="movies.html" class="btn">Browse Movies</a>
+        </div>
+      </section>
+      <section class="recommended-movies">
+        <h2>New & Coming Soon</h2>
+        <div class="movie-slider">
+          <div class="movie-card">
+            <a href="moviesdetails.html?id=10">
+              <img
+                src="./assets/images/jolly-o-jymkhana.jpg"
+                alt="jolly-o-jymkhana"
+              />
+            </a>
+          </div>
+          <div class="movie-card">
+            <a href="moviesdetails.html?id=11">
+              <img
+                src="./assets/images/Captain_America_Brave_New_World_poster.jpg"
+                alt="Captain_America_Brave_New_World"
+              />
+            </a>
+          </div>
+
+          <div class="movie-card">
+            <a href="moviesdetails.html?id=12">
+              <img
+                src="./assets/images/good-bad-ugly.jpg"
+                alt="good-bad-ugly"
+              />
+            </a>
+          </div>
+
+          <div class="movie-card">
+            <a href="moviesdetails.html?id=13">
+              <img src="./assets/images/pushpa-2.jpg" alt="pushpa-2" />
+            </a>
+          </div>
+
+          <div class="movie-card">
+            <a href="moviesdetails.html?id=14">
+              <img src="./assets/images/miss-you-poster.jpg" alt="miss-you" />
+            </a>
+          </div>
+
+          <div class="movie-card">
+            <a href="moviesdetails.html?id=15">
+              <img
+                src="./assets/images/Mechanic_Rocky_film_poster.jpg"
+                alt="Mechanic_Rocky"
+              />
+            </a>
+          </div>
+
+          <div class="movie-card">
+            <a href="moviesdetails.html?id=16">
+              <img src="./assets/images/Zebra.jpg" alt="Zebra" />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="features">
+        <h2>Our Features</h2>
+        <div class="feature-card">
+          <h3>Latest Releases</h3>
+        </div>
+        <div class="feature-card">
+          <h3>Exclusive Offers</h3>
+        </div>
+        <div class="feature-card">
+          <h3>3D Experience</h3>
+        </div>
+      </section>
     </main>
-
-    
-</body>
-<footer>
+  </body>
+  <footer>
     <div class="container">
       <div class="footer-content">
         <div class="logo">
-          
-            <div class="logo-icon">
-              <img src="./assets/images/ticketboxx -logo.png" alt="" height="50" width="100">
-            </div>
-           
-          
+          <div class="logo-icon">
+            <img
+              src="./assets/images/ticketboxx -logo.png"
+              alt=""
+              height="50"
+              width="100"
+            />
+          </div>
         </div>
         <div class="footer-links">
           <div class="column">
@@ -382,9 +564,27 @@
           <div class="column">
             <h3>Social Media</h3>
             <div class="social-links">
-              <a href="#" title="Facebook"><img src="./assets/images/facebook.png" alt="" height="40" width="40"></a>
-              <a href="#" title="whatsapp"><img src="./assets/images/whatsapp.png" alt="" height="40" width="40"></a>
-              <a href="#" title="gmail"><img src="./assets/images/gmail.png" alt="" height="40" width="40"></a>
+              <a href="#" title="Facebook"
+                ><img
+                  src="./assets/images/facebook.png"
+                  alt=""
+                  height="40"
+                  width="40"
+              /></a>
+              <a href="#" title="whatsapp"
+                ><img
+                  src="./assets/images/whatsapp.png"
+                  alt=""
+                  height="40"
+                  width="40"
+              /></a>
+              <a href="#" title="gmail"
+                ><img
+                  src="./assets/images/gmail.png"
+                  alt=""
+                  height="40"
+                  width="40"
+              /></a>
             </div>
           </div>
         </div>
@@ -395,41 +595,42 @@
     </div>
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  
-    <script type="module" src="./assets/scripts/firebase.js" defer></script>
-    <script type="module">
-        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
-        
-        document.addEventListener('DOMContentLoaded', () => {
-            const auth = getAuth();
-            let isAuthenticated = false;
-    
-            // Check user authentication status
-            onAuthStateChanged(auth, (user) => {
-                isAuthenticated = !!user; 
-            });
-            
-           
-            const protectedLinks = document.querySelectorAll('.nav-link, .hero-content .btn,.recommended-movies ,#searchForm');
-            
-            protectedLinks.forEach(link => {
-                link.addEventListener('click', (event) => {
-                    
-                    if (!isAuthenticated) {
-                        event.preventDefault(); 
-                        // Show the login modal
-                        const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
-                        loginModal.show();
-                    }
-                });
-            });
+
+  <script type="module" src="./assets/scripts/firebase.js" defer></script>
+  <script type="module">
+    import {
+      getAuth,
+      onAuthStateChanged,
+    } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const auth = getAuth();
+      let isAuthenticated = false;
+
+      // Check user authentication status
+      onAuthStateChanged(auth, (user) => {
+        isAuthenticated = !!user;
+      });
+
+      const protectedLinks = document.querySelectorAll(
+        ".nav-link, .hero-content .btn,.recommended-movies ,#searchForm"
+      );
+
+      protectedLinks.forEach((link) => {
+        link.addEventListener("click", (event) => {
+          if (!isAuthenticated) {
+            event.preventDefault();
+            // Show the login modal
+            const loginModal = new bootstrap.Modal(
+              document.getElementById("loginModal")
+            );
+            loginModal.show();
+          }
         });
-    </script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.47.5/dist/supabase.min.js"></script> -->
+      });
+    });
+  </script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.47.5/dist/supabase.min.js"></script> -->
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js/dist/supabase.js"></script>
-    
-
-    
-  
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js/dist/supabase.js"></script>
 </html>
